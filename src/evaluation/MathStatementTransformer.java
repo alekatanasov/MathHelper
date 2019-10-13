@@ -24,6 +24,10 @@ public abstract class MathStatementTransformer implements StatementTransformer{
         this.mathStatement = statement;
     }
     
+    /**
+     * 
+     * @return reference to the mathStatement field (no shallow or deep copy )
+     */
     public SymbolicStatement getMathStatement(){
         return this.mathStatement;
     }

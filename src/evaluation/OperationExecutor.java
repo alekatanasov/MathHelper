@@ -46,7 +46,7 @@ public final class OperationExecutor extends MathStatementTransformer{
             }
         }
         
-        // execute the operation with the highest order
+        // execute the operation of the highest order
         executeHighestOrderOperation(symbols, HighestOrderOperationPosition);
         
         isTrasformationSuccess = true;
@@ -55,7 +55,7 @@ public final class OperationExecutor extends MathStatementTransformer{
     
     /**
      * Executes the the operation of the highest order(the operation and it's right and left operands
-     * are replaced with the result).
+     * are replaced with the resulting constant).
      * 
      * @param statement a symbolic mathematical statement
      * @param HighestOrderOperationPosition the index position of the operation with the highest order in

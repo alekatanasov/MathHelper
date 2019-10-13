@@ -15,9 +15,16 @@ public class ExpressionEvaluator implements Evaluator{
     @Override
     public SymbolicStatement evaluate(SymbolicStatement statement){
         StatementTransformer operationExecutor = new OperationExecutor(statement);
+        StatementTransformer bracketRemover = new BracketRemover(statement);
+        StatementTransformer operationOrderAdjuster = new OperationOrderAdjuster(statement);
         
+        // take brackets into account and adjust the order of all operations
+        operationOrderAdjuster.transformMathStatement();
+        
+        // execute operations and remove brackets untill no more operations exist
         while(statement.containsSymbol(Symbol.SymbolType.OPERATION)){
             operationExecutor.transformMathStatement();
+            bracketRemover.transformMathStatement();
         }
         
         return statement;

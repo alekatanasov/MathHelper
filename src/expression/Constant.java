@@ -14,7 +14,7 @@ public final class Constant extends MathSymbol{
     }
     
     /**
-     * Checks if a String represents a numeric value.
+     * Checks if a String represents a numeric constant value.
      * 
      * @param supposedConstant String to be checked
      * 

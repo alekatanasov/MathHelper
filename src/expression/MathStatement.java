@@ -4,7 +4,7 @@ package expression;
 import interfaces.expression.Symbol;
 import interfaces.expression.SymbolicStatement;
 import interfaces.parse.SymbolicParser;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,6 +45,11 @@ public class MathStatement implements SymbolicStatement{
     }
     
     @Override
+    public Symbol getSymbol(int position){
+        return this.getStatement().get(position);
+    }
+    
+    @Override
     public boolean containsSymbol(Symbol.SymbolType symbolType){
         boolean result = false;
         
@@ -59,7 +64,7 @@ public class MathStatement implements SymbolicStatement{
     }
     
     private void initializeStatement(Symbol[] statement){
-        this.statement = new LinkedList<>();
+        this.statement = new ArrayList<>();
         
         for(int c = 0;c < statement.length;c++){
             this.statement.add(statement[c]);

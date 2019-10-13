@@ -7,7 +7,8 @@ package interfaces.expression;
 public interface Symbol {
     public enum SymbolType{
         OPERATION,
-        CONSTANT
+        CONSTANT,
+        BRACKET;
     }
     
     public SymbolType getSymbolType();

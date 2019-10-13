@@ -16,6 +16,14 @@ public interface SymbolicStatement {
     
     /**
      * 
+     * @param position the position of the symbol in the symbolic statement
+     * 
+     * @return the symbol at the specified position
+     */
+    public Symbol getSymbol(int position);
+    
+    /**
+     * 
      * @param symbolType
      * 
      * @return true if at least one symbolType in the current SymbolicStatement is found 

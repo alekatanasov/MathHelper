@@ -113,6 +113,29 @@ public final class Operation extends MathSymbol{
         return this.operationOrder;
     }
     
+    /**
+     * Increase the operationOrder field by the number of steps specified by the steps parameter.
+     * Each step is equivalent to the highest possible default operation order.
+     * 
+     * @param steps non zero positive integer
+     */
+    public void incrementOperationOrder(int steps){
+        // error check
+        if(steps < 0){
+            throw new IllegalArgumentException("steps cannot be less than 0");
+        }
+        
+        setOperationOrder(getOperationOrder() + steps*3);
+    }
+    
+    /**
+     * Resets the operationOrder to its default value (which is dependent on the type of the 
+     * current operation)
+     */
+    public void resetOperationOrder(){
+        setOperationOrder(getDefaultOperationOrder(this));
+    }
+    
     @Override
     public SymbolType getSymbolType(){
         return SymbolType.OPERATION;

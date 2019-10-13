@@ -1,6 +1,7 @@
 
 package parse;
 
+import expression.Bracket;
 import expression.Constant;
 import expression.Operation;
 import interfaces.expression.Symbol;
@@ -25,26 +26,31 @@ public class MathStatementParser implements SymbolicParser {
     }
     
     @Override
-    public boolean parseStatement(String statement){
+    public boolean parseStatement(String stringStatement){
        boolean parseSuccess = false;
        List<Symbol> mathStatement = new ArrayList<>();
        
-       if(statement == null){
+       if(stringStatement == null){
            return parseSuccess;
-       } else if(statement.isEmpty()){
+       } else if(stringStatement.isEmpty()){
            return parseSuccess;
        }
        
        // main parsing loop
-       for(int c=0; c < statement.length(); c++){
+       for(int c=0; c < stringStatement.length(); c++){
            // check for constant
-           if(parseConstant(statement, c)){
+           if(parseConstant(stringStatement, c)){
                mathStatement.add(new Constant(popLastParsedConstant()));
            }
            
            // check for operation
-           if(Operation.isOperation(statement.substring(c, c+1))){
-               mathStatement.add(new Operation(statement.substring(c, c+1)));
+           if(Operation.isOperation(stringStatement.substring(c, c+1))){
+               mathStatement.add(new Operation(stringStatement.substring(c, c+1)));
+           }
+           
+           // check for bracket
+           if(Bracket.isBracket(stringStatement.substring(c, c+1))){
+               mathStatement.add(new Bracket(stringStatement.substring(c, c+1)));
            }
        }
        
@@ -53,7 +59,7 @@ public class MathStatementParser implements SymbolicParser {
            return parseSuccess;
        }
        
-       // store the statement
+       // store the symbolicStatement
        this.lastParsedStatement = new Symbol[mathStatement.size()];
        for(int c=0; c < mathStatement.size(); c++){
            this.lastParsedStatement[c] = mathStatement.get(c);
@@ -67,9 +73,9 @@ public class MathStatementParser implements SymbolicParser {
     
     @Override
     public Symbol[] popLastParsedStatement(){
-        Symbol[] statement = this.lastParsedStatement;
+        Symbol[] symbolicStatement = this.lastParsedStatement;
         this.lastParsedStatement = null;
-        return statement;
+        return symbolicStatement;
     }
     
     /**
@@ -90,7 +96,8 @@ public class MathStatementParser implements SymbolicParser {
         if(this.currentConstant.isEmpty()){
             // no preceding constant. Check if the current character is the beggining of a constant
             if(Constant.isConstant(statement.substring(currentPosition, currentPosition+1))){
-                 this.currentConstant += statement.substring(currentPosition, currentPosition+1);
+                // the current character is indeed a digit, add it to the currentConstant
+                this.currentConstant += statement.substring(currentPosition, currentPosition+1);
                  
                 // check if position is at the end of the String
                 if(currentPosition == statement.length()-1){
@@ -140,8 +147,8 @@ public class MathStatementParser implements SymbolicParser {
      * @return the last parsed constant
      */
     private String popLastParsedConstant(){
-        String temp = this.lastParsedConstant;
+        String constant = this.lastParsedConstant;
         this.lastParsedConstant = "";
-        return temp;
+        return constant;
     }
 }
