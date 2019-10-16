@@ -14,7 +14,7 @@ import interfaces.expression.SymbolicStatement;
 public class ExpressionEvaluator implements Evaluator{
     @Override
     public SymbolicStatement evaluate(SymbolicStatement statement){
-        StatementTransformer operationExecutor = new OperationExecutor(statement);
+        StatementTransformer operationExecutor = new HighestOperationExecutor(statement);
         StatementTransformer bracketRemover = new BracketRemover(statement);
         StatementTransformer operationOrderAdjuster = new OperationOrderAdjuster(statement);
         

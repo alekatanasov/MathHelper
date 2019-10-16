@@ -16,9 +16,16 @@ public interface StatementTransformer {
     public boolean transformMathStatement();
     
     /**
-     * Stores the provided statement inside the current instance of the StatementTransformer
+     * Stores the provided symbolic statement inside the current instance of the StatementTransformer.
      * 
-     * @param statement 
+     * @param statement non null symbolic statement
      */
     public void loadMathStatement(SymbolicStatement statement);
+    
+    /**
+     * Loads additional data needed for statement transformation.
+     * 
+     * @param data 
+     */
+    public void loadAdditionalData(Object data);
 }

@@ -5,7 +5,9 @@ import interfaces.evaluation.StatementTransformer;
 import interfaces.expression.SymbolicStatement;
 
 /**
- *
+ * An abstract implementation of the StatementTransformer interface, which holds
+ * functionality common to all inheritors.
+ * 
  * @author Alexandar Atanasov
  */
 public abstract class MathStatementTransformer implements StatementTransformer{
@@ -22,6 +24,17 @@ public abstract class MathStatementTransformer implements StatementTransformer{
         }
         
         this.mathStatement = statement;
+    }
+    
+    /**
+     * Default implementation of the method which does not do anything and exists for convenience
+     * since not all inheritors use additional data.
+     * 
+     * @param data 
+     */
+    @Override
+    public void loadAdditionalData(Object data){
+        // nothing to do here
     }
     
     /**
