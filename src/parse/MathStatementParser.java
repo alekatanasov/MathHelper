@@ -21,7 +21,7 @@ public class MathStatementParser implements SymbolicParser {
     private String lastParsedConstant;
     
     public MathStatementParser(){
-        this.currentConstant = "";
+        setCurrentConstant("");
         this.lastParsedStatement = null;
     }
     
@@ -73,8 +73,8 @@ public class MathStatementParser implements SymbolicParser {
     
     @Override
     public Symbol[] popLastParsedStatement(){
-        Symbol[] symbolicStatement = this.lastParsedStatement;
-        this.lastParsedStatement = null;
+        Symbol[] symbolicStatement = getLastParsedStatement();
+        setLastParsedStatement(null); 
         return symbolicStatement;
     }
     
@@ -93,11 +93,11 @@ public class MathStatementParser implements SymbolicParser {
         
         // check the currentConstant to see if it is possible for the current character
         // to be a part of a Constant
-        if(this.currentConstant.isEmpty()){
+        if(this.getCurrentConstant().isEmpty()){
             // no preceding constant. Check if the current character is the beggining of a constant
             if(Constant.isConstant(statement.substring(currentPosition, currentPosition+1))){
                 // the current character is indeed a digit, add it to the currentConstant
-                this.currentConstant += statement.substring(currentPosition, currentPosition+1);
+                appendToCurrentConstant(statement.substring(currentPosition, currentPosition+1));
                  
                 // check if position is at the end of the String
                 if(currentPosition == statement.length()-1){
@@ -111,7 +111,7 @@ public class MathStatementParser implements SymbolicParser {
             // there is a preceding constant. Check if the current character is part of it.
                 if(Constant.isConstant(statement.substring(currentPosition, currentPosition+1))
                    || statement.charAt(currentPosition) == '.'){
-                    this.currentConstant += statement.substring(currentPosition, currentPosition+1);
+                    appendToCurrentConstant(statement.substring(currentPosition, currentPosition+1));
                     
                     // check if position is at the end of the String
                     if(currentPosition == statement.length()-1){
@@ -135,8 +135,8 @@ public class MathStatementParser implements SymbolicParser {
      * the currentConstant to lastParsedConstant and set currentConstant to empty String.
      */
     private void loadLastParsedConstant(){
-        this.lastParsedConstant = this.currentConstant;
-        this.currentConstant = "";
+        setLastParsedConstant(getCurrentConstant());
+        setCurrentConstant("");
         
     }
     
@@ -147,8 +147,36 @@ public class MathStatementParser implements SymbolicParser {
      * @return the last parsed constant
      */
     private String popLastParsedConstant(){
-        String constant = this.lastParsedConstant;
-        this.lastParsedConstant = "";
+        String constant = this.getLastParsedConstant();
+        this.setLastParsedConstant("");
         return constant;
+    }
+    
+    private void setCurrentConstant(String constant){
+        this.currentConstant = constant;
+    }
+    
+    private void appendToCurrentConstant(String stringToAppend){
+        setCurrentConstant(getCurrentConstant() + stringToAppend);
+    }
+    
+    private String getCurrentConstant(){
+        return this.currentConstant;
+    }
+    
+    private void setLastParsedConstant(String constant){
+        this.lastParsedConstant = constant;
+    }
+    
+    private String getLastParsedConstant(){
+        return this.lastParsedConstant;
+    }
+    
+    private void setLastParsedStatement(Symbol[] statement){
+        this.lastParsedStatement = statement;
+    }
+    
+    private Symbol[] getLastParsedStatement(){
+        return this.lastParsedStatement;
     }
 }
