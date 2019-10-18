@@ -5,6 +5,7 @@ import expression.Constant;
 import interfaces.expression.Symbol;
 import interfaces.expression.Symbol.SymbolType;
 import interfaces.expression.SymbolicStatement;
+import java.util.List;
 
 /**
  * This class transformMathStatement method performs some actions to prepare 
@@ -17,9 +18,14 @@ public class MathStatementPreprocessor extends MathStatementTransformer{
         super(statement);
     }
     
+    /**
+     * 
+     * @return always returns true
+     */
     @Override
     public boolean transformMathStatement(){
         fixLeadingMinus();
+        fixMinusAfterBracket();
         return true;
     }
     
@@ -32,6 +38,18 @@ public class MathStatementPreprocessor extends MathStatementTransformer{
                 // insert 0 at the begging of the mathstatement
                 this.getMathStatement().getStatement().add(0, new Constant("0"));
             }
+        }
+    }
+    
+    private void fixMinusAfterBracket(){
+        List<Symbol> mathStatement = this.getMathStatement().getStatement();
+        
+        if(mathStatement.size() < 2){
+            return;
+        }
+        
+        for(int c=1; c<mathStatement.size();c++){
+            
         }
     }
 }

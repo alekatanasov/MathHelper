@@ -32,7 +32,7 @@ public final class HighestOperationExecutor extends MathStatementTransformer{
         Operation currentOperation;
         
         // check if the provided statement contains at least a single operation
-        if(!statement.containsSymbol(SymbolType.OPERATION)){
+        if(!statement.containsSymbolType(SymbolType.OPERATION)){
             return isTransformationSuccess;
         }
         

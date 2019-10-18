@@ -50,7 +50,7 @@ public class MathStatement implements SymbolicStatement{
     }
     
     @Override
-    public boolean containsSymbol(Symbol.SymbolType symbolType){
+    public boolean containsSymbolType(Symbol.SymbolType symbolType){
         boolean result = false;
         
         for(Symbol symbol : this.getStatement()){

@@ -32,13 +32,13 @@ public class BracketRemover extends MathStatementTransformer{
             if(symbols.get(c).getSymbolType() == SymbolType.CONSTANT &&
                symbols.get(c-1).getSymbolType() == SymbolType.BRACKET &&
                symbols.get(c+1).getSymbolType() == SymbolType.BRACKET){
-                // remove the brackets
+                // remove the unnecessary brackets
                 symbols.remove(c+1);
                 symbols.remove(c-1);
                 
                 isTrasformationSuccess = true;
                 
-                // adjust counter because two elements were deleted from the symbols list
+                // adjust loop counter because two elements were deleted from the symbols list
                 c-=2;
             }
         }
