@@ -3,7 +3,7 @@ package evaluation;
 
 import interfaces.evaluation.Evaluator;
 import interfaces.evaluation.StatementTransformer;
-import interfaces.expression.Symbol;
+import interfaces.expression.MathSymbol;
 import interfaces.expression.SymbolicStatement;
 
 /**
@@ -22,7 +22,7 @@ public class ExpressionEvaluator implements Evaluator{
         operationOrderAdjuster.transformMathStatement();
         
         // execute operations and remove brackets untill no more operations exist
-        while(statement.containsSymbolType(Symbol.SymbolType.OPERATION)){
+        while(statement.containsSymbolType(MathSymbol.SymbolType.OPERATION)){
             operationExecutor.transformMathStatement();
             bracketRemover.transformMathStatement();
         }

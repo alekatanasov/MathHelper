@@ -4,7 +4,7 @@ package parse;
 import expression.Bracket;
 import expression.Constant;
 import expression.Operation;
-import interfaces.expression.Symbol;
+import interfaces.expression.MathSymbol;
 import interfaces.parse.SymbolicParser;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
@@ -16,7 +16,7 @@ import java.util.List;
  * @author Alexandar Atanasov
  */
 public class MathStatementParser implements SymbolicParser {
-    private Symbol[] lastParsedStatement;
+    private MathSymbol[] lastParsedStatement;
     private String currentConstant;
     private String lastParsedConstant;
     
@@ -28,7 +28,7 @@ public class MathStatementParser implements SymbolicParser {
     @Override
     public boolean parseStatement(String stringStatement){
        boolean parseSuccess = false;
-       List<Symbol> mathStatement = new ArrayList<>();
+       List <MathSymbol> mathStatement = new ArrayList<>();
        
        if(stringStatement == null){
            return parseSuccess;
@@ -60,7 +60,7 @@ public class MathStatementParser implements SymbolicParser {
        }
        
        // store the symbolicStatement
-       this.lastParsedStatement = new Symbol[mathStatement.size()];
+       this.lastParsedStatement= new MathSymbol[mathStatement.size()];
        for(int c=0; c < mathStatement.size(); c++){
            this.lastParsedStatement[c] = mathStatement.get(c);
        }
@@ -72,8 +72,8 @@ public class MathStatementParser implements SymbolicParser {
     }
     
     @Override
-    public Symbol[] popLastParsedStatement(){
-        Symbol[] symbolicStatement = getLastParsedStatement();
+    public MathSymbol[] popLastParsedStatement(){
+        MathSymbol[] symbolicStatement = getLastParsedStatement();
         setLastParsedStatement(null); 
         return symbolicStatement;
     }
@@ -172,11 +172,11 @@ public class MathStatementParser implements SymbolicParser {
         return this.lastParsedConstant;
     }
     
-    private void setLastParsedStatement(Symbol[] statement){
-        this.lastParsedStatement = statement;
+    private void setLastParsedStatement(MathSymbol[] statement){
+        this.lastParsedStatement = statement;   
     }
     
-    private Symbol[] getLastParsedStatement(){
+    private MathSymbol[] getLastParsedStatement(){
         return this.lastParsedStatement;
     }
 }

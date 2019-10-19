@@ -18,9 +18,9 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(Parameterized.class)
 public class MathHelperTest {
-    String input;
-    String expectedOutput;
-    MathHelper mathHelper;
+    private String input;
+    private String expectedOutput;
+    private MathHelper mathHelper;
     
     @Before
     public void initialize(){
@@ -51,17 +51,20 @@ public class MathHelperTest {
             { "(1+2)^2+(2*3)-1", "14" },
             { "(1+2)^2*(6-2*2)^2-2^2*2", "28" },
             { "(-2+4)*2", "4" },
-            { "(-2^2)*3", "-12" }
+            { "(-2^2)*3", "-12" },
+            { "((-2)^2)*4", "16" },
+            { "(2-3)-1", "-2" },
+            { "(1000-998)^(10^2/50)", "4" }
       });
    }
    
     /**
-     * Test of solveMathStatement method, of class MathHelper.
+     * Parametric test of the whole functionality of the MathHelper class
      */
     @Test
     public void testMathHelper() {
         System.out.println("Math statement is: " + this.input);
         assertEquals(this.expectedOutput,
-        this.mathHelper.solveMathStatement(this.input));
+                     this.mathHelper.solveMathStatement(this.input));
     }
 }

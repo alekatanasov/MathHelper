@@ -1,10 +1,11 @@
 package interfaces.expression;
 
 /**
- *
+ * Represents a single mathematical symbol.
+ * 
  * @author Alexandar Atanasov
  */
-public interface Symbol {
+public interface MathSymbol {
     public enum SymbolType{
         OPERATION,
         CONSTANT,
@@ -15,7 +16,7 @@ public interface Symbol {
     
     /**
      * 
-     * @return The String representation of this symbol.
+     * @return The String representation of this math symbol.
      */
-    public String getSymbol();
+    public String getMathSymbol();
 }

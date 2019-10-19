@@ -1,16 +1,15 @@
 
 package evaluation;
 
-import expression.Constant;
 import expression.Operation;
-import interfaces.expression.Symbol;
-import interfaces.expression.Symbol.SymbolType;
+import interfaces.expression.MathSymbol;
+import interfaces.expression.MathSymbol.SymbolType;
 import interfaces.expression.SymbolicStatement;
 import java.util.List;
 
 /**
  * The transformMathStatement method of this class will execute the operation with the 
- * highest order in the currently loaded statement.
+ * highest order in the currently loaded mathStatement.
  * 
  * @author Alexandar Atanasov
  */
@@ -25,22 +24,22 @@ public final class HighestOperationExecutor extends MathStatementTransformer{
     @Override
     public boolean transformMathStatement(){
         boolean isTransformationSuccess = false;
-        SymbolicStatement statement = getMathStatement();
-        List<Symbol> symbols;
+        SymbolicStatement mathStatement = getMathStatement();
+        List <MathSymbol> mathSymbols;
         int HighestOrderOperationPosition=1;
         int HighestOrderOperation = 0;
         Operation currentOperation;
         
-        // check if the provided statement contains at least a single operation
-        if(!statement.containsSymbolType(SymbolType.OPERATION)){
+        // check if the provided mathStatement contains at least a single operation
+        if(!mathStatement.containsSymbolType(SymbolType.OPERATION)){
             return isTransformationSuccess;
         }
         
         // locate the operation of the highest order
-        symbols = statement.getStatement();
-        for(int c=0;c< symbols.size();c++){
-            if(symbols.get(c).getSymbolType().equals(SymbolType.OPERATION) ){
-                currentOperation = (Operation) symbols.get(c);
+        mathSymbols = mathStatement.getStatement();
+        for(int c=0;c< mathSymbols.size();c++){
+            if(mathSymbols.get(c).getSymbolType().equals(SymbolType.OPERATION) ){
+                currentOperation = (Operation) mathSymbols.get(c);
                 
                 if(currentOperation.getOperationOrder() > HighestOrderOperation){
                     HighestOrderOperation = currentOperation.getOperationOrder();
@@ -62,6 +61,10 @@ public final class HighestOperationExecutor extends MathStatementTransformer{
         this.specifiedOperationExecutor = new SpecifiedOperationExecutor(statement);
     }
     
+    /**
+     * 
+     * @return Reference (no copy) of the specifiedOperationExecutor field.
+     */
     private MathStatementTransformer getSpecifiedOperationExecutor(){
         return this.specifiedOperationExecutor;
     }

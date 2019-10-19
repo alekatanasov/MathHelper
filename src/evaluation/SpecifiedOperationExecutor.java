@@ -4,7 +4,7 @@ package evaluation;
 
 import expression.Constant;
 import expression.Operation;
-import interfaces.expression.Symbol;
+import interfaces.expression.MathSymbol;
 import interfaces.expression.SymbolicStatement;
 import java.util.List;
 
@@ -26,8 +26,8 @@ public class SpecifiedOperationExecutor extends MathStatementTransformer{
     public boolean transformMathStatement(){
         boolean isTrasformationSuccess = false;
         Constant operationResult;
-        int position;
-        List<Symbol> mathStatement = getMathStatement().getStatement();
+        int operationPosition;
+        List<MathSymbol> mathStatement = getMathStatement().getStatement();
         
         // error check
         if(this.getOperationPosition() == null){
@@ -36,16 +36,16 @@ public class SpecifiedOperationExecutor extends MathStatementTransformer{
         
         // execute the operation specified by the operationPosition field in the curently loaded
         // symbolic statement
-        position = popOperationPosition();
-        operationResult = Operation.performOperation((Constant) mathStatement.get(position-1), 
-                                                     (Constant) mathStatement.get(position+1), 
-                                                     (Operation) mathStatement.get(position));
+        operationPosition = popOperationPosition();
+        operationResult = Operation.performOperation((Constant) mathStatement.get(operationPosition-1), 
+                                                     (Constant) mathStatement.get(operationPosition+1), 
+                                                     (Operation) mathStatement.get(operationPosition));
 
         // store the resulting constant and remove the operation and the operands from the
         // symbolic statement
-        mathStatement.set(position, operationResult);
-        mathStatement.remove(position+1);
-        mathStatement.remove(position-1);
+        mathStatement.set(operationPosition, operationResult);
+        mathStatement.remove(operationPosition+1);
+        mathStatement.remove(operationPosition-1);
         isTrasformationSuccess = true;
 
         return isTrasformationSuccess;
@@ -53,7 +53,7 @@ public class SpecifiedOperationExecutor extends MathStatementTransformer{
     
     /**
      * 
-     * @param data Integer which represents the position of the operation to be executed in 
+     * @param data Integer which represents the operationPosition of the operation to be executed in 
      *             the currently loaded symbolic statement
      */
     @Override

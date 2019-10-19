@@ -4,8 +4,8 @@ package evaluation;
 import expression.Bracket;
 import expression.Bracket.BracketType;
 import expression.Operation;
-import interfaces.expression.Symbol;
-import interfaces.expression.Symbol.SymbolType;
+import interfaces.expression.MathSymbol;
+import interfaces.expression.MathSymbol.SymbolType;
 import interfaces.expression.SymbolicStatement;
 import java.util.List;
 
@@ -23,18 +23,18 @@ public class OperationOrderAdjuster extends MathStatementTransformer{
     @Override
     public boolean transformMathStatement(){
         boolean isTrasformationSuccess = false;
-        List<Symbol> symbols = this.getMathStatement().getStatement();
-        Symbol symbol;
+        List<MathSymbol> mathSymbols = this.getMathStatement().getStatement();
+        MathSymbol currentMathSymbol;
         Bracket bracket;
         Operation operation;
         int openBrackets = 0;
         
-        for(int c=0; c < symbols.size();c++){
-            symbol = symbols.get(c);
+        for(int c=0; c < mathSymbols.size();c++){
+            currentMathSymbol = mathSymbols.get(c);
             
-            // check if the current symbol is bracket
-            if(symbol.getSymbolType() == SymbolType.BRACKET){
-                bracket = (Bracket) symbol;
+            // check if the current currentMathSymbol is bracket
+            if(currentMathSymbol.getSymbolType() == SymbolType.BRACKET){
+                bracket = (Bracket) currentMathSymbol;
                 
                 //adjust the openBrackets counter
                 if(bracket.getBracketType() == BracketType.OPENING){
@@ -44,9 +44,9 @@ public class OperationOrderAdjuster extends MathStatementTransformer{
                 }
             }
             
-            // check if the current symbol is Operation
-            if(symbol.getSymbolType() == SymbolType.OPERATION){
-                operation = (Operation) symbol;
+            // check if the current currentMathSymbol is Operation
+            if(currentMathSymbol.getSymbolType() == SymbolType.OPERATION){
+                operation = (Operation) currentMathSymbol;
                 
                 //
                 operation.incrementOperationOrder(openBrackets);

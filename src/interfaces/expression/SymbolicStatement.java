@@ -12,7 +12,7 @@ public interface SymbolicStatement {
      * @return a list representation of this statement. The list is not deep or shallow copied and 
      *         changes made to it will persist.
      */
-    public List<Symbol> getStatement();
+    public List<MathSymbol> getStatement();
     
     /**
      * 
@@ -20,14 +20,14 @@ public interface SymbolicStatement {
      * 
      * @return the symbol at the specified position
      */
-    public Symbol getSymbol(int position);
+    public MathSymbol getSymbol(int position);
     
     /**
      * 
-     * @param symbolType
+     * @param symbolType symbolType to search for
      * 
-     * @return true if at least one symbolType in the current SymbolicStatement is found 
-     *  with symbolType type matching the provided one.
+     * @return true if at least one symbol in the current SymbolicStatement is found 
+     *         to have symbolType type matching the provided symbolType.
      */
-    public boolean containsSymbolType(Symbol.SymbolType symbolType);
+    public boolean containsSymbolType(MathSymbol.SymbolType symbolType);
 }

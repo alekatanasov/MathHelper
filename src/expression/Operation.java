@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 /**
- * Represents the common arithmetic operations.
+ * Represents an instance of the common arithmetic operations.
  * 
  * @author Alexandar Atanasov
  */
@@ -52,7 +52,7 @@ public final class Operation extends MathSymbol{
             throw new IllegalArgumentException("operation cannot be null");
         }
         
-        switch(operation.getSymbol()){
+        switch(operation.getMathSymbol()){
             case"+":
             case"-":
                 order =1;
@@ -69,7 +69,41 @@ public final class Operation extends MathSymbol{
         }
         
         return order;
-            
+    }
+    
+    /**
+     * Returns the default order of the provided operation(represented by a string): 1 
+     * for addition and subtraction, 2 for multiplication and division and 3 for power
+     * 
+     * @param operation non null non empty String representing valid operation
+     * @return the default order of the provided operation
+     */
+    public static int getDefaultOperationOrder(String operation){
+        int order = 0;
+        
+        if(operation == null){
+            throw new IllegalArgumentException("operation cannot be null");
+        } else if(operation.isEmpty()){
+            throw new IllegalArgumentException("operation cannot empty");
+        }
+        
+        switch(operation){
+            case"+":
+            case"-":
+                order =1;
+                break;
+            case"*":
+            case"/":
+                order =2;
+                break;
+            case"^":
+                order =3;
+                break;
+            default:
+                throw new IllegalArgumentException("unknown operation");
+        }
+        
+        return order;
     }
     
     /**
@@ -85,7 +119,7 @@ public final class Operation extends MathSymbol{
         BigDecimal leftOperand = firstOperand.getValue();
         BigDecimal rightOperand = secondOperand.getValue();
         
-        switch(operation.getSymbol()){
+        switch(operation.getMathSymbol()){
             case"+":
                 operationResult = leftOperand.add(rightOperand, MathContext.UNLIMITED);
                 break;

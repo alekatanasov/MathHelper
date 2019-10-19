@@ -4,7 +4,7 @@ package expression;
 import java.math.BigDecimal;
 
 /**
- * Represents a numeric value.
+ * Represents an instance of a known constant numeric value.
  * 
  * @author Alexander Atanasov
  */
@@ -14,12 +14,12 @@ public final class Constant extends MathSymbol{
     }
     
     /**
-     * Checks if a String represents a numeric constant value.
+     * Checks if the provided String represents a numeric constant value.
      * 
      * @param supposedConstant String to be checked
      * 
      * @return true if the provided String is not null or empty and represents valid
-     *         numeric value
+     *         numeric value. Otherwise the method will return false
      */
     public static boolean isConstant(String supposedConstant){
         boolean isConstant = false;
@@ -51,6 +51,6 @@ public final class Constant extends MathSymbol{
      * @return BigDecimal deep copy representing the value of the current constant
      */
     public BigDecimal getValue(){
-        return new BigDecimal(this.getSymbol());
+        return new BigDecimal(this.getMathSymbol());
     }
 }

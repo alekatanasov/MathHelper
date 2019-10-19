@@ -1,13 +1,11 @@
 package expression;
 
-import interfaces.expression.Symbol;
-
 /**
- * Represents a single mathematical symbol.
+ * Represents functionality common to all math symbols.
  * 
  * @author Alexandar Atanasov
  */
-public abstract class MathSymbol implements Symbol{
+public abstract class MathSymbol implements interfaces.expression.MathSymbol{
     private String symbol;
     
     public MathSymbol(String symbol){
@@ -25,7 +23,7 @@ public abstract class MathSymbol implements Symbol{
     }
     
     @Override
-    public final String getSymbol(){
+    public final String getMathSymbol(){
         return this.symbol;
     }
 }

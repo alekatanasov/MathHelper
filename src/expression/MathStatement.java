@@ -1,7 +1,7 @@
 
 package expression;
 
-import interfaces.expression.Symbol;
+import interfaces.expression.MathSymbol;
 import interfaces.expression.SymbolicStatement;
 import interfaces.parse.SymbolicParser;
 import java.util.ArrayList;
@@ -12,9 +12,9 @@ import java.util.List;
  * @author Alexandar Atanasov
  */
 public class MathStatement implements SymbolicStatement{
-    private List<Symbol> statement;
+    private List<MathSymbol> statement;
     
-    private MathStatement(Symbol[] statement){
+    private MathStatement(MathSymbol[] statement){
         initializeStatement(statement); 
     }
     
@@ -32,28 +32,28 @@ public class MathStatement implements SymbolicStatement{
     public String toString(){
         String result="";
         
-        for(Symbol symbol : statement){
-            result+= symbol.getSymbol();
+        for(MathSymbol symbol : statement){
+            result+= symbol.getMathSymbol();
         }
         
         return result;
     }
     
     @Override
-    public List<Symbol> getStatement(){
+    public List<MathSymbol> getStatement(){
         return this.statement;
     }
     
     @Override
-    public Symbol getSymbol(int position){
+    public MathSymbol getSymbol(int position){
         return this.getStatement().get(position);
     }
     
     @Override
-    public boolean containsSymbolType(Symbol.SymbolType symbolType){
+    public boolean containsSymbolType(MathSymbol.SymbolType symbolType){
         boolean result = false;
         
-        for(Symbol symbol : this.getStatement()){
+        for(MathSymbol symbol : this.getStatement()){
             if(symbol.getSymbolType().equals(symbolType)){
                 result = true;
                 break;
@@ -63,7 +63,7 @@ public class MathStatement implements SymbolicStatement{
         return result;
     }
     
-    private void initializeStatement(Symbol[] statement){
+    private void initializeStatement(MathSymbol[] statement){
         this.statement = new ArrayList<>();
         
         for(int c = 0;c < statement.length;c++){

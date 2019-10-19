@@ -4,8 +4,8 @@ package evaluation;
 import expression.Bracket;
 import expression.Bracket.BracketType;
 import expression.Constant;
-import interfaces.expression.Symbol;
-import interfaces.expression.Symbol.SymbolType;
+import interfaces.expression.MathSymbol;
+import interfaces.expression.MathSymbol.SymbolType;
 import interfaces.expression.SymbolicStatement;
 import java.util.List;
 
@@ -32,11 +32,11 @@ public class MathStatementPreprocessor extends MathStatementTransformer{
     }
     
     private void fixLeadingMinus(){
-        Symbol firstSymbol = this.getMathStatement().getSymbol(0);
+        MathSymbol firstSymbol = this.getMathStatement().getSymbol(0);
         
         // check if the first symbol in the statement is the subtraction operation
         if(firstSymbol.getSymbolType() == SymbolType.OPERATION){
-            if(firstSymbol.getSymbol().equals("-")){
+            if(firstSymbol.getMathSymbol().equals("-")){
                 // insert 0 at the begging of the mathstatement
                 this.getMathStatement().getStatement().add(0, new Constant("0"));
             }
@@ -44,9 +44,9 @@ public class MathStatementPreprocessor extends MathStatementTransformer{
     }
     
     private void fixMinusAfterBracket(){
-        List<Symbol> mathStatement = this.getMathStatement().getStatement();
-        Symbol currentSymbol;
-        Symbol previousSymbol;
+        List<MathSymbol> mathStatement = this.getMathStatement().getStatement();
+        MathSymbol currentSymbol;
+        MathSymbol previousSymbol;
         Bracket bracket;
         
         if(mathStatement.size() < 2){
@@ -60,7 +60,7 @@ public class MathStatementPreprocessor extends MathStatementTransformer{
             
             if(currentSymbol.getSymbolType() == SymbolType.OPERATION 
                && previousSymbol.getSymbolType() == SymbolType.BRACKET
-               && currentSymbol.getSymbol().equals("-")){
+               && currentSymbol.getMathSymbol().equals("-")){
                 
                 bracket = (Bracket) previousSymbol;
                 
