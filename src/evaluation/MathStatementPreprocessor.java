@@ -1,6 +1,8 @@
 
 package evaluation;
 
+import expression.Bracket;
+import expression.Bracket.BracketType;
 import expression.Constant;
 import interfaces.expression.Symbol;
 import interfaces.expression.Symbol.SymbolType;
@@ -43,13 +45,30 @@ public class MathStatementPreprocessor extends MathStatementTransformer{
     
     private void fixMinusAfterBracket(){
         List<Symbol> mathStatement = this.getMathStatement().getStatement();
+        Symbol currentSymbol;
+        Symbol previousSymbol;
+        Bracket bracket;
         
         if(mathStatement.size() < 2){
             return;
         }
         
+        // iterate through the math statement and perform fixes
         for(int c=1; c<mathStatement.size();c++){
+            currentSymbol = mathStatement.get(c);
+            previousSymbol = mathStatement.get(c-1);
             
+            if(currentSymbol.getSymbolType() == SymbolType.OPERATION 
+               && previousSymbol.getSymbolType() == SymbolType.BRACKET
+               && currentSymbol.getSymbol().equals("-")){
+                
+                bracket = (Bracket) previousSymbol;
+                
+                if(bracket.getBracketType() == BracketType.OPENING){
+                    //
+                    this.getMathStatement().getStatement().add(c, new Constant("0"));
+                }
+            }
         }
     }
 }
