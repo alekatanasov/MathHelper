@@ -84,7 +84,7 @@ public final class Operation extends MathSymbol{
         if(operation == null){
             throw new IllegalArgumentException("operation cannot be null");
         } else if(operation.isEmpty()){
-            throw new IllegalArgumentException("operation cannot empty");
+            throw new IllegalArgumentException("operation cannot empty string");
         }
         
         switch(operation){
@@ -116,24 +116,24 @@ public final class Operation extends MathSymbol{
     public static Constant performOperation(Constant firstOperand, Constant secondOperand, 
                                             Operation operation){
         BigDecimal operationResult;
-        BigDecimal leftOperand = firstOperand.getValue();
+        BigDecimal leftConstant = firstOperand.getValue();
         BigDecimal rightOperand = secondOperand.getValue();
         
         switch(operation.getMathSymbol()){
             case"+":
-                operationResult = leftOperand.add(rightOperand, MathContext.UNLIMITED);
+                operationResult = leftConstant.add(rightOperand, MathContext.UNLIMITED);
                 break;
             case"-":
-                operationResult = leftOperand.subtract(rightOperand, MathContext.UNLIMITED);
+                operationResult = leftConstant.subtract(rightOperand, MathContext.UNLIMITED);
                 break;
             case"*":
-                operationResult = leftOperand.multiply(rightOperand, MathContext.UNLIMITED);
+                operationResult = leftConstant.multiply(rightOperand, MathContext.UNLIMITED);
                 break;
             case"/":
-                operationResult = leftOperand.divide(rightOperand, MathContext.DECIMAL32);
+                operationResult = leftConstant.divide(rightOperand, MathContext.DECIMAL32);
                 break;
             case"^":
-                operationResult = leftOperand.pow(rightOperand.toBigIntegerExact().intValue(),
+                operationResult = leftConstant.pow(rightOperand.toBigIntegerExact().intValue(),
                                                   MathContext.UNLIMITED);
                 break;
             default:
