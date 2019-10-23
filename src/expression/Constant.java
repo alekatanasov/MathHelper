@@ -74,4 +74,13 @@ public final class Constant extends MathSymbol{
     public BigDecimal getValue(){
         return new BigDecimal(this.getMathSymbol());
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        
+        hash *= this.getMathSymbol().hashCode();
+        
+        return hash;
+    }
 }

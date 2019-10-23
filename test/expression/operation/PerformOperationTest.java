@@ -1,6 +1,8 @@
 
-package expression;
+package expression.operation;
 
+import expression.Constant;
+import expression.Operation;
 import java.util.Arrays;
 import java.util.Collection;
 import static org.junit.Assert.assertEquals;
@@ -14,13 +16,13 @@ import org.junit.runner.RunWith;
  * @author Alexander Atanasov
  */
 @RunWith(Parameterized.class)
-public class OperationTest {
+public class PerformOperationTest {
     private Constant leftOperand;
     private Constant rightOperand;
     private Operation operation;
     private Constant expectedResult;
     
-    public OperationTest(Constant leftOperand, Constant rightOperand,
+    public PerformOperationTest(Constant leftOperand, Constant rightOperand,
                          Operation operation, Constant result) {
         this.leftOperand = leftOperand;
         this.rightOperand = rightOperand;
