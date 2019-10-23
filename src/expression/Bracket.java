@@ -16,7 +16,7 @@ public class Bracket extends MathSymbol{
     
     public Bracket(String bracket){
         super(bracket);
-        setBracketType();
+        resolveBracketType();
     }
     
     /**
@@ -44,19 +44,24 @@ public class Bracket extends MathSymbol{
         return this.bracketType;
     }
     
-    /**
-     * 
-     */
-    protected final void setBracketType(){
-        if(this.getMathSymbol().equals("(")){
-            this.bracketType = BracketType.OPENING;
-        } else {
-            this.bracketType = BracketType.CLOSING;
-        }
-    }
-    
     @Override
     public SymbolType getSymbolType(){
         return SymbolType.BRACKET;
+    }
+    
+    /**
+     * Sets the bracketType field based on the current MathSymbol value of this 
+     * bracket;
+     */
+    protected final void resolveBracketType(){
+        if(this.getMathSymbol().equals("(")){
+            setBracketType(BracketType.OPENING);
+        } else {
+            setBracketType(BracketType.CLOSING);
+        }
+    }
+    
+    private void setBracketType(BracketType type){
+        this.bracketType = type;
     }
 }

@@ -42,6 +42,27 @@ public final class Constant extends MathSymbol{
     }
     
     @Override
+    public boolean  equals(Object object){
+        boolean isEqual = false;
+        Constant constant;
+        
+        if(object == null){
+            return isEqual;
+        } else if( !(object instanceof Constant)){
+            return isEqual;
+        }
+        
+        constant = (Constant)object;
+        if(constant.getMathSymbol().equals(this.getMathSymbol())){
+            isEqual = true;
+        } else {
+            isEqual = false;
+        }
+        
+        return isEqual;
+    }
+    
+    @Override
     public SymbolType getSymbolType(){
         return SymbolType.CONSTANT;
     }

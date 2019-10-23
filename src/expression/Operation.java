@@ -52,28 +52,14 @@ public final class Operation extends MathSymbol{
             throw new IllegalArgumentException("operation cannot be null");
         }
         
-        switch(operation.getMathSymbol()){
-            case"+":
-            case"-":
-                order =1;
-                break;
-            case"*":
-            case"/":
-                order =2;
-                break;
-            case"^":
-                order =3;
-                break;
-            default:
-                throw new IllegalArgumentException("unknown operation");
-        }
+        order = Operation.getDefaultOperationOrder(operation.getMathSymbol());
         
         return order;
     }
     
     /**
-     * Returns the default order of the provided operation(represented by a string): 1 
-     * for addition and subtraction, 2 for multiplication and division and 3 for power
+     * Returns the default order of the provided operation(the operation is represented by a string): 
+     * 1 for addition and subtraction, 2 for multiplication and division and 3 for power.
      * 
      * @param operation non null non empty String representing valid operation
      * @return the default order of the provided operation
@@ -108,32 +94,32 @@ public final class Operation extends MathSymbol{
     
     /**
      * 
-     * @param firstOperand
-     * @param secondOperand
+     * @param leftOperand
+     * @param rightOperand
      * @param operation
      * @return a Constant representing the result of the operation execution.
      */
-    public static Constant performOperation(Constant firstOperand, Constant secondOperand, 
+    public static Constant performOperation(Constant leftOperand, Constant rightOperand, 
                                             Operation operation){
         BigDecimal operationResult;
-        BigDecimal leftConstant = firstOperand.getValue();
-        BigDecimal rightOperand = secondOperand.getValue();
+        BigDecimal leftConstant = leftOperand.getValue();
+        BigDecimal rightConstant = rightOperand.getValue();
         
         switch(operation.getMathSymbol()){
             case"+":
-                operationResult = leftConstant.add(rightOperand, MathContext.UNLIMITED);
+                operationResult = leftConstant.add(rightConstant, MathContext.UNLIMITED);
                 break;
             case"-":
-                operationResult = leftConstant.subtract(rightOperand, MathContext.UNLIMITED);
+                operationResult = leftConstant.subtract(rightConstant, MathContext.UNLIMITED);
                 break;
             case"*":
-                operationResult = leftConstant.multiply(rightOperand, MathContext.UNLIMITED);
+                operationResult = leftConstant.multiply(rightConstant, MathContext.UNLIMITED);
                 break;
             case"/":
-                operationResult = leftConstant.divide(rightOperand, MathContext.DECIMAL32);
+                operationResult = leftConstant.divide(rightConstant, MathContext.DECIMAL32);
                 break;
             case"^":
-                operationResult = leftConstant.pow(rightOperand.toBigIntegerExact().intValue(),
+                operationResult = leftConstant.pow(rightConstant.toBigIntegerExact().intValue(),
                                                   MathContext.UNLIMITED);
                 break;
             default:
