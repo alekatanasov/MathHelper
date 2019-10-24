@@ -22,7 +22,7 @@ public class ExpressionEvaluator implements Evaluator{
         operationOrderAdjuster.transformMathStatement();
         
         // execute operations and remove brackets untill no more operations exist
-        while(statement.containsSymbolType(MathSymbol.SymbolType.OPERATION)){
+        while(statement.containsSymbolType(MathSymbol.MathSymbolType.OPERATION)){
             operationExecutor.transformMathStatement();
             bracketRemover.transformMathStatement();
         }

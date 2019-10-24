@@ -6,13 +6,18 @@ package interfaces.expression;
  * @author Alexandar Atanasov
  */
 public interface MathSymbol {
-    public enum SymbolType{
+    public enum MathSymbolType{
         OPERATION,
         CONSTANT,
         BRACKET;
     }
     
-    public SymbolType getSymbolType();
+    /**
+     * Each class which implements this interface has unique class dependent MathSymbol type.
+     * 
+     * @return The type of the current MathSymbol object.
+     */
+    public MathSymbolType getMathSymbolType();
     
     /**
      * 

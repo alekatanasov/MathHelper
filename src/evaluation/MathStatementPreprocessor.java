@@ -5,7 +5,7 @@ import expression.Bracket;
 import expression.Bracket.BracketType;
 import expression.Constant;
 import interfaces.expression.MathSymbol;
-import interfaces.expression.MathSymbol.SymbolType;
+import interfaces.expression.MathSymbol.MathSymbolType;
 import interfaces.expression.SymbolicStatement;
 import java.util.List;
 
@@ -35,7 +35,7 @@ public class MathStatementPreprocessor extends MathStatementTransformer{
         MathSymbol firstSymbol = this.getMathStatement().getSymbol(0);
         
         // check if the first symbol in the statement is the subtraction operation
-        if(firstSymbol.getSymbolType() == SymbolType.OPERATION){
+        if(firstSymbol.getMathSymbolType() == MathSymbolType.OPERATION){
             if(firstSymbol.getMathSymbol().equals("-")){
                 // insert 0 at the begging of the mathstatement
                 this.getMathStatement().getStatement().add(0, new Constant("0"));
@@ -58,8 +58,8 @@ public class MathStatementPreprocessor extends MathStatementTransformer{
             currentSymbol = mathStatement.get(c);
             previousSymbol = mathStatement.get(c-1);
             
-            if(currentSymbol.getSymbolType() == SymbolType.OPERATION 
-               && previousSymbol.getSymbolType() == SymbolType.BRACKET
+            if(currentSymbol.getMathSymbolType() == MathSymbolType.OPERATION 
+               && previousSymbol.getMathSymbolType()== MathSymbolType.BRACKET
                && currentSymbol.getMathSymbol().equals("-")){
                 
                 bracket = (Bracket) previousSymbol;

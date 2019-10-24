@@ -36,7 +36,8 @@ public class PerformOperationTest {
             { new Constant("3"), new Constant("4"), new Operation("+"), new Constant("7")},
             { new Constant("3"), new Constant("4"), new Operation("-"), new Constant("-1")},
             { new Constant("3"), new Constant("4"), new Operation("*"), new Constant("12")},
-            { new Constant("4"), new Constant("2"), new Operation("/"), new Constant("2")}
+            { new Constant("4"), new Constant("2"), new Operation("/"), new Constant("2")},
+            { new Constant("2"), new Constant("3"), new Operation("^"), new Constant("8")}
       });
     }
     

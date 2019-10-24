@@ -50,11 +50,11 @@ public class MathStatement implements SymbolicStatement{
     }
     
     @Override
-    public boolean containsSymbolType(MathSymbol.SymbolType symbolType){
+    public boolean containsSymbolType(MathSymbol.MathSymbolType symbolType){
         boolean result = false;
         
         for(MathSymbol symbol : this.getStatement()){
-            if(symbol.getSymbolType().equals(symbolType)){
+            if(symbol.getMathSymbolType().equals(symbolType)){
                 result = true;
                 break;
             }

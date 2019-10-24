@@ -3,7 +3,7 @@ package evaluation;
 
 import expression.Operation;
 import interfaces.expression.MathSymbol;
-import interfaces.expression.MathSymbol.SymbolType;
+import interfaces.expression.MathSymbol.MathSymbolType;
 import interfaces.expression.SymbolicStatement;
 import java.util.List;
 
@@ -31,14 +31,14 @@ public final class HighestOperationExecutor extends MathStatementTransformer{
         Operation currentOperation;
         
         // check if the provided mathStatement contains at least a single operation
-        if(!mathStatement.containsSymbolType(SymbolType.OPERATION)){
+         if(!mathStatement.containsSymbolType(MathSymbolType.OPERATION)){
             return isTransformationSuccess;
         }
         
         // locate the operation of the highest order
         mathSymbols = mathStatement.getStatement();
         for(int c=0;c< mathSymbols.size();c++){
-            if(mathSymbols.get(c).getSymbolType().equals(SymbolType.OPERATION) ){
+            if(mathSymbols.get(c).getMathSymbolType().equals(MathSymbolType.OPERATION) ){
                 currentOperation = (Operation) mathSymbols.get(c);
                 
                 if(currentOperation.getOperationOrder() > HighestOrderOperation){

@@ -28,6 +28,7 @@ public class Bracket extends MathSymbol{
     public static boolean isBracket(String supposedBracket){
         boolean isBracket = false;
         
+        // error check
         if(supposedBracket == null){
             throw new IllegalArgumentException("supposedBracket cannot be null");
         }
@@ -45,8 +46,8 @@ public class Bracket extends MathSymbol{
     }
     
     @Override
-    public SymbolType getSymbolType(){
-        return SymbolType.BRACKET;
+    public MathSymbolType getMathSymbolType(){
+        return MathSymbolType.BRACKET;
     }
     
     /**

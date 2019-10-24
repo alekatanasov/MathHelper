@@ -5,7 +5,7 @@ import expression.Bracket;
 import expression.Bracket.BracketType;
 import expression.Operation;
 import interfaces.expression.MathSymbol;
-import interfaces.expression.MathSymbol.SymbolType;
+import interfaces.expression.MathSymbol.MathSymbolType;
 import interfaces.expression.SymbolicStatement;
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class OperationOrderAdjuster extends MathStatementTransformer{
             currentMathSymbol = mathSymbols.get(c);
             
             // check if the current currentMathSymbol is bracket
-            if(currentMathSymbol.getSymbolType() == SymbolType.BRACKET){
+            if(currentMathSymbol.getMathSymbolType() == MathSymbolType.BRACKET){
                 bracket = (Bracket) currentMathSymbol;
                 
                 //adjust the openBrackets counter
@@ -45,7 +45,7 @@ public class OperationOrderAdjuster extends MathStatementTransformer{
             }
             
             // check if the current currentMathSymbol is Operation
-            if(currentMathSymbol.getSymbolType() == SymbolType.OPERATION){
+            if(currentMathSymbol.getMathSymbolType() == MathSymbolType.OPERATION){
                 operation = (Operation) currentMathSymbol;
                 
                 //

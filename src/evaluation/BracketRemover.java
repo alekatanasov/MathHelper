@@ -2,7 +2,7 @@
 package evaluation;
 
 import interfaces.expression.MathSymbol;
-import interfaces.expression.MathSymbol.SymbolType;
+import interfaces.expression.MathSymbol.MathSymbolType;
 import interfaces.expression.SymbolicStatement;
 import java.util.List;
 
@@ -30,9 +30,9 @@ public class BracketRemover extends MathStatementTransformer{
             }
             
             // check for unnecessary brackets
-            if(mathSymbols.get(c).getSymbolType() == SymbolType.CONSTANT &&
-               mathSymbols.get(c-1).getSymbolType() == SymbolType.BRACKET &&
-               mathSymbols.get(c+1).getSymbolType() == SymbolType.BRACKET){
+            if(mathSymbols.get(c).getMathSymbolType() == MathSymbolType.CONSTANT &&
+               mathSymbols.get(c-1).getMathSymbolType() == MathSymbolType.BRACKET &&
+               mathSymbols.get(c+1).getMathSymbolType() == MathSymbolType.BRACKET){
                 // remove the unnecessary brackets
                 mathSymbols.remove(c+1);
                 mathSymbols.remove(c-1);

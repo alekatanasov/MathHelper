@@ -63,8 +63,8 @@ public final class Constant extends MathSymbol{
     }
     
     @Override
-    public SymbolType getSymbolType(){
-        return SymbolType.CONSTANT;
+    public MathSymbolType getMathSymbolType(){
+        return MathSymbolType.CONSTANT;
     }
     
     /**

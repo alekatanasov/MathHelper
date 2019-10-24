@@ -157,8 +157,8 @@ public final class Operation extends MathSymbol{
     }
     
     @Override
-    public SymbolType getSymbolType(){
-        return SymbolType.OPERATION;
+    public MathSymbolType getMathSymbolType(){
+        return MathSymbolType.OPERATION;
     }
     
     private void setOperationOrder(int order){

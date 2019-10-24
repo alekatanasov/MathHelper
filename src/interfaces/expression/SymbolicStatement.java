@@ -29,5 +29,5 @@ public interface SymbolicStatement {
      * @return true if at least one symbol in the current SymbolicStatement is found 
      *         to have symbolType type matching the provided symbolType.
      */
-    public boolean containsSymbolType(MathSymbol.SymbolType symbolType);
+    public boolean containsSymbolType(MathSymbol.MathSymbolType symbolType);
 }
