@@ -2,7 +2,7 @@
 package expression;
 
 /**
- * Represents a single bracket 
+ * Represents a single bracket.
  * 
  * @author Alexandar Atanasov
  */

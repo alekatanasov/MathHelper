@@ -7,7 +7,7 @@ import interfaces.expression.SymbolicStatement;
 import java.util.List;
 
 /**
- * This class transformMathStatement method will remove unnecessary brackets.
+ * This class transformMathStatement() method will remove unnecessary brackets.
  * Unnecessary brackets are opening and closing brackets enclosing a single constant -
  * for example "(0)".
  * 

@@ -2,6 +2,7 @@
 package expression;
 
 import interfaces.expression.MathSymbol.MathSymbolType;
+import java.math.BigDecimal;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -51,6 +52,10 @@ public class ConstantTest {
      */
     @Test
     public void testGetValue() {
+        BigDecimal actualOutput = (new Constant("5")).getValue();
+        BigDecimal expectedOutput = new BigDecimal("5");
+        
+         assertEquals(expectedOutput, actualOutput);
     }
 
     /**

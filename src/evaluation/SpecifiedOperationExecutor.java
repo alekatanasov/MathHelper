@@ -62,8 +62,9 @@ public class SpecifiedOperationExecutor extends MathStatementTransformer{
     }
     
     /**
+     * Returns the value of operationPosition field and than sets it to null.
      * 
-     * @return 
+     * @return The value of the operationPosition field.
      */
     private Integer popOperationPosition(){
         Integer position = getOperationPosition();
@@ -77,7 +78,7 @@ public class SpecifiedOperationExecutor extends MathStatementTransformer{
     
     /**
      * 
-     * @return Reference (no copy) to the openPosition field
+     * @return Reference (no copy) to the operationPosition field
      */
     private Integer getOperationPosition(){
         return this.operationPosition;
