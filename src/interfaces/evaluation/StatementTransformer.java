@@ -25,7 +25,7 @@ public interface StatementTransformer {
     /**
      * Loads additional data needed for statement transformation.
      * 
-     * @param data 
+     * @param data can be null for child classes which do not use the additional data field
      */
     public void loadAdditionalData(Object data);
 }

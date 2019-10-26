@@ -6,8 +6,6 @@ import expression.Constant;
 import expression.Operation;
 import interfaces.expression.MathSymbol;
 import interfaces.parse.SymbolicParser;
-import java.text.CharacterIterator;
-import java.text.StringCharacterIterator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +20,7 @@ public class MathStatementParser implements SymbolicParser {
     
     public MathStatementParser(){
         setCurrentConstant("");
-        this.lastParsedStatement = null;
+        setLastParsedStatement(null);
     }
     
     @Override
@@ -92,7 +90,7 @@ public class MathStatementParser implements SymbolicParser {
         boolean parsedConstant = false;
         
         // check the currentConstant to see if it is possible for the current character
-        // to be a part of a Constant
+        // to be a part of a partialy parsed Constant
         if(this.getCurrentConstant().isEmpty()){
             // no preceding constant. Check if the current character is the beggining of a constant
             if(Constant.isConstant(statement.substring(currentPosition, currentPosition+1))){
@@ -148,7 +146,7 @@ public class MathStatementParser implements SymbolicParser {
      */
     private String popLastParsedConstant(){
         String constant = this.getLastParsedConstant();
-        this.setLastParsedConstant("");
+        setLastParsedConstant("");
         return constant;
     }
     
@@ -176,6 +174,10 @@ public class MathStatementParser implements SymbolicParser {
         this.lastParsedStatement = statement;   
     }
     
+    /**
+     * 
+     * @return Reference (no shallow or deep copy) to the lastParsedStatement field.
+     */
     private MathSymbol[] getLastParsedStatement(){
         return this.lastParsedStatement;
     }

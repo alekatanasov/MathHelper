@@ -32,6 +32,7 @@ public abstract class MathStatementTransformer implements StatementTransformer{
      * 
      * @param data 
      */
+    
     @Override
     public void loadAdditionalData(Object data){
         // nothing to do here
@@ -41,7 +42,7 @@ public abstract class MathStatementTransformer implements StatementTransformer{
      * 
      * @return reference to the mathStatement field (no shallow or deep copy )
      */
-    public SymbolicStatement getMathStatement(){
+    public final SymbolicStatement getMathStatement(){
         return this.mathStatement;
     }
 }
