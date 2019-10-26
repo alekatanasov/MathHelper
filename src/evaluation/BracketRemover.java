@@ -1,6 +1,7 @@
 
 package evaluation;
 
+import interfaces.evaluation.DataIndependentTransformer;
 import interfaces.expression.MathSymbol;
 import interfaces.expression.MathSymbol.MathSymbolType;
 import interfaces.expression.SymbolicStatement;
@@ -13,7 +14,7 @@ import java.util.List;
  * 
  * @author Alexander Atanasov
  */
-public class BracketRemover extends MathStatementTransformer{
+public class BracketRemover extends MathStatementTransformer implements DataIndependentTransformer{
     public BracketRemover(SymbolicStatement statement){
         super(statement);
     }

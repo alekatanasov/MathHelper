@@ -1,16 +1,16 @@
 
 package evaluation;
 
-import interfaces.evaluation.StatementTransformer;
+import interfaces.evaluation.StatementLoader;
 import interfaces.expression.SymbolicStatement;
 
 /**
- * An abstract implementation of the StatementTransformer interface, which holds
- * functionality common to all inheritors.
+ * An abstract implementation of the StatementLoader interface, which holds
+ * functionality common to all math statement transformers.
  * 
  * @author Alexandar Atanasov
  */
-public abstract class MathStatementTransformer implements StatementTransformer{
+public abstract class MathStatementTransformer implements StatementLoader{
     private SymbolicStatement mathStatement;
     
     public MathStatementTransformer(SymbolicStatement statement){
@@ -24,18 +24,6 @@ public abstract class MathStatementTransformer implements StatementTransformer{
         }
         
         this.mathStatement = statement;
-    }
-    
-    /**
-     * Default implementation of the method which does not do anything and exists for convenience
-     * since not all inheritors use additional data.
-     * 
-     * @param data 
-     */
-    
-    @Override
-    public void loadAdditionalData(Object data){
-        // nothing to do here
     }
     
     /**

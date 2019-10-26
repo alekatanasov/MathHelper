@@ -4,6 +4,7 @@ package evaluation;
 
 import expression.Constant;
 import expression.Operation;
+import interfaces.evaluation.DataDependentTransformer;
 import interfaces.expression.MathSymbol;
 import interfaces.expression.SymbolicStatement;
 import java.util.List;
@@ -14,29 +15,26 @@ import java.util.List;
  * 
  * @author Alexander Atanasov
  */
-public class SpecifiedOperationExecutor extends MathStatementTransformer{
-    private Integer operationPosition;
+public class SpecifiedOperationExecutor extends MathStatementTransformer implements DataDependentTransformer{
     
     public SpecifiedOperationExecutor(SymbolicStatement statement){
         super(statement);
-        setOperationPosition(null);
     }
     
     @Override
-    public boolean transformMathStatement(){
+    public boolean transformMathStatement(Object additionalData){
+        int operationPosition = (Integer) additionalData;
         boolean isTrasformationSuccess = false;
         Constant operationResult;
-        int operationPosition;
         List<MathSymbol> mathStatement = getMathStatement().getStatement();
         
         // error check
-        if(this.getOperationPosition() == null){
-            throw new IllegalArgumentException("operationPosition has not been set");
+        if(operationPosition < 0){
+            throw new IllegalArgumentException("operationPosition cannot be less than 0");
         }
         
         // execute the operation specified by the operationPosition field in the curently loaded
         // symbolic statement
-        operationPosition = popOperationPosition();
         operationResult = Operation.performOperation((Constant) mathStatement.get(operationPosition-1), 
                                                      (Constant) mathStatement.get(operationPosition+1), 
                                                      (Operation) mathStatement.get(operationPosition));
@@ -49,38 +47,5 @@ public class SpecifiedOperationExecutor extends MathStatementTransformer{
         isTrasformationSuccess = true;
 
         return isTrasformationSuccess;
-    }
-    
-    /**
-     * 
-     * @param data Integer which represents the operationPosition of the operation to be executed in 
-     *             the currently loaded symbolic statement
-     */
-    @Override
-    public void loadAdditionalData(Object data){
-        setOperationPosition((Integer) data);
-    }
-    
-    /**
-     * Returns the value of operationPosition field and than sets it to null.
-     * 
-     * @return The value of the operationPosition field.
-     */
-    private Integer popOperationPosition(){
-        Integer position = getOperationPosition();
-        this.setOperationPosition(null);
-        return position;
-    }
-    
-    private void setOperationPosition(Integer position){
-        this.operationPosition = position;
-    }
-    
-    /**
-     * 
-     * @return Reference (no copy) to the operationPosition field
-     */
-    private Integer getOperationPosition(){
-        return this.operationPosition;
     }
 }
