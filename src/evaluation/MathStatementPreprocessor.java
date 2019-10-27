@@ -4,7 +4,7 @@ package evaluation;
 import expression.Bracket;
 import expression.Bracket.BracketType;
 import expression.Constant;
-import interfaces.evaluation.DataIndependentTransformer;
+import interfaces.evaluation.ParameterIndependentTransformer;
 import interfaces.expression.MathSymbol;
 import interfaces.expression.MathSymbol.MathSymbolType;
 import interfaces.expression.SymbolicStatement;
@@ -16,7 +16,7 @@ import java.util.List;
  * 
  * @author Atanasov
  */
-public class MathStatementPreprocessor extends MathStatementTransformer implements DataIndependentTransformer{
+public class MathStatementPreprocessor extends MathStatementLoader implements ParameterIndependentTransformer{
     public MathStatementPreprocessor(SymbolicStatement statement){
         super(statement);
     }

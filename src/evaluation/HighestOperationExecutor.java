@@ -2,8 +2,8 @@
 package evaluation;
 
 import expression.Operation;
-import interfaces.evaluation.DataDependentTransformer;
-import interfaces.evaluation.DataIndependentTransformer;
+import interfaces.evaluation.ParameterDependentTransformer;
+import interfaces.evaluation.ParameterIndependentTransformer;
 import interfaces.expression.MathSymbol;
 import interfaces.expression.MathSymbol.MathSymbolType;
 import interfaces.expression.SymbolicStatement;
@@ -15,8 +15,8 @@ import java.util.List;
  * 
  * @author Alexandar Atanasov
  */
-public final class HighestOperationExecutor extends MathStatementTransformer implements DataIndependentTransformer{
-    private DataDependentTransformer specifiedOperationExecutor;
+public final class HighestOperationExecutor extends MathStatementLoader implements ParameterIndependentTransformer{
+    private ParameterDependentTransformer specifiedOperationExecutor;
     
     public HighestOperationExecutor(SymbolicStatement statement){
         super(statement);
@@ -66,7 +66,7 @@ public final class HighestOperationExecutor extends MathStatementTransformer imp
      * 
      * @return Reference (no copy) of the specifiedOperationExecutor field.
      */
-    private DataDependentTransformer getSpecifiedOperationExecutor(){
+    private ParameterDependentTransformer getSpecifiedOperationExecutor(){
         return this.specifiedOperationExecutor;
     }
     

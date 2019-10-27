@@ -4,7 +4,7 @@ package evaluation;
 
 import expression.Constant;
 import expression.Operation;
-import interfaces.evaluation.DataDependentTransformer;
+import interfaces.evaluation.ParameterDependentTransformer;
 import interfaces.expression.MathSymbol;
 import interfaces.expression.SymbolicStatement;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
  * 
  * @author Alexander Atanasov
  */
-public class SpecifiedOperationExecutor extends MathStatementTransformer implements DataDependentTransformer{
+public class SpecifiedOperationExecutor extends MathStatementLoader implements ParameterDependentTransformer{
     
     public SpecifiedOperationExecutor(SymbolicStatement statement){
         super(statement);

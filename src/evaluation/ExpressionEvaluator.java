@@ -1,7 +1,7 @@
 
 package evaluation;
 
-import interfaces.evaluation.DataIndependentTransformer;
+import interfaces.evaluation.ParameterIndependentTransformer;
 import interfaces.evaluation.Evaluator;
 import interfaces.evaluation.StatementLoader;
 import interfaces.expression.MathSymbol;
@@ -15,9 +15,9 @@ import interfaces.expression.SymbolicStatement;
 public class ExpressionEvaluator implements Evaluator{
     @Override
     public SymbolicStatement evaluate(SymbolicStatement statement){
-        DataIndependentTransformer operationExecutor = new HighestOperationExecutor(statement);
-        DataIndependentTransformer bracketRemover = new BracketRemover(statement);
-        DataIndependentTransformer operationOrderAdjuster = new OperationOrderAdjuster(statement);
+        ParameterIndependentTransformer operationExecutor = new HighestOperationExecutor(statement);
+        ParameterIndependentTransformer bracketRemover = new BracketRemover(statement);
+        ParameterIndependentTransformer operationOrderAdjuster = new OperationOrderAdjuster(statement);
         
         // take brackets into account and adjust the order of all operations
         operationOrderAdjuster.transformMathStatement();

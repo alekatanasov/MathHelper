@@ -6,14 +6,14 @@ import interfaces.expression.SymbolicStatement;
 
 /**
  * An abstract implementation of the StatementLoader interface, which holds
- * functionality common to all math statement transformers.
+ * functionality common to all inheriting classes.
  * 
  * @author Alexandar Atanasov
  */
-public abstract class MathStatementTransformer implements StatementLoader{
+public abstract class MathStatementLoader implements StatementLoader{
     private SymbolicStatement mathStatement;
     
-    public MathStatementTransformer(SymbolicStatement statement){
+    public MathStatementLoader(SymbolicStatement statement){
         loadMathStatement(statement); 
     }
     

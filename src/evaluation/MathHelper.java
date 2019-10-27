@@ -2,7 +2,7 @@
 package evaluation;
 
 import expression.MathStatement;
-import interfaces.evaluation.DataIndependentTransformer;
+import interfaces.evaluation.ParameterIndependentTransformer;
 import interfaces.evaluation.Evaluator;
 import interfaces.evaluation.Helper;
 import interfaces.expression.SymbolicStatement;
@@ -47,7 +47,7 @@ public class MathHelper implements Helper{
      * @param inputStatement symbolic math statement to be preprocessed. cannot be null
      */
     private void performStatementPreprocessing(SymbolicStatement inputStatement){
-        DataIndependentTransformer preprocessor = new MathStatementPreprocessor(inputStatement);
+   ParameterIndependentTransformer preprocessor = new MathStatementPreprocessor(inputStatement);
         
         preprocessor.transformMathStatement();
     }

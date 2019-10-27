@@ -4,7 +4,7 @@ package evaluation;
 import expression.Bracket;
 import expression.Bracket.BracketType;
 import expression.Operation;
-import interfaces.evaluation.DataIndependentTransformer;
+import interfaces.evaluation.ParameterIndependentTransformer;
 import interfaces.expression.MathSymbol;
 import interfaces.expression.MathSymbol.MathSymbolType;
 import interfaces.expression.SymbolicStatement;
@@ -16,7 +16,7 @@ import java.util.List;
  * 
  * @author Alexander Atanasov
  */
-public class OperationOrderAdjuster extends MathStatementTransformer implements DataIndependentTransformer{
+public class OperationOrderAdjuster extends MathStatementLoader implements ParameterIndependentTransformer{
     public OperationOrderAdjuster(SymbolicStatement statement){
         super(statement);
     }
