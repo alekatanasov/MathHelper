@@ -8,8 +8,18 @@ package expression;
  */
 public class Bracket extends MathSymbol{
     public enum BracketType{
-        OPENING,
-        CLOSING;
+        OPENING("("),
+        CLOSING(")");
+        
+        private String stringValue;
+        
+        BracketType(String bracket){
+            this.stringValue = bracket;
+        }
+        
+        public String getStringValue(){
+            return this.stringValue;
+        }
     }
     
     private BracketType bracketType;
@@ -33,9 +43,10 @@ public class Bracket extends MathSymbol{
             throw new IllegalArgumentException("supposedBracket cannot be null");
         }
         
-        if(supposedBracket.equals("(")
-           || supposedBracket.equals(")")){
-            isBracket = true;
+        for(BracketType currentType : BracketType.values()){
+            if(currentType.getStringValue().equals(supposedBracket)){
+                isBracket = true;
+            }
         }
         
         return isBracket;
@@ -55,10 +66,10 @@ public class Bracket extends MathSymbol{
      * bracket;
      */
     protected final void resolveBracketType(){
-        if(this.getMathSymbol().equals("(")){
-            setBracketType(BracketType.OPENING);
-        } else {
-            setBracketType(BracketType.CLOSING);
+        for(BracketType currentType : BracketType.values()){
+            if(currentType.getStringValue().equals(getMathSymbol())){
+                setBracketType(currentType);
+            }
         }
     }
     

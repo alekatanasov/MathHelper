@@ -67,20 +67,20 @@ public final class Constant extends MathSymbol{
         return MathSymbolType.CONSTANT;
     }
     
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        
+        hash *= super.hashCode();
+        
+        return hash;
+    }
+    
     /**
      * 
      * @return BigDecimal deep copy representing the value of the current constant
      */
     public BigDecimal getValue(){
         return new BigDecimal(this.getMathSymbol());
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        
-        hash *= this.getMathSymbol().hashCode();
-        
-        return hash;
     }
 }

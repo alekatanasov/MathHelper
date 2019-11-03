@@ -86,7 +86,7 @@ public final class Operation extends MathSymbol {
      * @return the default order of the provided operation
      */
     public static int getDefaultOperationOrder(String operation){
-        int order = 0;
+        int order = -1;
         
         if(operation == null){
             throw new IllegalArgumentException("operation cannot be null");
@@ -102,6 +102,10 @@ public final class Operation extends MathSymbol {
             }
         } else {
             throw new IllegalArgumentException("unknown operation");
+        }
+        
+        if(order == -1){
+           throw new IllegalArgumentException("unknown operation"); 
         }
         
         return order;
@@ -121,20 +125,20 @@ public final class Operation extends MathSymbol {
         BigDecimal leftConstant = leftOperand.getValue();
         BigDecimal rightConstant = rightOperand.getValue();
         
-        switch(operation.getMathSymbol()){
-            case"+":
+        switch(operation.getOperationType()){
+            case ADDITION:
                 operationResult = leftConstant.add(rightConstant, MathContext.UNLIMITED);
                 break;
-            case"-":
+            case SUBTRACTION:
                 operationResult = leftConstant.subtract(rightConstant, MathContext.UNLIMITED);
                 break;
-            case"*":
+            case MULTIPLICATION:
                 operationResult = leftConstant.multiply(rightConstant, MathContext.UNLIMITED);
                 break;
-            case"/":
+            case DIVISION:
                 operationResult = leftConstant.divide(rightConstant, MathContext.DECIMAL32);
                 break;
-            case"^":
+            case EXPONENTIATION:
                 operationResult = leftConstant.pow(rightConstant.toBigIntegerExact().intValue(),
                                                   MathContext.UNLIMITED);
                 break;
@@ -148,27 +152,53 @@ public final class Operation extends MathSymbol {
     public static OperationType determineOperationType(String operation){
         OperationType operationType = null;
         
-        switch(operation){
-            case"+":
-                operationType = OperationType.ADDITION;
-                break;
-            case"-":
-                operationType = OperationType.SUBTRACTION;
-                break;
-            case"*":
-                operationType = OperationType.MULTIPLICATION;
-                break;
-            case"/":
-                operationType = OperationType.DIVISION;
-                break;
-            case"^":
-                operationType = OperationType.EXPONENTIATION;
-                break;
-            default:
-                throw new IllegalArgumentException("unknown operation");
+        for(OperationType currentType : OperationType.values()){
+            if(currentType.getStringValue().equals(operation)){
+                operationType = currentType;
+            }
+        }
+        
+        // error check
+        if(operationType == null){
+            throw new IllegalArgumentException("unknown operation");
         }
         
         return operationType;
+    }
+    
+    @Override
+    public boolean  equals(Object object){
+        boolean isEqual = false;
+        Operation operation;
+        
+        if(object == null){
+            return isEqual;
+        } else if( !(object instanceof Operation)){
+            return isEqual;
+        }
+        
+        operation = (Operation) object;
+        if(operation.getMathSymbol().equals(this.getMathSymbol())
+           && operation.getMathSymbolType() == this.getMathSymbolType()
+           && operation.getOperationOrder() == this.getOperationOrder()
+           && operation.getOperationType() == this.getOperationType()){
+            // provided operation is indeed equal to the current operation
+            isEqual = true;
+        }
+        
+        return isEqual;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        
+        hash *= super.hashCode();
+        hash *= getOperationOrder();
+        hash *= getMathSymbolType().hashCode();
+        hash *= getOperationType().hashCode();
+        
+        return hash;
     }
     
     public OperationType getOperationType(){

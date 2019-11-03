@@ -12,6 +12,20 @@ public abstract class MathSymbol implements interfaces.expression.MathSymbol{
         setSymbol(symbol);
     }
     
+    @Override
+    public final String getMathSymbol(){
+        return this.symbol;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        
+        hash *= getMathSymbol().hashCode();
+        
+        return hash;
+    }
+
     protected final void setSymbol(String symbol){
         if(symbol == null){
             throw new IllegalArgumentException("symbol cannot be null");
@@ -20,10 +34,5 @@ public abstract class MathSymbol implements interfaces.expression.MathSymbol{
         }
         
         this.symbol = symbol;
-    }
-    
-    @Override
-    public final String getMathSymbol(){
-        return this.symbol;
     }
 }

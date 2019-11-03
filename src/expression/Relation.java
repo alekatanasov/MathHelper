@@ -26,9 +26,9 @@ public class Relation extends MathSymbol {
     
     private RelationType relationType;
     
-    public Relation(String symbol, RelationType type){
+    public Relation(String symbol){
         super(symbol);
-        setRelationType(type);
+        resolveRelationType(symbol);
     }
     
     public static boolean isRelation(String supposedRelation){
@@ -55,5 +55,22 @@ public class Relation extends MathSymbol {
     
     private void setRelationType(RelationType type){
         this.relationType = type;
+    }
+    
+    private void resolveRelationType(String relation){
+        RelationType relationType = null;
+        
+        for(RelationType currentType : RelationType.values()){
+            if(currentType.getStringValue().equals(relation)){
+                relationType = currentType;
+            }
+        }
+        
+        // check for error
+        if(relationType == null){
+            throw new IllegalArgumentException("unknown relation");
+        }
+        
+        setRelationType(relationType);
     }
 }
