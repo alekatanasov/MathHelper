@@ -3,7 +3,8 @@ package interfaces.expression;
 import java.util.List;
 
 /**
- *
+ * Represents a linear sequence of MathSymbols.
+ * 
  * @author Alexandar Atanasov
  */
 public interface SymbolicStatement {

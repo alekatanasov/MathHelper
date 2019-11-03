@@ -9,7 +9,8 @@ public interface MathSymbol {
     public enum MathSymbolType{
         OPERATION,
         CONSTANT,
-        BRACKET;
+        BRACKET,
+        RELATION;
     }
     
     /**
