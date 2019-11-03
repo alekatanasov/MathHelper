@@ -17,8 +17,8 @@ public final class Operation extends MathSymbol {
         DIVISION("/", 2),
         EXPONENTIATION("^", 3);
         
-        private String stringValue;
-        private int defaultOrder;
+        private  String stringValue;
+        private  int defaultOrder;
         
         OperationType(String value, int order){
             this.stringValue = value;
@@ -67,18 +67,15 @@ public final class Operation extends MathSymbol {
      * 2 for multiplication and division and 3 for power
      * 
      * @param operation non null valid operation
+     * 
      * @return the default order of the provided operation
      */
     public static int getDefaultOperationOrder(Operation operation){
-        int order = 0;
-        
         if(operation == null){
             throw new IllegalArgumentException("operation cannot be null");
         }
         
-        order = Operation.getDefaultOperationOrder(operation.getMathSymbol());
-        
-        return order;
+        return operation.getOperationType().getDefaultOrder();
     }
     
     /**
@@ -97,20 +94,14 @@ public final class Operation extends MathSymbol {
             throw new IllegalArgumentException("operation cannot empty string");
         }
         
-        switch(operation){
-            case"+":
-            case"-":
-                order =1;
-                break;
-            case"*":
-            case"/":
-                order =2;
-                break;
-            case"^":
-                order =3;
-                break;
-            default:
-                throw new IllegalArgumentException("unknown operation");
+        if(isOperation(operation)){
+            for(OperationType type : OperationType.values()){
+                if(type.getStringValue().equals(operation)){
+                    order = type.getDefaultOrder();
+                }
+            }
+        } else {
+            throw new IllegalArgumentException("unknown operation");
         }
         
         return order;
