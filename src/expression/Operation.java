@@ -9,12 +9,38 @@ import java.math.MathContext;
  * 
  * @author Alexandar Atanasov
  */
-public final class Operation extends MathSymbol{
+public final class Operation extends MathSymbol {
+    public enum OperationType {
+        ADDITION("+", 1),
+        SUBTRACTION("-", 1),
+        MULTIPLICATION("*", 2),
+        DIVISION("/", 2),
+        EXPONENTIATION("^", 3);
+        
+        private String stringValue;
+        private int defaultOrder;
+        
+        OperationType(String value, int order){
+            this.stringValue = value;
+            this.defaultOrder = order;
+        }
+        
+        public String getStringValue(){
+            return this.stringValue;
+        }
+        
+        public int getDefaultOrder(){
+            return this.defaultOrder;
+        }
+    }
+    
     private int operationOrder;
+    private OperationType operationType;
     
     public Operation(String operation){
         super(operation);
-        setOperationOrder(getDefaultOperationOrder(this));
+        setOperationOrder(getDefaultOperationOrder(operation));
+        setOperationType(determineOperationType(operation));
     }
     
     /**
@@ -26,13 +52,11 @@ public final class Operation extends MathSymbol{
     public static boolean isOperation(String supposedOperation){
         boolean isOperation = false;
         
-        if(supposedOperation.equals("+") ||
-           supposedOperation.equals("-") ||
-           supposedOperation.equals("*") ||
-           supposedOperation.equals("/")||
-           supposedOperation.equals("^")){
-            // string is operation
-            isOperation = true;
+        for(OperationType operationType : OperationType.values()){
+            if(operationType.getStringValue().equals(supposedOperation)){
+                isOperation = true;
+                break;
+            }
         }
         
         return isOperation;
@@ -97,6 +121,7 @@ public final class Operation extends MathSymbol{
      * @param leftOperand
      * @param rightOperand
      * @param operation
+     * 
      * @return a Constant representing the result of the operation execution.
      */
     public static Constant performOperation(Constant leftOperand, Constant rightOperand, 
@@ -127,6 +152,36 @@ public final class Operation extends MathSymbol{
         }
         
         return new Constant(operationResult.toPlainString());
+    }
+    
+    public static OperationType determineOperationType(String operation){
+        OperationType operationType = null;
+        
+        switch(operation){
+            case"+":
+                operationType = OperationType.ADDITION;
+                break;
+            case"-":
+                operationType = OperationType.SUBTRACTION;
+                break;
+            case"*":
+                operationType = OperationType.MULTIPLICATION;
+                break;
+            case"/":
+                operationType = OperationType.DIVISION;
+                break;
+            case"^":
+                operationType = OperationType.EXPONENTIATION;
+                break;
+            default:
+                throw new IllegalArgumentException("unknown operation");
+        }
+        
+        return operationType;
+    }
+    
+    public OperationType getOperationType(){
+        return this.operationType;
     }
     
     public int getOperationOrder(){
@@ -163,5 +218,9 @@ public final class Operation extends MathSymbol{
     
     private void setOperationOrder(int order){
         this.operationOrder = order;
+    }
+    
+    private void setOperationType(OperationType type){
+        this.operationType = type;
     }
 }
