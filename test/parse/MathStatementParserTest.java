@@ -43,7 +43,10 @@ public class MathStatementParserTest {
             { "(1+2-3)", "(1+2-3)" },
             { "(-2^2/3)", "(-2^2/3)" },
             { "(-2^2/3)+(-2+1)", "(-2^2/3)+(-2+1)" },
-            { "((1+2-3)^2)/3", "((1+2-3)^2)/3" }
+            { "((1+2-3)^2)/3", "((1+2-3)^2)/3" },
+            { "x=5", "x=5" },
+            { "2*x+1-x^2=x^3*4", "2*x+1-x^2=x^3*4" },
+            { "(x^2-10)/(-x*3)=(x+2)^x", "(x^2-10)/(-x*3)=(x+2)^x" }
             
       });
    }
@@ -58,7 +61,7 @@ public class MathStatementParserTest {
         
         this.parser.parseStatement(this.input);
         mathStatement = this.parser.popLastParsedStatement();
-        for(int c=0; c<mathStatement.length; c++){
+        for(int c = 0; c < mathStatement.length; c++){
             parsedStatement+= mathStatement[c].getMathSymbol();
         }
         

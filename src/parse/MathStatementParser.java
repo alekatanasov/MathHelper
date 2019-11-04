@@ -4,6 +4,8 @@ package parse;
 import expression.Bracket;
 import expression.Constant;
 import expression.Operation;
+import expression.Relation;
+import expression.Variable;
 import interfaces.expression.MathSymbol;
 import interfaces.parse.SymbolicParser;
 import java.util.ArrayList;
@@ -49,6 +51,16 @@ public class MathStatementParser implements SymbolicParser {
            // check for bracket
            if(Bracket.isBracket(stringStatement.substring(c, c+1))){
                mathStatement.add(new Bracket(stringStatement.substring(c, c+1)));
+           }
+           
+           // check for relation
+           if(Relation.isRelation(stringStatement.substring(c, c+1))){
+               mathStatement.add(new Relation(stringStatement.substring(c, c+1)));
+           }
+           
+           // check for variable
+           if(Variable.isVariable(stringStatement.substring(c, c+1))){
+               mathStatement.add(new Variable(stringStatement.substring(c, c+1)));
            }
        }
        
