@@ -57,6 +57,37 @@ public class Bracket extends MathSymbol{
     }
     
     @Override
+    public boolean  equals(Object object){
+        boolean isEqual = false;
+        Bracket bracket;
+        
+        if(object == null){
+            return isEqual;
+        } else if( !(object instanceof Bracket)){
+            return isEqual;
+        }
+        
+        bracket = (Bracket) object;
+        if(bracket.getMathSymbol().equals(this.getMathSymbol())
+           && bracket.getBracketType() == this.getBracketType()){
+            // the provided bracket is equal to the current one
+            isEqual = true;
+        }
+        
+        return isEqual;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        
+        hash *= super.hashCode();
+        hash *= this.getBracketType().hashCode();
+        
+        return hash;
+    }
+    
+    @Override
     public MathSymbolType getMathSymbolType(){
         return MathSymbolType.BRACKET;
     }

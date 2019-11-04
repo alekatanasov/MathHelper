@@ -35,7 +35,8 @@ public class MathExpressionValidator extends MathStatementLoader implements Para
     
     /**
      * 
-     * @return true of brackets in the currently loaded math statement are valid
+     * @return true if the brackets in the currently loaded math statement are valid( the
+     *         number of opened brackets matches the number of closed ones )
      */
     private boolean checkBrackets(){
         boolean validBrackets = true;

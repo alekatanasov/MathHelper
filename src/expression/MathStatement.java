@@ -21,10 +21,15 @@ public class MathStatement implements SymbolicStatement{
     /**
      * Static factory method for creating MathStatements.
      * 
-     * @param parser parser instance from which the MathStatement will be fetched.
+     * @param parser non null parser instance from which the MathStatement will be fetched.
+     * 
      * @return a MathStatement object which is not referenced in other places.
      */
     public static MathStatement createMathStatement(SymbolicParser parser){
+        if(parser == null){
+            throw new IllegalArgumentException("parser cannot be null");
+        }
+        
         return new MathStatement(parser.popLastParsedStatement());
     }
     

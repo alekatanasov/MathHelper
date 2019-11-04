@@ -52,7 +52,7 @@ public class MathStatementTest {
         this.parser.parseStatement("3+2");
         SymbolicStatement statement = MathStatement.createMathStatement(this.parser);
         
-        //assertEquals(expectedResult, statement.getStatement());
+        assertEquals(expectedResult, statement.getStatement());
     }
 
     /**

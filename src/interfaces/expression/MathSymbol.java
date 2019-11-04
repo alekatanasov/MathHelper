@@ -10,7 +10,8 @@ public interface MathSymbol {
         OPERATION,
         CONSTANT,
         BRACKET,
-        RELATION;
+        RELATION,
+        VARIABLE;
     }
     
     /**

@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * This class transformMathStatement method performs some actions to prepare 
- * the math statement for further transformations
+ * the math statement for further transformations.
  * 
  * @author Atanasov
  */
