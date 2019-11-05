@@ -4,6 +4,7 @@ package expression;
 import interfaces.expression.MathSymbol;
 import interfaces.expression.SymbolicStatement;
 import interfaces.parse.SymbolicParser;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,28 @@ public class MathStatement implements SymbolicStatement{
         }
         
         return new MathStatement(parser.popLastParsedStatement());
+    }
+    
+    public static MathStatement copyMathStatement(MathStatement statement){
+        List <MathSymbol> newStatement = new ArrayList<>();
+        MathSymbol[] symbolArray;
+        Class[] constructorParams = new Class[]{String.class};
+        Constructor symbolConstructor;
+        
+        for(MathSymbol currentSymbol : statement.getStatement()){
+            try{
+                //
+                symbolConstructor = currentSymbol.getMathSymbolType().getClassDescriptor().getConstructor(constructorParams);
+                //
+                newStatement.add((MathSymbol) symbolConstructor.newInstance(currentSymbol.getMathSymbol()));
+            } catch (Exception e){
+                
+            }
+        }
+        
+        symbolArray = new MathSymbol[newStatement.size()];
+        newStatement.toArray(symbolArray);
+        return new MathStatement(symbolArray);
     }
     
     @Override

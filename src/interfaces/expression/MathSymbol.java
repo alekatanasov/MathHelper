@@ -7,11 +7,25 @@ package interfaces.expression;
  */
 public interface MathSymbol {
     public enum MathSymbolType{
-        OPERATION,
-        CONSTANT,
-        BRACKET,
-        RELATION,
-        VARIABLE;
+        OPERATION("Operation"),
+        CONSTANT("Constant"),
+        BRACKET("Bracket"),
+        RELATION("Relation"),
+        VARIABLE("Variable");
+        
+        private Class classDescriptor;
+        
+        MathSymbolType(String className){
+            try {
+                this.classDescriptor = Class.forName(className);
+            } catch (ClassNotFoundException e){
+                
+            }
+        }
+        
+        public Class getClassDescriptor(){
+            return this.classDescriptor;
+        }
     }
     
     /**

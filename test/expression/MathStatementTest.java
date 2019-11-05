@@ -55,6 +55,11 @@ public class MathStatementTest {
         assertEquals(expectedResult, statement.getStatement());
     }
 
+    @Test
+    public void testCopyMathStatement(){
+        
+    }
+    
     /**
      * Test of getSymbol method, of class MathStatement.
      */

@@ -149,6 +149,14 @@ public final class Operation extends MathSymbol {
         return new Constant(operationResult.toPlainString());
     }
     
+    /**
+     * 
+     * @param operation non null String representing an operation. If a string 
+     *                  which cannot be recognized as operation is provided an exception will 
+     *                  thrown.
+     * 
+     * @return the OperationType of the provided operation.
+     */
     public static OperationType determineOperationType(String operation){
         OperationType operationType = null;
         
@@ -237,6 +245,11 @@ public final class Operation extends MathSymbol {
         return MathSymbolType.OPERATION;
     }
     
+    /**
+     * 
+     * @param order integer representing this operation's operation order.
+     *              No checks performed.
+     */
     private void setOperationOrder(int order){
         this.operationOrder = order;
     }
