@@ -20,7 +20,7 @@ import java.util.List;
 public class MathStatement implements SymbolicStatement, Serializable {
     private List<MathSymbol> statement;
     
-    private MathStatement(MathSymbol[] statement){
+    protected MathStatement(MathSymbol[] statement){
         initializeStatement(statement); 
     }
     

@@ -7,7 +7,7 @@ import interfaces.expression.MathSymbol;
  *
  * @author Alexandar Atanasov
  */
-public interface SymbolicParser {
+public interface SymbolicParser extends StatementParser {
     /**
      * Converts a mathematical statement from String to MathSymbol array. The converted
      * statement is saved internally in the current parser instance and can be 
@@ -18,13 +18,4 @@ public interface SymbolicParser {
      * @return true if the resulting  MathSymbol array is non empty.
      */
     public boolean parseStatement(String statement);
-    
-    /**
-     * Returns the last successfully parsed mathematical statement and discards all references
-     * to it in the parser.
-     * 
-     * @return the last successfully parsed mathematical statement. If no statement was parsed
-     *         the method will return null.
-     */
-    public MathSymbol[] popLastParsedStatement();
 }
