@@ -11,6 +11,8 @@ import interfaces.expression.Monomial;
 public class SingleVariableMonomial  implements Monomial {
     private Constant coefficient;
     private Constant highestPower;
+    private int begginingPosition;
+    private int endingPosition;
     
     public SingleVariableMonomial(Constant coefficient, Constant highestPower){
         setCoefficient(coefficient);
@@ -27,6 +29,16 @@ public class SingleVariableMonomial  implements Monomial {
         return this.highestPower;
     }
     
+    @Override
+    public int getBeginningPosition(){
+        return this.begginingPosition;
+    }
+    
+    @Override
+    public int getEndingPosition(){
+        return this.endingPosition;
+    }
+    
     private void setCoefficient(Constant value){
         if(value == null){
             throw new IllegalArgumentException("coefficient cannot be null");
@@ -41,6 +53,24 @@ public class SingleVariableMonomial  implements Monomial {
         }
         
         this.highestPower = power;
+    }
+    
+    private void setBeginningPosition(int position){
+        // error check
+        if(position < 0){
+            throw new IllegalArgumentException("beginning position cannot be less than zero");
+        }
+        
+        this.begginingPosition = position;
+    }
+    
+    private void setEndingPosition(int position){
+        // error check
+        if(position < 0){
+            throw new IllegalArgumentException("ending position cannot be less than zero");
+        }
+        
+        this.endingPosition = position;
     }
     
 }

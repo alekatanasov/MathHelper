@@ -18,4 +18,7 @@ public interface SymbolicParser extends StatementParser {
      * @return true if the resulting  MathSymbol array is non empty.
      */
     public boolean parseStatement(String statement);
+    
+    @Override
+    public MathSymbol[] popLastParsedStatement();
 }

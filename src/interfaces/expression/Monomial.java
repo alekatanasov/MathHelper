@@ -12,4 +12,8 @@ public interface Monomial {
     public Constant getCoefficient();
     
     public Constant getHighestPower();
+    
+    public int getBeginningPosition();
+    
+    public int getEndingPosition();
 }
