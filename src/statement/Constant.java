@@ -1,6 +1,7 @@
 
-package expression;
+package statement;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -8,7 +9,7 @@ import java.math.BigDecimal;
  * 
  * @author Alexander Atanasov
  */
-public final class Constant extends MathSymbol{
+public final class Constant extends MathSymbol implements Serializable {
     public Constant(String constant){
         super(constant);
     }

@@ -2,8 +2,8 @@
 
 package parse;
 
-import interfaces.expression.Monomial;
-import interfaces.expression.SymbolicStatement;
+import interfaces.statement.Monomial;
+import interfaces.statement.SymbolicStatement;
 import interfaces.parse.MonomialParser;
 import java.util.List;
 

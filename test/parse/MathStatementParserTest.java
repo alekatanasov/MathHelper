@@ -3,7 +3,7 @@
 package parse;
 
 
-import interfaces.expression.MathSymbol;
+import interfaces.statement.MathSymbol;
 import java.util.Arrays;
 import java.util.Collection;
 import org.junit.Before;

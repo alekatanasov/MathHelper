@@ -1,8 +1,8 @@
 
-package expression;
+package statement;
 
-import interfaces.expression.MathSymbol;
-import interfaces.expression.SymbolicStatement;
+import interfaces.statement.MathSymbol;
+import interfaces.statement.SymbolicStatement;
 import interfaces.parse.SymbolicParser;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

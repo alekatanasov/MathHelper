@@ -1,12 +1,14 @@
 
 
-package expression;
+package statement;
+
+import java.io.Serializable;
 
 /**
  *
  * @author Alexander Atanasov
  */
-public class Variable extends MathSymbol {
+public class Variable extends MathSymbol implements Serializable {
     public enum VariableLiteral{
         X("x"),
         Y("y"),

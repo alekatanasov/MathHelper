@@ -1,8 +1,12 @@
 
-package expression;
+package statement;
 
-import interfaces.expression.MathSymbol.MathSymbolType;
-import interfaces.expression.SymbolicStatement;
+import statement.Constant;
+import statement.Operation;
+import statement.MathStatement;
+import statement.MathSymbol;
+import interfaces.statement.MathSymbol.MathSymbolType;
+import interfaces.statement.SymbolicStatement;
 import interfaces.parse.SymbolicParser;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,8 +61,28 @@ public class MathStatementTest {
 
     @Test
     public void testCopyMathStatement(){
+        boolean expectedResult = true;
+        String statementLiteral = "(x+2)^3=x/5-1";
         
-       // MathStatement first  
+        parser.parseStatement(statementLiteral);
+        SymbolicStatement statement = MathStatement.createMathStatement(parser);
+        SymbolicStatement copyStatement = MathStatement.copyMathStatement( (MathStatement) statement);
+        
+        assertEquals(expectedResult, statement.equals(copyStatement));
+        
+    }
+    
+    @Test
+    public void testEquals(){
+        boolean expectedResult = true;
+        String statementLiteral = "(x+2)^3=x/5-1";
+        
+        parser.parseStatement(statementLiteral);
+        SymbolicStatement firstStatement = MathStatement.createMathStatement(parser);
+        parser.parseStatement(statementLiteral);
+        SymbolicStatement secondStatement = MathStatement.createMathStatement(parser);
+        
+        assertEquals(expectedResult, firstStatement.equals(secondStatement));
     }
     
     /**
@@ -74,12 +98,14 @@ public class MathStatementTest {
     @Test
     public void testContainsSymbolType() {
         boolean expectedResult = true;
-        this.parser.parseStatement("(5+1)*2");
+        this.parser.parseStatement("(5+1)*2=x");
         SymbolicStatement statement = MathStatement.createMathStatement(this.parser);
         
         assertEquals(expectedResult, statement.containsSymbolType(MathSymbolType.OPERATION));
         assertEquals(expectedResult, statement.containsSymbolType(MathSymbolType.CONSTANT));
         assertEquals(expectedResult, statement.containsSymbolType(MathSymbolType.BRACKET));
+        assertEquals(expectedResult, statement.containsSymbolType(MathSymbolType.RELATION));
+        assertEquals(expectedResult, statement.containsSymbolType(MathSymbolType.VARIABLE));
     }
     
 }

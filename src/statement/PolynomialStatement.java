@@ -1,9 +1,9 @@
 
 
-package expression;
+package statement;
 
-import interfaces.expression.Monomial;
-import interfaces.expression.Polynomial;
+import interfaces.statement.Monomial;
+import interfaces.statement.Polynomial;
 import interfaces.parse.MonomialParser;
 import java.util.List;
 import parse.MonomialListParser;

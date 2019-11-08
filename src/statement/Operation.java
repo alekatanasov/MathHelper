@@ -1,6 +1,7 @@
 
-package expression;
+package statement;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
@@ -9,7 +10,7 @@ import java.math.MathContext;
  * 
  * @author Alexandar Atanasov
  */
-public final class Operation extends MathSymbol {
+public final class Operation extends MathSymbol implements Serializable {
     public enum OperationType {
         ADDITION("+", 1),
         SUBTRACTION("-", 1),

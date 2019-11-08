@@ -1,11 +1,11 @@
 
 package evaluation;
 
-import expression.MathStatement;
+import statement.MathStatement;
 import interfaces.evaluation.ParameterIndependentTransformer;
 import interfaces.evaluation.Evaluator;
 import interfaces.evaluation.Helper;
-import interfaces.expression.SymbolicStatement;
+import interfaces.statement.SymbolicStatement;
 import interfaces.parse.SymbolicParser;
 import parse.MathStatementParser;
 

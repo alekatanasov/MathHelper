@@ -3,7 +3,7 @@
 package evaluation;
 
 import interfaces.evaluation.Evaluator;
-import interfaces.expression.SymbolicStatement;
+import interfaces.statement.SymbolicStatement;
 
 /**
  *

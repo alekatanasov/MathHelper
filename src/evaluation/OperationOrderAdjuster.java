@@ -1,13 +1,13 @@
 
 package evaluation;
 
-import expression.Bracket;
-import expression.Bracket.BracketType;
-import expression.Operation;
+import statement.Bracket;
+import statement.Bracket.BracketType;
+import statement.Operation;
 import interfaces.evaluation.ParameterIndependentTransformer;
-import interfaces.expression.MathSymbol;
-import interfaces.expression.MathSymbol.MathSymbolType;
-import interfaces.expression.SymbolicStatement;
+import interfaces.statement.MathSymbol;
+import interfaces.statement.MathSymbol.MathSymbolType;
+import interfaces.statement.SymbolicStatement;
 import java.util.List;
 
 /**

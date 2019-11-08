@@ -2,7 +2,7 @@
 package evaluation;
 
 import interfaces.evaluation.StatementLoader;
-import interfaces.expression.SymbolicStatement;
+import interfaces.statement.SymbolicStatement;
 
 /**
  * An abstract implementation of the StatementLoader interface, which holds

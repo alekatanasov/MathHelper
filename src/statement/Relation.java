@@ -1,11 +1,13 @@
 
-package expression;
+package statement;
+
+import java.io.Serializable;
 
 /**
  *
  * @author Alexander Atanasov
  */
-public class Relation extends MathSymbol {
+public class Relation extends MathSymbol implements Serializable {
     public enum RelationType {
         EQUALITY("=");
     

@@ -1,12 +1,12 @@
 
 package parse;
 
-import expression.Bracket;
-import expression.Constant;
-import expression.Operation;
-import expression.Relation;
-import expression.Variable;
-import interfaces.expression.MathSymbol;
+import statement.Bracket;
+import statement.Constant;
+import statement.Operation;
+import statement.Relation;
+import statement.Variable;
+import interfaces.statement.MathSymbol;
 import interfaces.parse.SymbolicParser;
 import java.util.ArrayList;
 import java.util.List;

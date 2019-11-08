@@ -1,9 +1,9 @@
 
 
-package expression.operation;
+package statement.operation;
 
-import expression.Constant;
-import expression.Operation;
+import statement.Constant;
+import statement.Operation;
 import java.util.Arrays;
 import java.util.Collection;
 import static org.junit.Assert.assertEquals;

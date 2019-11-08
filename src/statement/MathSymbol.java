@@ -1,11 +1,13 @@
-package expression;
+package statement;
+
+import java.io.Serializable;
 
 /**
  * Represents functionality common to all math symbols.
  * 
  * @author Alexandar Atanasov
  */
-public abstract class MathSymbol implements interfaces.expression.MathSymbol{
+public abstract class MathSymbol implements interfaces.statement.MathSymbol, Serializable {
     private String symbol;
     
     public MathSymbol(String symbol){

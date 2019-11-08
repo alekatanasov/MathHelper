@@ -4,8 +4,8 @@ package evaluation;
 import interfaces.evaluation.ParameterIndependentTransformer;
 import interfaces.evaluation.Evaluator;
 import interfaces.evaluation.StatementLoader;
-import interfaces.expression.MathSymbol;
-import interfaces.expression.SymbolicStatement;
+import interfaces.statement.MathSymbol;
+import interfaces.statement.SymbolicStatement;
 
 /**
  * The evaluate method of this class can evaluate mathematical expressions.

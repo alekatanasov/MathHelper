@@ -1,7 +1,7 @@
 
 package interfaces.parse;
 
-import interfaces.expression.MathSymbol;
+import interfaces.statement.MathSymbol;
 
 /**
  *

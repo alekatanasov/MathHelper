@@ -1,12 +1,14 @@
 
-package expression;
+package statement;
+
+import java.io.Serializable;
 
 /**
  * Represents a single bracket.
  * 
  * @author Alexandar Atanasov
  */
-public class Bracket extends MathSymbol{
+public class Bracket extends MathSymbol implements Serializable {
     public enum BracketType{
         OPENING("("),
         CLOSING(")");

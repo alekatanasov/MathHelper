@@ -1,8 +1,8 @@
 
 
-package interfaces.expression;
+package interfaces.statement;
 
-import expression.Constant;
+import statement.Constant;
 
 /**
  *

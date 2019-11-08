@@ -1,8 +1,8 @@
 
 
-package expression;
+package statement;
 
-import interfaces.expression.Monomial;
+import interfaces.statement.Monomial;
 
 /**
  *

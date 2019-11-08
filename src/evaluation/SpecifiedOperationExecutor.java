@@ -2,11 +2,11 @@
 
 package evaluation;
 
-import expression.Constant;
-import expression.Operation;
+import statement.Constant;
+import statement.Operation;
 import interfaces.evaluation.ParameterDependentTransformer;
-import interfaces.expression.MathSymbol;
-import interfaces.expression.SymbolicStatement;
+import interfaces.statement.MathSymbol;
+import interfaces.statement.SymbolicStatement;
 import java.util.List;
 
 /**

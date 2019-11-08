@@ -1,7 +1,8 @@
 
-package expression;
+package statement;
 
-import interfaces.expression.MathSymbol.MathSymbolType;
+import statement.Constant;
+import interfaces.statement.MathSymbol.MathSymbolType;
 import java.math.BigDecimal;
 import org.junit.Test;
 import static org.junit.Assert.*;

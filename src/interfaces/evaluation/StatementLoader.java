@@ -1,7 +1,7 @@
 
 package interfaces.evaluation;
 
-import interfaces.expression.SymbolicStatement;
+import interfaces.statement.SymbolicStatement;
 
 /**
  *
