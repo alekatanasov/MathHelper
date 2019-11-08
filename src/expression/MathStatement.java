@@ -48,7 +48,8 @@ public class MathStatement implements SymbolicStatement, Serializable {
     public static MathStatement copyMathStatement(MathStatement statement){
         MathStatement copyStatement;
         
-        try{
+        // copy by serialization and deserialization
+        try {
             ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteOutputStream);
 	    objectOutputStream.writeObject(statement);
@@ -57,9 +58,9 @@ public class MathStatement implements SymbolicStatement, Serializable {
 	    ObjectInputStream objectInputStream = new ObjectInputStream(byteInputStream);
             copyStatement = (MathStatement) objectInputStream.readObject();
        } catch (IOException e) {
-	   return null;
+	   throw new RuntimeException(e);
        } catch (ClassNotFoundException e) {
-	   return null;
+	   throw new RuntimeException(e);
        }
         
         return copyStatement;
@@ -98,6 +99,35 @@ public class MathStatement implements SymbolicStatement, Serializable {
         }
         
         return result;
+    }
+    
+    @Override
+    public boolean  equals(Object object){
+        boolean isEqual = false;
+        MathStatement statement;
+        
+        if(object == null){
+            return isEqual;
+        } else if( !(object instanceof MathStatement)){
+            return isEqual;
+        }
+        
+        statement = (MathStatement) object;
+        if(statement.getStatement().equals(this.getStatement())){
+            isEqual = true;
+        }
+        
+        return isEqual;
+        
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 11;
+        
+        hash *= this.getStatement().hashCode();
+        
+        return hash;
     }
     
     private void initializeStatement(MathSymbol[] statement){

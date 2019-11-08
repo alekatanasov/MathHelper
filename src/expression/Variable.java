@@ -27,8 +27,18 @@ public class Variable extends MathSymbol {
         super(variable);
     }
     
+    /**
+     * 
+     * @param supposedVariable non null String to evaluate 
+     * 
+     * @return true if the provided String indeed represents a variable
+     */
     public static boolean isVariable(String supposedVariable){
         boolean isVariable = false;
+        
+        if(supposedVariable == null){
+            throw new IllegalArgumentException("supposedVariable cannot be null");
+        }
         
         for(VariableLiteral literal : VariableLiteral.values()){
             if(literal.getStringValue().equals(supposedVariable)){
@@ -42,5 +52,33 @@ public class Variable extends MathSymbol {
     @Override
     public MathSymbolType getMathSymbolType(){
         return MathSymbolType.VARIABLE;
+    }
+    
+    @Override
+    public boolean  equals(Object object){
+        boolean isEqual = false;
+        Variable variable;
+        
+        if(object == null){
+            return isEqual;
+        } else if( !(object instanceof Variable)){
+            return isEqual;
+        }
+        
+        variable = (Variable) object;
+        if(this.getMathSymbol().equals(variable.getMathSymbol())){
+            isEqual = true;
+        }
+        
+        return isEqual;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 11;
+        
+        hash *= super.hashCode();
+        
+        return hash;
     }
 }
