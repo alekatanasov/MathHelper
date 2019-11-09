@@ -31,4 +31,15 @@ public interface SymbolicStatement {
      *         to have symbolType type matching the provided symbolType.
      */
     public boolean containsSymbolType(MathSymbol.MathSymbolType symbolType);
+    
+    /**
+     * Traverses this statement from 0 to size() and returns the first symbol encountered
+     * which is of the specified type.
+     * 
+     * @param symbolType non null SymbolType to search for
+     * 
+     * @return the first symbol encountered which is of the specified SymbolType. If there is 
+     *         no symbol of the specified type in this expression, the method will return null.
+     */
+    public MathSymbol getFirstSymbolByType(MathSymbol.MathSymbolType symbolType);
 }

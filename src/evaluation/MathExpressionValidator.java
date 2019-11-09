@@ -23,7 +23,7 @@ public class MathExpressionValidator extends MathStatementLoader implements Para
      * @return true if the math statement is indeed valid
      */
     @Override
-    public Object analyzeMathStatement(){
+    public Boolean analyzeMathStatement(){
         Boolean isValidExpression = true;
         
         if(!checkBrackets()){
