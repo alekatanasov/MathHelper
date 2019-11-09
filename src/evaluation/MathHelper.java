@@ -1,10 +1,12 @@
 
 package evaluation;
 
+import evaluation.StatementTypeResolver.MathStatementType;
 import statement.MathStatement;
 import interfaces.evaluation.ParameterIndependentTransformer;
-import interfaces.evaluation.Evaluator;
+import interfaces.evaluation.EvaluationStrategy;
 import interfaces.evaluation.Helper;
+import interfaces.evaluation.ParameterIndependentAnalyzer;
 import interfaces.statement.SymbolicStatement;
 import interfaces.parse.SymbolicParser;
 import parse.MathStatementParser;
@@ -22,7 +24,9 @@ public class MathHelper implements Helper{
     
     @Override
     public String solveMathStatement(String mathStatement){
-        Evaluator expressionEvaluator = new ExpressionEvaluator();
+        EvaluationStrategy evaluationStrategy = null;
+        ParameterIndependentAnalyzer typeResolver;
+        MathStatementType statementType;
         SymbolicStatement solvedStatement;
         SymbolicStatement inputStatement;
         
@@ -37,8 +41,22 @@ public class MathHelper implements Helper{
         // perform preprocessing
         performStatementPreprocessing(inputStatement);
         
+        // load strategy based on the type of the provided statement
+        typeResolver = new StatementTypeResolver(inputStatement);
+        statementType = (MathStatementType) typeResolver.analyzeMathStatement();
+        switch(statementType){
+            case EXPRESSION:
+                evaluationStrategy = new ExpressionEvaluationStrategy();
+                break;
+            case EQUATION:
+                evaluationStrategy = new EquationEvaluationStrategy();
+                break;
+            default:
+                throw new RuntimeException("Unknow statement type");
+        }
+        
         // perform evaluation
-        solvedStatement = expressionEvaluator.evaluate(inputStatement);
+        solvedStatement = evaluationStrategy.evaluate(inputStatement);
         return solvedStatement.toString();
     }
     

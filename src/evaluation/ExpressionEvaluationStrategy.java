@@ -2,7 +2,7 @@
 package evaluation;
 
 import interfaces.evaluation.ParameterIndependentTransformer;
-import interfaces.evaluation.Evaluator;
+import interfaces.evaluation.EvaluationStrategy;
 import interfaces.evaluation.StatementLoader;
 import interfaces.statement.MathSymbol;
 import interfaces.statement.SymbolicStatement;
@@ -12,7 +12,7 @@ import interfaces.statement.SymbolicStatement;
  * 
  * @author Alexandar Atanasov
  */
-public class ExpressionEvaluator implements Evaluator{
+public class ExpressionEvaluationStrategy implements EvaluationStrategy{
     @Override
     public SymbolicStatement evaluate(SymbolicStatement statement){
         ParameterIndependentTransformer operationExecutor = new HighestOperationExecutor(statement);

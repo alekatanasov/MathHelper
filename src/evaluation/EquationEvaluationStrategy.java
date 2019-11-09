@@ -2,14 +2,14 @@
 
 package evaluation;
 
-import interfaces.evaluation.Evaluator;
+import interfaces.evaluation.EvaluationStrategy;
 import interfaces.statement.SymbolicStatement;
 
 /**
  *
  * @author Alexander Atanasov
  */
-public class EquationEvaluator implements Evaluator {
+public class EquationEvaluationStrategy implements EvaluationStrategy {
     @Override
     public SymbolicStatement evaluate(SymbolicStatement statement){
         SymbolicStatement result = null;

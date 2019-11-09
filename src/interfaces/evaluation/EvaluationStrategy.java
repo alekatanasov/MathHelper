@@ -7,7 +7,7 @@ import interfaces.statement.SymbolicStatement;
  *
  * @author Alexandar Atanasov
  */
-public interface Evaluator {
+public interface EvaluationStrategy {
     /**
      * Perform some kind of evaluation on the provided statement.
      * 
