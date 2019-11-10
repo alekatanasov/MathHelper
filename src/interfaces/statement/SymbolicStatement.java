@@ -42,4 +42,6 @@ public interface SymbolicStatement {
      *         no symbol of the specified type in this expression, the method will return null.
      */
     public MathSymbol getFirstSymbolByType(MathSymbol.MathSymbolType symbolType);
+    
+    public List<MathSymbol> getAllSymbolsByTybe(MathSymbol.MathSymbolType symbolType);
 }

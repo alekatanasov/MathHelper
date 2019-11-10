@@ -8,13 +8,14 @@ import interfaces.statement.Monomial;
  *
  * @author Alexander Atanasov
  */
-public class SingleVariableMonomial  implements Monomial {
+public class SingleVariableMonomial  extends MathStatement implements Monomial {
     private Constant coefficient;
     private Constant highestPower;
     private int begginingPosition;
     private int endingPosition;
     
-    public SingleVariableMonomial(Constant coefficient, Constant highestPower){
+    public SingleVariableMonomial(MathSymbol[] symbols, Constant coefficient, Constant highestPower){
+        super(symbols);
         setCoefficient(coefficient);
         setHighestPower(highestPower);
     }
@@ -47,6 +48,10 @@ public class SingleVariableMonomial  implements Monomial {
         this.coefficient = value;
     }
     
+    /**
+     * 
+     * @param power non null Constant representing the highest power of this monomial
+     */
     private void setHighestPower(Constant power){
         if(power == null){
             throw new IllegalArgumentException("highest power cannot be null");

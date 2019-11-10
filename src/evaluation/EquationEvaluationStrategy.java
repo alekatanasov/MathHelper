@@ -18,4 +18,8 @@ public class EquationEvaluationStrategy implements EvaluationStrategy {
         
         return result;
     }
+    
+    private void evaluateSingleVariableEquation(){
+        
+    }
 }

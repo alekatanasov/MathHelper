@@ -52,7 +52,7 @@ public class MathHelper implements Helper{
                 evaluationStrategy = new EquationEvaluationStrategy();
                 break;
             default:
-                throw new RuntimeException("Unknow statement type");
+                throw new RuntimeException("Unknown statement type");
         }
         
         // perform evaluation

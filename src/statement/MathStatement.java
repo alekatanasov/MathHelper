@@ -81,6 +81,19 @@ public class MathStatement implements SymbolicStatement, Serializable {
     }
     
     @Override
+    public List<MathSymbol> getAllSymbolsByTybe(MathSymbol.MathSymbolType symbolType){
+        List<MathSymbol> symbols = new ArrayList<>();
+        
+        for(MathSymbol symbol : this.getStatement()){
+            if(symbol.getMathSymbolType() == symbolType){
+                symbols.add(symbol);
+            }
+        }
+        
+        return symbols;
+    }
+    
+    @Override
     public String toString(){
         String result="";
         
