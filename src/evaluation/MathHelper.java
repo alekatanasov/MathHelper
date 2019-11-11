@@ -12,10 +12,13 @@ import interfaces.parse.SymbolicParser;
 import parse.MathStatementParser;
 
 /**
- *
+ * Primary class of the MathHelper library. Serves as an entry point for
+ * 
  * @author Alexandar Atanasov
  */
-public class MathHelper implements Helper{
+public class MathHelper implements Helper {
+    public static final String PARSE_FAIL = "parsing input failed to produce a mathematical statement";
+    
     private SymbolicParser parser;
     
     public MathHelper(){
@@ -33,7 +36,7 @@ public class MathHelper implements Helper{
         
         // parse the statement and exit if nothing was parsed
         if(!this.parser.parseStatement(mathStatement)){
-            return "empty or non mathematical statement provided";
+            return MathHelper.PARSE_FAIL;
         }
         
         // statement has been converted and stored in the parser. load it to the inputStatement variable
@@ -57,7 +60,7 @@ public class MathHelper implements Helper{
         }
         
         // perform evaluation
-        try{
+        try {
             solvedStatement = evaluationStrategy.evaluate(inputStatement);
         } catch (InvalidStatementException e){
             // user provided an invalid statement. return error massage
@@ -73,7 +76,7 @@ public class MathHelper implements Helper{
      * @param inputStatement symbolic math statement to be preprocessed. cannot be null
      */
     private void performStatementPreprocessing(SymbolicStatement inputStatement){
-   ParameterIndependentTransformer preprocessor = new MathStatementPreprocessor(inputStatement);
+        ParameterIndependentTransformer preprocessor = new MathStatementPreprocessor(inputStatement);
         
         preprocessor.transformMathStatement();
     }

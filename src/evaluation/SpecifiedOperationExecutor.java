@@ -22,13 +22,18 @@ public class SpecifiedOperationExecutor extends MathStatementLoader implements P
     }
     
     @Override
-    public boolean transformMathStatement(Object additionalData){
-        int operationPosition = (Integer) additionalData;
+    public boolean transformMathStatement(Object transformationParameters){
+        int operationPosition;
         boolean isTrasformationSuccess = false;
         Constant operationResult;
         List<MathSymbol> mathStatement = getMathStatement().getStatement();
         
-        // error check
+        // error checks:
+        if(!(transformationParameters instanceof Integer)){
+            throw new IllegalArgumentException("invalid transformationParameter type");
+        }
+        
+        operationPosition = (Integer) transformationParameters;
         if(operationPosition < 0){
             throw new IllegalArgumentException("operationPosition cannot be less than 0");
         }

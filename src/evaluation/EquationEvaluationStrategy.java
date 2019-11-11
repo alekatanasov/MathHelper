@@ -3,13 +3,12 @@
 package evaluation;
 
 import interfaces.evaluation.EvaluationStrategy;
-import interfaces.statement.MathSymbol;
 import interfaces.statement.SymbolicStatement;
-import java.util.List;
-import statement.Variable;
+
 
 /**
- *
+ * The evaluate method of this class can evaluate equations.
+ * 
  * @author Alexander Atanasov
  */
 public class EquationEvaluationStrategy implements EvaluationStrategy {
