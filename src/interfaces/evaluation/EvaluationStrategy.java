@@ -1,6 +1,7 @@
 
 package interfaces.evaluation;
 
+import evaluation.InvalidStatementException;
 import interfaces.statement.SymbolicStatement;
 
 /**
@@ -14,5 +15,5 @@ public interface EvaluationStrategy {
      * @param statement a SymbolicStatement to be evaluated
      * @return a SymbolicStatement representing the result of the evaluation
      */
-    public SymbolicStatement evaluate(SymbolicStatement statement);
+    public SymbolicStatement evaluate(SymbolicStatement statement) throws InvalidStatementException;
 }

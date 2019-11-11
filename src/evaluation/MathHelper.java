@@ -25,10 +25,11 @@ public class MathHelper implements Helper{
     @Override
     public String solveMathStatement(String mathStatement){
         EvaluationStrategy evaluationStrategy = null;
-        ParameterIndependentAnalyzer typeResolver;
+        ParameterIndependentAnalyzer statementTypeResolver;
         MathStatementType statementType;
         SymbolicStatement solvedStatement;
         SymbolicStatement inputStatement;
+        String invalidStatementMassage = "";
         
         // parse the statement and exit if nothing was parsed
         if(!this.parser.parseStatement(mathStatement)){
@@ -42,8 +43,8 @@ public class MathHelper implements Helper{
         performStatementPreprocessing(inputStatement);
         
         // load strategy based on the type of the provided statement
-        typeResolver = new StatementTypeResolver(inputStatement);
-        statementType = (MathStatementType) typeResolver.analyzeMathStatement();
+        statementTypeResolver = new StatementTypeResolver(inputStatement);
+        statementType = (MathStatementType) statementTypeResolver.analyzeMathStatement();
         switch(statementType){
             case EXPRESSION:
                 evaluationStrategy = new ExpressionEvaluationStrategy();
@@ -56,7 +57,14 @@ public class MathHelper implements Helper{
         }
         
         // perform evaluation
-        solvedStatement = evaluationStrategy.evaluate(inputStatement);
+        try{
+            solvedStatement = evaluationStrategy.evaluate(inputStatement);
+        } catch (InvalidStatementException e){
+            // user provided an invalid statement. return error massage
+            invalidStatementMassage = e.getMessage();
+            return invalidStatementMassage;
+        }
+        
         return solvedStatement.toString();
     }
     

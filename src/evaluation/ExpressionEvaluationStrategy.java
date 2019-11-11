@@ -3,7 +3,7 @@ package evaluation;
 
 import interfaces.evaluation.ParameterIndependentTransformer;
 import interfaces.evaluation.EvaluationStrategy;
-import interfaces.evaluation.StatementLoader;
+import interfaces.evaluation.ParameterIndependentAnalyzer;
 import interfaces.statement.MathSymbol;
 import interfaces.statement.SymbolicStatement;
 
@@ -14,10 +14,18 @@ import interfaces.statement.SymbolicStatement;
  */
 public class ExpressionEvaluationStrategy implements EvaluationStrategy{
     @Override
-    public SymbolicStatement evaluate(SymbolicStatement statement){
+    public SymbolicStatement evaluate(SymbolicStatement statement) throws InvalidStatementException {
         ParameterIndependentTransformer operationExecutor = new HighestOperationExecutor(statement);
         ParameterIndependentTransformer bracketRemover = new BracketRemover(statement);
         ParameterIndependentTransformer operationOrderAdjuster = new OperationOrderAdjuster(statement);
+        ParameterIndependentAnalyzer expressionValidator = new MathExpressionValidator(statement);
+        
+        // check validity of expression
+        boolean isValidExpression = (boolean)expressionValidator.analyzeMathStatement();
+        if(!isValidExpression){
+            // invalid expression provided by the user
+            throw new InvalidStatementException("Invalid expression");
+        }
         
         // take brackets into account and adjust the order of all operations
         operationOrderAdjuster.transformMathStatement();
