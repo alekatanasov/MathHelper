@@ -12,7 +12,8 @@ import interfaces.parse.SymbolicParser;
 import parse.MathStatementParser;
 
 /**
- * Primary class of the MathHelper library. Serves as an entry point for
+ * Primary class of the MathHelper library. Serves as an entry point for all
+ * math statement evaluations and transformations.
  * 
  * @author Alexandar Atanasov
  */
@@ -32,7 +33,7 @@ public class MathHelper implements Helper {
         MathStatementType statementType;
         SymbolicStatement solvedStatement;
         SymbolicStatement inputStatement;
-        String invalidStatementMassage = "";
+        String invalidStatementMassage;
         
         // parse the statement and exit if nothing was parsed
         if(!this.parser.parseStatement(mathStatement)){

@@ -1,6 +1,12 @@
 package interfaces.statement;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
+import statement.MathStatement;
 
 /**
  * Represents a linear sequence of MathSymbols.
@@ -43,5 +49,46 @@ public interface SymbolicStatement {
      */
     public MathSymbol getFirstSymbolByType(MathSymbol.MathSymbolType symbolType);
     
+    /**
+     * 
+     * @param symbolType non null SymbolType
+     * 
+     * @return a list of all symbols from the selected SymbolType. If the statement does not
+     *         contain any MathSymbols from the required type, this method will return an empty list
+     */
     public List<MathSymbol> getAllSymbolsByTybe(MathSymbol.MathSymbolType symbolType);
+    
+    /**
+     * Concatenate the provided statement to this one.
+     * 
+     * @param statement non null statement to be added to the current one
+     */
+    public void concatenate(SymbolicStatement statement);
+    
+    /**
+     * 
+     * @param statement statement to be copied. If null this method will return null.
+     * 
+     * @return deep copy of the provided statement
+     */
+    public static SymbolicStatement copyMathStatement(SymbolicStatement statement){
+        MathStatement copyStatement;
+        
+        // copy by serialization and deserialization
+        try {
+            ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteOutputStream);
+	    objectOutputStream.writeObject(statement);
+
+            ByteArrayInputStream byteInputStream = new ByteArrayInputStream(byteOutputStream.toByteArray());
+	    ObjectInputStream objectInputStream = new ObjectInputStream(byteInputStream);
+            copyStatement = (MathStatement) objectInputStream.readObject();
+       } catch (IOException e) {
+	   throw new RuntimeException(e);
+       } catch (ClassNotFoundException e) {
+	   throw new RuntimeException(e);
+       }
+        
+        return copyStatement;
+    }
 }

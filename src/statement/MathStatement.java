@@ -4,11 +4,7 @@ package statement;
 import interfaces.statement.MathSymbol;
 import interfaces.statement.SymbolicStatement;
 import interfaces.parse.SymbolicParser;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import static interfaces.statement.SymbolicStatement.copyMathStatement;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,33 +33,6 @@ public class MathStatement implements SymbolicStatement, Serializable {
         }
         
         return new MathStatement(parser.popLastParsedStatement());
-    }
-    
-    /**
-     * 
-     * @param statement statement to be copied. If null this method will return null.
-     * 
-     * @return deep copy of the provided statement
-     */
-    public static MathStatement copyMathStatement(MathStatement statement){
-        MathStatement copyStatement;
-        
-        // copy by serialization and deserialization
-        try {
-            ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteOutputStream);
-	    objectOutputStream.writeObject(statement);
-
-            ByteArrayInputStream byteInputStream = new ByteArrayInputStream(byteOutputStream.toByteArray());
-	    ObjectInputStream objectInputStream = new ObjectInputStream(byteInputStream);
-            copyStatement = (MathStatement) objectInputStream.readObject();
-       } catch (IOException e) {
-	   throw new RuntimeException(e);
-       } catch (ClassNotFoundException e) {
-	   throw new RuntimeException(e);
-       }
-        
-        return copyStatement;
     }
     
     @Override
@@ -155,6 +124,23 @@ public class MathStatement implements SymbolicStatement, Serializable {
         hash *= this.getStatement().hashCode();
         
         return hash;
+    }
+    
+    @Override
+    public void concatenate(SymbolicStatement statement){
+        List<MathSymbol> statementDeepCopy;
+        
+        // error check
+        if(statement == null){
+            throw new IllegalArgumentException("statement cannot be null");
+        } else if(statement.getStatement().isEmpty()){
+            // empty statement provided, exit from method
+            return;
+        }
+        
+        statementDeepCopy = copyMathStatement(statement).getStatement();
+        
+        getStatement().addAll(statementDeepCopy);
     }
     
     private void initializeStatement(MathSymbol[] statement){

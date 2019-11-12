@@ -58,19 +58,6 @@ public class MathStatementTest {
         
         assertEquals(expectedResult, statement.getStatement());
     }
-
-    @Test
-    public void testCopyMathStatement(){
-        boolean expectedResult = true;
-        String statementLiteral = "(x+2)^3=x/5-1";
-        
-        parser.parseStatement(statementLiteral);
-        SymbolicStatement statement = MathStatement.createMathStatement(parser);
-        SymbolicStatement copyStatement = MathStatement.copyMathStatement( (MathStatement) statement);
-        
-        assertEquals(expectedResult, statement.equals(copyStatement));
-        
-    }
     
     @Test
     public void testEquals(){
