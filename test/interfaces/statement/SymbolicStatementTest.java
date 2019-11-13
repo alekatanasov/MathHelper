@@ -39,7 +39,7 @@ public class SymbolicStatementTest {
         
         parser.parseStatement(statementLiteral);
         SymbolicStatement statement = MathStatement.createMathStatement(parser);
-        SymbolicStatement copyStatement = SymbolicStatement.copyMathStatement( (MathStatement) statement);
+        SymbolicStatement copyStatement = SymbolicStatement.copyMathStatement(statement);
         
         assertEquals(expectedResult, statement.equals(copyStatement));
     }

@@ -5,6 +5,7 @@ package statement;
 import interfaces.statement.Monomial;
 import interfaces.statement.Polynomial;
 import interfaces.parse.MonomialParser;
+import interfaces.statement.SymbolicStatement;
 import java.util.List;
 import parse.MonomialListParser;
 
@@ -14,12 +15,20 @@ import parse.MonomialListParser;
  */
 public class PolynomialStatement extends MathStatement implements Polynomial {
     private List<Monomial> monomials;
-    private MonomialParser monomialParser;
+    private static MonomialParser monomialParser;
     
-    PolynomialStatement(MathSymbol[] statement){
+    private PolynomialStatement(MathSymbol[] statement){
         super(statement);
         initializeMonomialParser();
         determineMonomials();
+    }
+    
+    public static boolean createPolynomialStatement(SymbolicStatement statement){
+        boolean creationSuccess = false;
+        
+        // to do
+        
+        return creationSuccess;
     }
     
     @Override

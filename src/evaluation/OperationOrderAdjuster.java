@@ -33,7 +33,7 @@ public class OperationOrderAdjuster extends MathStatementLoader implements Param
         for(int c=0; c < mathSymbols.size();c++){
             currentMathSymbol = mathSymbols.get(c);
             
-            // check if the current currentMathSymbol is bracket
+            // check if the current MathSymbol is a bracket
             if(currentMathSymbol.getMathSymbolType() == MathSymbolType.BRACKET){
                 bracket = (Bracket) currentMathSymbol;
                 
