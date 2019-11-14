@@ -17,9 +17,12 @@ public class PolynomialStatement extends MathStatement implements Polynomial {
     private List<Monomial> monomials;
     private static MonomialParser monomialParser;
     
+    static {
+        monomialParser = new MonomialListParser();
+    }
+    
     private PolynomialStatement(MathSymbol[] statement){
         super(statement);
-        initializeMonomialParser();
         determineMonomials();
     }
     
@@ -32,17 +35,21 @@ public class PolynomialStatement extends MathStatement implements Polynomial {
     }
     
     @Override
+    public void rebaseOnMonomials(){
+        List<Monomial> monomials = getMonomials();
+        
+        // to do
+        
+    }
+    
+    @Override
     public List<Monomial> getMonomials(){
         determineMonomials();
         return this.monomials;
     }
     
-    private void initializeMonomialParser(){
-        this.monomialParser = new MonomialListParser();
-    }
-    
-    private MonomialParser getMonomialParser(){
-        return this.monomialParser;
+    private static MonomialParser getMonomialParser(){
+        return monomialParser;
     }
     
     private void setMonomials(List<Monomial> newMonomials){

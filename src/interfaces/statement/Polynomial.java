@@ -14,4 +14,6 @@ public interface Polynomial extends SymbolicStatement {
      * @return reference (not a copy) to the monomials in this polynomial
      */
     public List<Monomial> getMonomials();
+    
+    public void rebaseOnMonomials();
 }
