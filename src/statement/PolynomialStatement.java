@@ -21,7 +21,7 @@ public class PolynomialStatement extends MathStatement implements Polynomial {
         monomialParser = new MonomialListParser();
     }
     
-    private PolynomialStatement(MathSymbol[] statement){
+    protected PolynomialStatement(MathSymbol[] statement){
         super(statement);
         determineMonomials();
     }
