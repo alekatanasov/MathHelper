@@ -74,6 +74,15 @@ public class MathStatement implements SymbolicStatement, Serializable {
     }
     
     @Override
+    public void setStatement(List<MathSymbol> statement){
+        if(statement == null){
+            throw new IllegalArgumentException("statement cannot be null");
+        }
+        
+        this.statement = statement;
+    }
+    
+    @Override
     public List<MathSymbol> getStatement(){
         return this.statement;
     }
@@ -134,7 +143,7 @@ public class MathStatement implements SymbolicStatement, Serializable {
         if(statement == null){
             throw new IllegalArgumentException("statement cannot be null");
         } else if(statement.getStatement().isEmpty()){
-            // empty statement provided, exit from method
+            // empty newStatement provided, exit from method
             return;
         }
         
@@ -143,12 +152,14 @@ public class MathStatement implements SymbolicStatement, Serializable {
         getStatement().addAll(statementDeepCopy);
     }
     
-    private void initializeStatement(MathSymbol[] statement){
-        this.statement = new ArrayList<>();
+    private void initializeStatement(MathSymbol[] symbols){
+        List<MathSymbol> newStatement = new ArrayList<>();
         
-        for(int c = 0;c < statement.length;c++){
-            this.statement.add(statement[c]);
+        for(int c = 0;c < symbols.length;c++){
+            newStatement.add(symbols[c]);
         }
+        
+        setStatement(newStatement);
     }
 
 }

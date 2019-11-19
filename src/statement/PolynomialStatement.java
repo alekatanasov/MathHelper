@@ -6,6 +6,7 @@ import interfaces.statement.Monomial;
 import interfaces.statement.Polynomial;
 import interfaces.parse.MonomialParser;
 import interfaces.statement.SymbolicStatement;
+import java.util.ArrayList;
 import java.util.List;
 import parse.MonomialListParser;
 
@@ -36,10 +37,18 @@ public class PolynomialStatement extends MathStatement implements Polynomial {
     
     @Override
     public void rebaseOnMonomials(){
-        List<Monomial> monomials = getMonomials();
+        List<Monomial> monomialStatement = getMonomials();
+        List<interfaces.statement.MathSymbol> rebasedStatement = new ArrayList<>();
         
-        // to do
+        if(monomialStatement.isEmpty()){
+            return;
+        }
         
+        for(Monomial monomial : monomialStatement){
+            rebasedStatement.addAll(monomial.getStatement());
+        }
+        
+        setStatement(rebasedStatement);
     }
     
     @Override
@@ -48,7 +57,8 @@ public class PolynomialStatement extends MathStatement implements Polynomial {
         return this.monomials;
     }
     
-    private static MonomialParser getMonomialParser(){
+    @Override
+    public  MonomialParser getMonomialParser(){
         return monomialParser;
     }
     

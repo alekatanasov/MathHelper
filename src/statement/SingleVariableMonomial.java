@@ -14,10 +14,10 @@ public class SingleVariableMonomial  extends MathStatement implements Monomial {
     private int begginingPosition;
     private int endingPosition;
     
-    public SingleVariableMonomial(MathSymbol[] symbols, Constant coefficient, Constant highestPower){
+    public SingleVariableMonomial(MathSymbol[] symbols, int positionBegin, int positionEnd){
         super(symbols);
-        setCoefficient(coefficient);
-        setHighestPower(highestPower);
+        setBeginningPosition(positionBegin);
+        setEndingPosition(positionEnd);
     }
     
     @Override
@@ -40,23 +40,19 @@ public class SingleVariableMonomial  extends MathStatement implements Monomial {
         return this.endingPosition;
     }
     
+    /**
+     * 
+     * @param value Constant representing the numeric coefficient of this monomial
+     */
     private void setCoefficient(Constant value){
-        if(value == null){
-            throw new IllegalArgumentException("coefficient cannot be null");
-        }
-        
         this.coefficient = value;
     }
     
     /**
      * 
-     * @param power non null Constant representing the highest power of this monomial
+     * @param power Constant representing the highest power of this monomial
      */
     private void setHighestPower(Constant power){
-        if(power == null){
-            throw new IllegalArgumentException("highest power cannot be null");
-        }
-        
         this.highestPower = power;
     }
     

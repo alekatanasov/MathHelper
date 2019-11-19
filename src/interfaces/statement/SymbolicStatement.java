@@ -21,6 +21,8 @@ public interface SymbolicStatement {
      */
     public List<MathSymbol> getStatement();
     
+    public void setStatement(List<MathSymbol> statement);
+    
     /**
      * 
      * @param position the position of the symbol in the symbolic statement
