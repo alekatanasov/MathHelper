@@ -8,7 +8,7 @@ import interfaces.evaluation.EvaluationStrategy;
 import interfaces.evaluation.Helper;
 import interfaces.evaluation.ParameterIndependentAnalyzer;
 import interfaces.statement.SymbolicStatement;
-import interfaces.parse.SymbolicParser;
+import interfaces.parse.SymbolicMathParser;
 import parse.MathStatementParser;
 
 /**
@@ -20,7 +20,7 @@ import parse.MathStatementParser;
 public class MathHelper implements Helper {
     public static final String PARSE_FAIL = "parsing input failed to produce a mathematical statement";
     
-    private SymbolicParser parser;
+    private SymbolicMathParser parser;
     
     public MathHelper(){
         initializeParser();
@@ -80,7 +80,7 @@ public class MathHelper implements Helper {
      * 
      * @return Reference (no copy) to the parser field
      */
-    private SymbolicParser getParser(){
+    private SymbolicMathParser getParser(){
         return this.parser;
     }
     

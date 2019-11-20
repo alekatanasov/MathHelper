@@ -15,7 +15,7 @@ import java.util.List;
  * 
  * @author Alexander Atanasov
  */
-public class SpecifiedOperationExecutor extends MathStatementLoader implements ParameterDependentTransformer{
+public class SpecifiedOperationExecutor extends MathStatementContainer implements ParameterDependentTransformer{
     
     public SpecifiedOperationExecutor(SymbolicStatement statement){
         super(statement);

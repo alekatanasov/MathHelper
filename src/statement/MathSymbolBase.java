@@ -7,10 +7,10 @@ import java.io.Serializable;
  * 
  * @author Alexandar Atanasov
  */
-public abstract class MathSymbol implements interfaces.statement.MathSymbol, Serializable {
+public abstract class MathSymbolBase implements interfaces.statement.MathSymbol, Serializable {
     private String symbol;
     
-    public MathSymbol(String symbol){
+    public MathSymbolBase(String symbol){
         setSymbol(symbol);
     }
     

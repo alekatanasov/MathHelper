@@ -12,7 +12,7 @@ import interfaces.statement.SymbolicStatement;
  *
  * @author Alexander Atanasov
  */
-public class MathExpressionValidator extends MathStatementLoader implements ParameterIndependentAnalyzer{
+public class MathExpressionValidator extends MathStatementContainer implements ParameterIndependentAnalyzer{
     public MathExpressionValidator(SymbolicStatement statement){
         super(statement);
     }

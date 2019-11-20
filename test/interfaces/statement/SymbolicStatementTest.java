@@ -6,7 +6,7 @@
 
 package interfaces.statement;
 
-import interfaces.parse.SymbolicParser;
+import interfaces.parse.SymbolicMathParser;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -19,7 +19,7 @@ import statement.MathStatement;
  * @author Solmyr
  */
 public class SymbolicStatementTest {
-    private SymbolicParser parser;
+    private SymbolicMathParser parser;
     
     public SymbolicStatementTest() {
     }

@@ -3,7 +3,7 @@ package statement;
 
 import interfaces.statement.MathSymbol;
 import interfaces.statement.SymbolicStatement;
-import interfaces.parse.SymbolicParser;
+import interfaces.parse.SymbolicMathParser;
 import static interfaces.statement.SymbolicStatement.copyMathStatement;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class MathStatement implements SymbolicStatement, Serializable {
      * 
      * @return a MathStatement object which is not referenced in other places.
      */
-    public static MathStatement createMathStatement(SymbolicParser parser){
+    public static MathStatement createMathStatement(SymbolicMathParser parser){
         if(parser == null){
             throw new IllegalArgumentException("parser cannot be null");
         }
@@ -50,7 +50,7 @@ public class MathStatement implements SymbolicStatement, Serializable {
     }
     
     @Override
-    public List<MathSymbol> getAllSymbolsByTybe(MathSymbol.MathSymbolType symbolType){
+    public List<MathSymbol> getAllSymbolsByType(MathSymbol.MathSymbolType symbolType){
         List<MathSymbol> symbols = new ArrayList<>();
         
         for(MathSymbol symbol : this.getStatement()){
@@ -109,7 +109,7 @@ public class MathStatement implements SymbolicStatement, Serializable {
     @Override
     public boolean  equals(Object object){
         boolean isEqual = false;
-        MathStatement statement;
+        MathStatement equalStatement;
         
         if(object == null){
             return isEqual;
@@ -117,8 +117,9 @@ public class MathStatement implements SymbolicStatement, Serializable {
             return isEqual;
         }
         
-        statement = (MathStatement) object;
-        if(statement.getStatement().equals(this.getStatement())){
+        // compare the current statement to the provided one for equality
+        equalStatement = (MathStatement) object;
+        if(equalStatement.getStatement().equals(this.getStatement())){
             isEqual = true;
         }
         
@@ -152,6 +153,10 @@ public class MathStatement implements SymbolicStatement, Serializable {
         getStatement().addAll(statementDeepCopy);
     }
     
+    /**
+     * 
+     * @param symbols an array of MathSymbols representing a symbolic math statement
+     */
     private void initializeStatement(MathSymbol[] symbols){
         List<MathSymbol> newStatement = new ArrayList<>();
         

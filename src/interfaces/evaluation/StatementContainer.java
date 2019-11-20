@@ -7,9 +7,9 @@ import interfaces.statement.SymbolicStatement;
  *
  * @author Alexandar Atanasov
  */
-public interface StatementLoader {
+public interface StatementContainer {
     /**
-     * Stores the provided symbolic statement inside the current instance of the StatementLoader.
+     * Stores the provided symbolic statement inside the current instance of the StatementContainer.
      * 
      * @param statement non null symbolic statement
      */

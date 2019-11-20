@@ -58,10 +58,11 @@ public interface SymbolicStatement {
      * @return a list of all symbols from the selected SymbolType. If the statement does not
      *         contain any MathSymbols from the required type, this method will return an empty list
      */
-    public List<MathSymbol> getAllSymbolsByTybe(MathSymbol.MathSymbolType symbolType);
+    public List<MathSymbol> getAllSymbolsByType(MathSymbol.MathSymbolType symbolType);
     
     /**
-     * Concatenate the provided statement to this one.
+     * Concatenates the provided statement to this one. The provided statement will be deep
+     * copied and then appended to the current statement.
      * 
      * @param statement non null statement to be added to the current one
      */

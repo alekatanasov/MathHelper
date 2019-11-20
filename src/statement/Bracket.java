@@ -8,7 +8,7 @@ import java.io.Serializable;
  * 
  * @author Alexandar Atanasov
  */
-public class Bracket extends MathSymbol implements Serializable {
+public class Bracket extends MathSymbolBase implements Serializable {
     public enum BracketType{
         OPENING("("),
         CLOSING(")");
@@ -95,7 +95,8 @@ public class Bracket extends MathSymbol implements Serializable {
     }
     
     /**
-     * Sets the bracketType field based on the current MathSymbol value of this 
+     * Sets the bracketType field based on the currMathSymbolBasembol value 
+ 
      * bracket;
      */
     protected final void resolveBracketType(){

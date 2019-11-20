@@ -12,7 +12,7 @@ import statement.Relation.RelationType;
  *
  * @author Alexander Atanasov
  */
-public class StatementTypeResolver extends MathStatementLoader implements ParameterIndependentAnalyzer {
+public class StatementTypeResolver extends MathStatementContainer implements ParameterIndependentAnalyzer {
     public enum MathStatementType {
         EXPRESSION,
         EQUATION;

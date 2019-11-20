@@ -7,7 +7,7 @@ import interfaces.statement.MathSymbol;
  *
  * @author Alexandar Atanasov
  */
-public interface SymbolicParser extends StatementParser {
+public interface SymbolicMathParser extends StatementParser {
     /**
      * Converts a mathematical statement from String to MathSymbol array. The converted
      * statement is saved internally in the current parser instance and can be 

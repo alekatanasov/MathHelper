@@ -21,7 +21,7 @@ public class ExpressionEvaluationStrategy implements EvaluationStrategy{
         ParameterIndependentAnalyzer expressionValidator = new MathExpressionValidator(statement);
         
         // check validity of expression
-        boolean isValidExpression = (boolean)expressionValidator.analyzeMathStatement();
+        boolean isValidExpression = (boolean) expressionValidator.analyzeMathStatement();
         if(!isValidExpression){
             // invalid expression provided by the user
             throw new InvalidStatementException("Invalid expression");

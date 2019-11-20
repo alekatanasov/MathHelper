@@ -14,7 +14,7 @@ public class SingleVariableMonomial  extends MathStatement implements Monomial {
     private int begginingPosition;
     private int endingPosition;
     
-    public SingleVariableMonomial(MathSymbol[] symbols, int positionBegin, int positionEnd){
+    public SingleVariableMonomial(MathSymbolBase[] symbols, int positionBegin, int positionEnd){
         super(symbols);
         setBeginningPosition(positionBegin);
         setEndingPosition(positionEnd);

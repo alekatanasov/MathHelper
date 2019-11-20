@@ -5,6 +5,7 @@ package statement;
 import interfaces.statement.Monomial;
 import interfaces.statement.Polynomial;
 import interfaces.parse.MonomialParser;
+import interfaces.statement.MathSymbol;
 import interfaces.statement.SymbolicStatement;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,18 +28,27 @@ public class PolynomialStatement extends MathStatement implements Polynomial {
         determineMonomials();
     }
     
-    public static boolean createPolynomialStatement(SymbolicStatement statement){
-        boolean creationSuccess = false;
+    public static PolynomialStatement createPolynomialStatement(SymbolicStatement statement){
+        PolynomialStatement newStatement;
+        MathSymbol[] symbolicArray;
         
-        // to do
+        // error check
+        if(statement == null){
+            throw new IllegalArgumentException("statement cannot be null");
+        }
         
-        return creationSuccess;
+        symbolicArray = new MathSymbolBase[statement.getStatement().size()];
+        symbolicArray = statement.getStatement().toArray(symbolicArray);
+        
+        newStatement = new PolynomialStatement(symbolicArray);
+        
+        return newStatement;
     }
     
     @Override
     public void rebaseOnMonomials(){
         List<Monomial> monomialStatement = getMonomials();
-        List<interfaces.statement.MathSymbol> rebasedStatement = new ArrayList<>();
+        List<MathSymbol> rebasedStatement = new ArrayList<>();
         
         if(monomialStatement.isEmpty()){
             return;
@@ -52,7 +62,7 @@ public class PolynomialStatement extends MathStatement implements Polynomial {
     }
     
     @Override
-    public List<Monomial> getMonomials(){
+    public final List<Monomial> getMonomials(){
         determineMonomials();
         return this.monomials;
     }

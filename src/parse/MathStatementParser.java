@@ -7,15 +7,18 @@ import statement.Operation;
 import statement.Relation;
 import statement.Variable;
 import interfaces.statement.MathSymbol;
-import interfaces.parse.SymbolicParser;
+import interfaces.parse.SymbolicMathParser;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Can parse String representations of mathematical statements. If non empty recognizable 
+ * statement is provided to the parseStatement method, this parser will convert it to an
+ * array of type MathSymbol[] which can be retrieved by the popLastParsedStatement method.
+ * 
  * @author Alexandar Atanasov
  */
-public class MathStatementParser implements SymbolicParser {
+public class MathStatementParser implements SymbolicMathParser {
     private MathSymbol[] lastParsedStatement;
     private String currentConstant;
     private String lastParsedConstant;
@@ -117,7 +120,7 @@ public class MathStatementParser implements SymbolicParser {
                     
                 return parsedConstant;
             } 
-        }else{
+        } else {
             // there is a preceding constant. Check if the current character is part of it.
                 if(Constant.isConstant(statement.substring(currentPosition, currentPosition+1))
                    || statement.charAt(currentPosition) == '.'){
@@ -157,7 +160,7 @@ public class MathStatementParser implements SymbolicParser {
      * @return the last parsed constant
      */
     private String popLastParsedConstant(){
-        String constant = this.getLastParsedConstant();
+        String constant = getLastParsedConstant();
         setLastParsedConstant("");
         return constant;
     }

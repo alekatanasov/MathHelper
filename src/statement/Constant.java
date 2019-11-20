@@ -9,7 +9,7 @@ import java.math.BigDecimal;
  * 
  * @author Alexander Atanasov
  */
-public final class Constant extends MathSymbol implements Serializable {
+public final class Constant extends MathSymbolBase implements Serializable {
     public Constant(String constant){
         super(constant);
     }

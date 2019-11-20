@@ -4,10 +4,10 @@ package statement;
 import statement.Constant;
 import statement.Operation;
 import statement.MathStatement;
-import statement.MathSymbol;
+import statement.MathSymbolBase;
 import interfaces.statement.MathSymbol.MathSymbolType;
 import interfaces.statement.SymbolicStatement;
-import interfaces.parse.SymbolicParser;
+import interfaces.parse.SymbolicMathParser;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
@@ -20,7 +20,7 @@ import parse.MathStatementParser;
  * @author Alexander Atanasov
  */
 public class MathStatementTest {
-    private SymbolicParser parser;
+    private SymbolicMathParser parser;
     
     public MathStatementTest() {
     }
@@ -48,7 +48,7 @@ public class MathStatementTest {
      */
     @Test
     public void testGetStatement() {
-        List <MathSymbol> expectedResult = new ArrayList<>();
+        List <MathSymbolBase> expectedResult = new ArrayList<>();
         expectedResult.add(new Constant("3"));
         expectedResult.add(new Operation("+"));
         expectedResult.add(new Constant("2"));

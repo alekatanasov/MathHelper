@@ -7,7 +7,7 @@ import java.io.Serializable;
  *
  * @author Alexander Atanasov
  */
-public class Relation extends MathSymbol implements Serializable {
+public class Relation extends MathSymbolBase implements Serializable {
     public enum RelationType {
         EQUALITY("=");
     

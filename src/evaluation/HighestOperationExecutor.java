@@ -15,7 +15,7 @@ import java.util.List;
  * 
  * @author Alexandar Atanasov
  */
-public final class HighestOperationExecutor extends MathStatementLoader implements ParameterIndependentTransformer{
+public final class HighestOperationExecutor extends MathStatementContainer implements ParameterIndependentTransformer{
     private ParameterDependentTransformer specifiedOperationExecutor;
     
     public HighestOperationExecutor(SymbolicStatement statement){

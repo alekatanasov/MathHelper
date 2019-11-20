@@ -8,7 +8,7 @@ import java.io.Serializable;
  *
  * @author Alexander Atanasov
  */
-public class Variable extends MathSymbol implements Serializable {
+public class Variable extends MathSymbolBase implements Serializable {
     public enum VariableLiteral{
         X("x"),
         Y("y"),

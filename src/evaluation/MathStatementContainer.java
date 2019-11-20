@@ -1,19 +1,19 @@
 
 package evaluation;
 
-import interfaces.evaluation.StatementLoader;
+import interfaces.evaluation.StatementContainer;
 import interfaces.statement.SymbolicStatement;
 
 /**
- * An abstract implementation of the StatementLoader interface, which holds
- * functionality common to all inheriting classes.
+ * An abstract implementation of the StatementContainer interface, which holds
+ functionality common to all inheriting classes.
  * 
  * @author Alexandar Atanasov
  */
-public abstract class MathStatementLoader implements StatementLoader{
+public abstract class MathStatementContainer implements StatementContainer {
     private SymbolicStatement mathStatement;
     
-    public MathStatementLoader(SymbolicStatement statement){
+    public MathStatementContainer(SymbolicStatement statement){
         loadMathStatement(statement); 
     }
     

@@ -6,7 +6,7 @@ package interfaces.evaluation;
  * 
  * @author Alexander Atanasov
  */
-public interface ParameterDependentTransformer extends StatementLoader{
+public interface ParameterDependentTransformer extends StatementContainer{
     /**
      * Performs some operation or transformation on the currently loaded statement.
      * 

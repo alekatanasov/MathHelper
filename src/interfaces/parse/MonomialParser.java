@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author Alexander Atanasov
  */
-public interface MonomialParser extends StatementParser{
+public interface MonomialParser extends StatementParser {
     public boolean parseMonomials(SymbolicStatement statement);
     
     @Override

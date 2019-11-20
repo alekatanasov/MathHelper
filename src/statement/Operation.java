@@ -10,7 +10,7 @@ import java.math.MathContext;
  * 
  * @author Alexandar Atanasov
  */
-public final class Operation extends MathSymbol implements Serializable {
+public final class Operation extends MathSymbolBase implements Serializable {
     public enum OperationType {
         ADDITION("+", 1),
         SUBTRACTION("-", 1),

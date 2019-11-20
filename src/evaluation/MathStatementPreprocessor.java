@@ -16,7 +16,7 @@ import java.util.List;
  * 
  * @author Atanasov
  */
-public class MathStatementPreprocessor extends MathStatementLoader implements ParameterIndependentTransformer{
+public class MathStatementPreprocessor extends MathStatementContainer implements ParameterIndependentTransformer{
     public MathStatementPreprocessor(SymbolicStatement statement){
         super(statement);
     }

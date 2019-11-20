@@ -16,7 +16,7 @@ import java.util.List;
  * 
  * @author Alexander Atanasov
  */
-public class OperationOrderAdjuster extends MathStatementLoader implements ParameterIndependentTransformer{
+public class OperationOrderAdjuster extends MathStatementContainer implements ParameterIndependentTransformer{
     public OperationOrderAdjuster(SymbolicStatement statement){
         super(statement);
     }

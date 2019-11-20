@@ -12,9 +12,7 @@ import java.util.List;
  *
  * @author Alexander Atanasov
  */
-public class MonomialShifter extends MathStatementLoader implements ParameterDependentTransformer {
-    private RelationalPolynomial relationalPolynomial;
-    
+public class MonomialShifter extends RelationalPolynomialTransformer implements ParameterDependentTransformer {
     public enum ShiftDirection {
         END_SHIFT,
         BEGINNING_SHIFT;

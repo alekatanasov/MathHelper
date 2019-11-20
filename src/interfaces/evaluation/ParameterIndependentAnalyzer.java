@@ -7,7 +7,7 @@ package interfaces.evaluation;
  * 
  * @author Alexander Atanasov
  */
-public interface ParameterIndependentAnalyzer extends StatementLoader{
+public interface ParameterIndependentAnalyzer extends StatementContainer{
     /**
      * Perform some analysis on the currently loaded symbolic statement.
      * 

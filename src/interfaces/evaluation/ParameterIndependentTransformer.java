@@ -6,7 +6,7 @@ package interfaces.evaluation;
  * 
  * @author Alexander Atanasov
  */
-public interface ParameterIndependentTransformer extends StatementLoader{
+public interface ParameterIndependentTransformer extends StatementContainer{
     /**
      * Perform some transformation or manipulation on the currently loaded symbolic statement.
      * 

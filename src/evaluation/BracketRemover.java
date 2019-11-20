@@ -16,7 +16,7 @@ import java.util.List;
  * 
  * @author Alexander Atanasov
  */
-public class BracketRemover extends MathStatementLoader implements ParameterIndependentTransformer{
+public class BracketRemover extends MathStatementContainer implements ParameterIndependentTransformer{
     public BracketRemover(SymbolicStatement statement){
         super(statement);
     }

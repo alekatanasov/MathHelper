@@ -13,7 +13,7 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
     private int rightSideSize;
     private int relationPosition;
     
-    RelationalPolynomialStatement(MathSymbol[] statement){
+    RelationalPolynomialStatement(MathSymbolBase[] statement){
         super(statement);
         //
     }
