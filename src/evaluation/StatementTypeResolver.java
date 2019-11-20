@@ -27,6 +27,7 @@ public class StatementTypeResolver extends MathStatementLoader implements Parame
         MathStatementType statementType = MathStatementType.EXPRESSION;
         Relation relation;
         
+        // check if the math statement is relational statement
         if(getMathStatement().containsSymbolType(MathSymbol.MathSymbolType.RELATION)){
             relation = (Relation) getMathStatement().getFirstSymbolByType(MathSymbol.MathSymbolType.RELATION);
             

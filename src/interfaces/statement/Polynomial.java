@@ -16,7 +16,5 @@ public interface Polynomial extends SymbolicStatement {
      */
     public List<Monomial> getMonomials();
     
-    public MonomialParser getMonomialParser();
-    
     public void rebaseOnMonomials();
 }

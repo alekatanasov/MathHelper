@@ -27,42 +27,29 @@ public class MathHelper implements Helper {
     }
     
     @Override
-    public String solveMathStatement(String mathStatement){
-        EvaluationStrategy evaluationStrategy = null;
-        ParameterIndependentAnalyzer statementTypeResolver;
-        MathStatementType statementType;
+    public String solveMathStatement(String inputStatement){
+        EvaluationStrategy evaluationStrategy;
         SymbolicStatement solvedStatement;
-        SymbolicStatement inputStatement;
+        SymbolicStatement symbolicStatement;
         String invalidStatementMassage;
         
         // parse the statement and exit if nothing was parsed
-        if(!this.parser.parseStatement(mathStatement)){
+        if(!this.getParser().parseStatement(inputStatement)){
             return MathHelper.PARSE_FAIL;
         }
         
-        // statement has been converted and stored in the parser. load it to the inputStatement variable
-        inputStatement = MathStatement.createMathStatement(parser);
+        // statement has been converted and stored in the parser. load it to the symbolicStatement variable
+        symbolicStatement = MathStatement.createMathStatement(parser);
         
         // perform preprocessing
-        performStatementPreprocessing(inputStatement);
+        performStatementPreprocessing(symbolicStatement);
         
         // load strategy based on the type of the provided statement
-        statementTypeResolver = new StatementTypeResolver(inputStatement);
-        statementType = (MathStatementType) statementTypeResolver.analyzeMathStatement();
-        switch(statementType){
-            case EXPRESSION:
-                evaluationStrategy = new ExpressionEvaluationStrategy();
-                break;
-            case EQUATION:
-                evaluationStrategy = new EquationEvaluationStrategy();
-                break;
-            default:
-                throw new RuntimeException("Unknown statement type");
-        }
+        evaluationStrategy = resolveEvaluationStrategy(symbolicStatement);
         
         // perform evaluation
         try {
-            solvedStatement = evaluationStrategy.evaluate(inputStatement);
+            solvedStatement = evaluationStrategy.evaluate(symbolicStatement);
         } catch (InvalidStatementException e){
             // user provided an invalid statement. return error massage
             invalidStatementMassage = e.getMessage();
@@ -82,7 +69,48 @@ public class MathHelper implements Helper {
         preprocessor.transformMathStatement();
     }
     
+    /**
+     * Creates a new parser of type MathStatementParser
+     */
     private void initializeParser(){
         this.parser = new MathStatementParser();
+    }
+    
+    /**
+     * 
+     * @return Reference (no copy) to the parser field
+     */
+    private SymbolicParser getParser(){
+        return this.parser;
+    }
+    
+    /**
+     * 
+     * @param statement non null input statement for which evaluation strategy will be prepared
+     * 
+     * @return an appropriate evaluation strategy for the provided math statement
+     */
+    private EvaluationStrategy resolveEvaluationStrategy(SymbolicStatement statement){
+        ParameterIndependentAnalyzer statementTypeResolver;
+        MathStatementType  statementType;
+        EvaluationStrategy evaluationStrategy = null;
+        
+        // find the math statement type
+        statementTypeResolver = new StatementTypeResolver(statement);
+        statementType = (MathStatementType) statementTypeResolver.analyzeMathStatement();
+        
+        // load appropriate strategy based on the type of the provided math statement
+        switch(statementType){
+            case EXPRESSION:
+                evaluationStrategy = new ExpressionEvaluationStrategy();
+                break;
+            case EQUATION:
+                evaluationStrategy = new EquationEvaluationStrategy();
+                break;
+            default:
+                throw new RuntimeException("Unknown statement type");
+        }
+        
+        return evaluationStrategy;
     }
 }

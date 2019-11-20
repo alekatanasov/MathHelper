@@ -2,13 +2,13 @@
 
 package statement;
 
-import interfaces.statement.RelationalStatement;
+import interfaces.statement.RelationalPolynomial;
 
 /**
  *
  * @author Alexander Atanasov
  */
-public class RelationalPolynomialStatement extends PolynomialStatement implements RelationalStatement {
+public class RelationalPolynomialStatement extends PolynomialStatement implements RelationalPolynomial {
     private int leftSideSize;
     private int rightSideSize;
     private int relationPosition;

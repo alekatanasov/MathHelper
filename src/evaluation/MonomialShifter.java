@@ -3,23 +3,34 @@
 package evaluation;
 
 import interfaces.evaluation.ParameterDependentTransformer;
-import interfaces.statement.Polynomial;
+import interfaces.statement.Monomial;
+import interfaces.statement.RelationalPolynomial;
 import interfaces.statement.SymbolicStatement;
+import java.util.List;
 
 /**
  *
  * @author Alexander Atanasov
  */
 public class MonomialShifter extends MathStatementLoader implements ParameterDependentTransformer {
-    private Polynomial polynomialStatement;
+    private RelationalPolynomial relationalPolynomial;
     
-    public enum ShiftDirection{
+    public enum ShiftDirection {
         END_SHIFT,
         BEGINNING_SHIFT;
     }
     
     public static class ShiftData {
+        /**
+         * The position of the monomial (which is to be shifted) in a list of monomials of
+         * a polynomial statement.
+         */
         private int monomialPosition;
+        
+        /**
+         * specifies if a monomial will be shifted to the beginning or the end in the list of
+         * all monomials.
+         */
         private ShiftDirection shiftDirection;
         
         public ShiftData(int position, ShiftDirection direction){
@@ -72,14 +83,24 @@ public class MonomialShifter extends MathStatementLoader implements ParameterDep
         
         switch(shiftData.getShiftDirection()){
             case BEGINNING_SHIFT:
+                performBeginningShift();
                 break;
             case END_SHIFT:
+                performEndShift();
                 break;
             default:
                 throw new IllegalArgumentException("unknown shift");
         }
         
         return isShifted;
+    }
+    
+    private List<Monomial> getMonomialList(){
+        List<Monomial> monomials = null;
+        
+        // to do
+        
+        return monomials;
     }
     
     private void performBeginningShift(){

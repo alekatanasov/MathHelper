@@ -57,8 +57,7 @@ public class PolynomialStatement extends MathStatement implements Polynomial {
         return this.monomials;
     }
     
-    @Override
-    public  MonomialParser getMonomialParser(){
+    protected  MonomialParser getMonomialParser(){
         return monomialParser;
     }
     
