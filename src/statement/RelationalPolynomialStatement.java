@@ -2,7 +2,9 @@
 
 package statement;
 
+import interfaces.statement.MathSymbol;
 import interfaces.statement.RelationalPolynomial;
+import interfaces.statement.SymbolicStatement;
 
 /**
  *
@@ -13,9 +15,29 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
     private int rightSideSize;
     private int relationPosition;
     
-    RelationalPolynomialStatement(MathSymbolBase[] statement){
+    protected RelationalPolynomialStatement(MathSymbol[] statement){
         super(statement);
         //
+    }
+    
+    public static RelationalPolynomialStatement createRelationalPolynomialStatement(SymbolicStatement statement){
+        RelationalPolynomialStatement newStatement;
+        MathSymbol[] symbolicArray;
+        
+        // error check
+        if(statement == null){
+            throw new IllegalArgumentException("statement cannot be null");
+        }
+        
+        // create deep copy of the provided statement
+        statement = SymbolicStatement.copyMathStatement(statement);
+        
+        // convert the statement to array and create new PolynomialStatement instance
+        symbolicArray = new MathSymbolBase[statement.getStatement().size()];
+        symbolicArray = statement.getStatement().toArray(symbolicArray);
+        newStatement = new RelationalPolynomialStatement(symbolicArray);
+        
+        return newStatement;
     }
     
     @Override

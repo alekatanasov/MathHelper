@@ -28,6 +28,14 @@ public class PolynomialStatement extends MathStatement implements Polynomial {
         determineMonomials();
     }
     
+    /**
+     * 
+     * @param statement non null symbolic statement from which this polynomial statement will be
+     *                  constructed
+     * 
+     * @return polynomial statement constructed from the provided symbolic statement. The
+     *         polynomial statement is independent(deep copied) from the symbolic statement
+     */
     public static PolynomialStatement createPolynomialStatement(SymbolicStatement statement){
         PolynomialStatement newStatement;
         MathSymbol[] symbolicArray;
@@ -37,9 +45,12 @@ public class PolynomialStatement extends MathStatement implements Polynomial {
             throw new IllegalArgumentException("statement cannot be null");
         }
         
+        // create deep copy of the provided statement
+        statement = SymbolicStatement.copyMathStatement(statement);
+        
+        // convert the statement to array and create new PolynomialStatement instance
         symbolicArray = new MathSymbolBase[statement.getStatement().size()];
         symbolicArray = statement.getStatement().toArray(symbolicArray);
-        
         newStatement = new PolynomialStatement(symbolicArray);
         
         return newStatement;
@@ -67,14 +78,25 @@ public class PolynomialStatement extends MathStatement implements Polynomial {
         return this.monomials;
     }
     
+    /**
+     * 
+     * @return Reference (no copy) to the monomialParser field
+     */
     protected  MonomialParser getMonomialParser(){
         return monomialParser;
     }
     
+    /**
+     * 
+     * @param newMonomials the new value of the monomials field
+     */
     private void setMonomials(List<Monomial> newMonomials){
         this.monomials = newMonomials;
     }
     
+    /**
+     * 
+     */
     private void determineMonomials(){
         List<Monomial> determinedMonomials;
         
