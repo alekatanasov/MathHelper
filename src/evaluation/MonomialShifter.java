@@ -4,9 +4,7 @@ package evaluation;
 
 import interfaces.evaluation.ParameterDependentTransformer;
 import interfaces.statement.Monomial;
-import interfaces.statement.RelationalPolynomial;
 import interfaces.statement.SymbolicStatement;
-import java.util.List;
 
 /**
  *

@@ -3,6 +3,7 @@
 package statement;
 
 import interfaces.statement.MathSymbol;
+import interfaces.statement.Monomial;
 import interfaces.statement.RelationalPolynomial;
 import interfaces.statement.SymbolicStatement;
 import java.util.List;
@@ -12,7 +13,14 @@ import java.util.List;
  * @author Alexander Atanasov
  */
 public class RelationalPolynomialStatement extends PolynomialStatement implements RelationalPolynomial {
+    /**
+     * The number of monomials left of the relation
+     */
     private int leftSideSize;
+    
+    /**
+     * The number of monomoials right of the relation
+     */
     private int rightSideSize;
     
     /**
@@ -22,7 +30,8 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
     
     protected RelationalPolynomialStatement(MathSymbol[] statement){
         super(statement);
-        //
+        determineRelationPosition();
+        determineLeftSideSize();
     }
     
     public static RelationalPolynomialStatement createRelationalPolynomialStatement(SymbolicStatement statement){
@@ -85,11 +94,43 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
         this.relationPosition = position;
     }
     
-    private int determineRelationPosition(){
-        int position = 0;
-        List<Integer> relationPostions;
+    private void determineRelationPosition(){
+        int position;
+        List<Integer> foundPositions = getPositionsBySymbolType(MathSymbol.MathSymbolType.RELATION);
         
-        relationPostions = getPositionsBySymbolType(MathSymbol.MathSymbolType.RELATION);
-        return position;
+        // error check:
+        // There should be only one relation and therefore only one position
+        if(foundPositions.size() != 1){
+            throw new IllegalArgumentException("invalid number of relations");
+        }
+        
+        position = foundPositions.get(0);
+        
+        setRelationPosition(position);
+    }
+    
+    /**
+     * Determines the value of the rightSideSize field based on the monomials list and the
+     * relationPosition field. This method should be called after the relationPosition has been
+     * determined.
+     */
+    private void determineLeftSideSize(){
+        int size = 0;
+        List<Monomial> monomials = getMonomials();
+        
+        // determine the number of monomials left of the relation
+        for(int c = 0; c < monomials.size(); c++){
+            if(monomials.get(c).getEndingPosition() == getRelationPosition() - 1){
+                size = c + 1;
+                break;
+            }
+        }
+        
+        // error check
+        if(size == 0 && size == monomials.size()){
+            throw new RuntimeException("determiningLeftSideSize error");
+        }
+        
+        setLeftSideSize(size);
     }
 }

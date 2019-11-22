@@ -14,7 +14,7 @@ import statement.Bracket;
  *
  * @author Alexander Atanasov
  */
-public abstract class BaseStatementValidator extends MathStatementContainer{
+public abstract class BaseStatementValidator extends MathStatementContainer {
     public BaseStatementValidator(SymbolicStatement statement){
         super(statement);
     }

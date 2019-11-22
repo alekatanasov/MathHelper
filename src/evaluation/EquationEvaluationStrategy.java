@@ -18,11 +18,12 @@ public class EquationEvaluationStrategy implements EvaluationStrategy {
         SymbolicStatement result;
         ParameterIndependentAnalyzer relationalValidator = new RelationalStatementValidator(statement);
         
-        // error checks
+        // null check
         if(statement == null){
             throw new IllegalArgumentException("statement cannot be null");
         }
         
+        // check if the provided statement is valid equation
         boolean isValidEquation = (boolean) relationalValidator.analyzeMathStatement();
         if(!isValidEquation){
             // invalid expression provided by the user
