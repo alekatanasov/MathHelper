@@ -1,5 +1,6 @@
 package interfaces.statement;
 
+import interfaces.statement.MathSymbol.MathSymbolType;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -49,7 +50,7 @@ public interface SymbolicStatement {
      * @return the first symbol encountered which is of the specified SymbolType. If there is 
      *         no symbol of the specified type in this expression, the method will return null.
      */
-    public MathSymbol getFirstSymbolByType(MathSymbol.MathSymbolType symbolType);
+    public MathSymbol getFirstSymbolByType(MathSymbolType symbolType);
     
     /**
      * 
@@ -58,7 +59,7 @@ public interface SymbolicStatement {
      * @return a list of all symbols from the selected SymbolType. If the statement does not
      *         contain any MathSymbols from the required type, this method will return an empty list
      */
-    public List<MathSymbol> getAllSymbolsByType(MathSymbol.MathSymbolType symbolType);
+    public List<MathSymbol> getAllSymbolsByType(MathSymbolType symbolType);
     
     /**
      * Concatenates the provided statement to this one. The provided statement will be deep
@@ -67,6 +68,8 @@ public interface SymbolicStatement {
      * @param statement non null statement to be added to the current one
      */
     public void concatenate(SymbolicStatement statement);
+    
+    public List<Integer> getPositionsBySymbolType(MathSymbolType symbolType);
     
     /**
      * 

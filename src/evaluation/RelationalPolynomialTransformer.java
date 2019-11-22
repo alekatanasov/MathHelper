@@ -38,6 +38,16 @@ public abstract class RelationalPolynomialTransformer extends MathStatementConta
     }
     
     /**
+     * Reconstructs the currently loaded math symbolic statement based on the currently loaded
+     * relational polynomial statement.
+     */
+    protected void rebaseStatementOnPolynomial(){
+        RelationalPolynomial polynomial = this.getRelationalPolynomial();
+        
+        this.getMathStatement().setStatement(polynomial.getStatement());
+    }
+    
+    /**
      * Creates a new relational polynomial from the currently loaded symbolic statement and stores it
      * in the relationalPolynomial field.
      */

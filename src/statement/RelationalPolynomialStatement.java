@@ -5,6 +5,7 @@ package statement;
 import interfaces.statement.MathSymbol;
 import interfaces.statement.RelationalPolynomial;
 import interfaces.statement.SymbolicStatement;
+import java.util.List;
 
 /**
  *
@@ -13,6 +14,10 @@ import interfaces.statement.SymbolicStatement;
 public class RelationalPolynomialStatement extends PolynomialStatement implements RelationalPolynomial {
     private int leftSideSize;
     private int rightSideSize;
+    
+    /**
+     * The position of this statement's relation in the list of MathSymbols
+     */
     private int relationPosition;
     
     protected RelationalPolynomialStatement(MathSymbol[] statement){
@@ -78,5 +83,13 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
         }
         
         this.relationPosition = position;
+    }
+    
+    private int determineRelationPosition(){
+        int position = 0;
+        List<Integer> relationPostions;
+        
+        relationPostions = getPositionsBySymbolType(MathSymbol.MathSymbolType.RELATION);
+        return position;
     }
 }

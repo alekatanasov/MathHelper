@@ -3,6 +3,7 @@
 package evaluation;
 
 import interfaces.evaluation.EvaluationStrategy;
+import interfaces.evaluation.ParameterIndependentAnalyzer;
 import interfaces.statement.SymbolicStatement;
 
 
@@ -14,13 +15,21 @@ import interfaces.statement.SymbolicStatement;
 public class EquationEvaluationStrategy implements EvaluationStrategy {
     @Override
     public SymbolicStatement evaluate(SymbolicStatement statement) throws InvalidStatementException {
-        SymbolicStatement result = null;
+        SymbolicStatement result;
+        ParameterIndependentAnalyzer relationalValidator = new RelationalStatementValidator(statement);
         
-        // error check
+        // error checks
         if(statement == null){
             throw new IllegalArgumentException("statement cannot be null");
         }
         
+        boolean isValidEquation = (boolean) relationalValidator.analyzeMathStatement();
+        if(!isValidEquation){
+            // invalid expression provided by the user
+            throw new InvalidStatementException("Invalid equation");
+        }
+        
+        //
         result = evaluateSingleVariableEquation(statement);
         return result;
     }

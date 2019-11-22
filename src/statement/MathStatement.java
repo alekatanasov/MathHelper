@@ -4,6 +4,7 @@ package statement;
 import interfaces.statement.MathSymbol;
 import interfaces.statement.SymbolicStatement;
 import interfaces.parse.SymbolicMathParser;
+import interfaces.statement.MathSymbol.MathSymbolType;
 import static interfaces.statement.SymbolicStatement.copyMathStatement;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -151,6 +152,15 @@ public class MathStatement implements SymbolicStatement, Serializable {
         statementDeepCopy = copyMathStatement(statement).getStatement();
         
         getStatement().addAll(statementDeepCopy);
+    }
+    
+    @Override
+    public List<Integer> getPositionsBySymbolType(MathSymbolType symbolType){
+        List<Integer> positions = new ArrayList<>();
+        
+        // to do
+        
+        return positions;
     }
     
     /**
