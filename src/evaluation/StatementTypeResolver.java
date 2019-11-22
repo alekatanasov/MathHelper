@@ -9,7 +9,9 @@ import statement.Relation;
 import statement.Relation.RelationType;
 
 /**
- *
+ * This class analyzeMathStatement() method is capable of discerning the type of the 
+ * currently loaded math statement.
+ * 
  * @author Alexander Atanasov
  */
 public class StatementTypeResolver extends MathStatementContainer implements ParameterIndependentAnalyzer {

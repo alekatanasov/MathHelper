@@ -30,6 +30,7 @@ public class OperationOrderAdjuster extends MathStatementContainer implements Pa
         Operation operation;
         int openBrackets = 0;
         
+        // itterate the currently loaded math statement and adjust the order of operations
         for(int c=0; c < mathSymbols.size();c++){
             currentMathSymbol = mathSymbols.get(c);
             

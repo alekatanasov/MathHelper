@@ -3,6 +3,7 @@
 package statement;
 
 import interfaces.statement.Monomial;
+import interfaces.statement.SymbolicStatement;
 
 /**
  *
@@ -14,10 +15,22 @@ public class SingleVariableMonomial  extends MathStatement implements Monomial {
     private int begginingPosition;
     private int endingPosition;
     
-    public SingleVariableMonomial(MathSymbolBase[] symbols, int positionBegin, int positionEnd){
+    protected SingleVariableMonomial(MathSymbolBase[] symbols, int positionBegin, int positionEnd){
         super(symbols);
         setBeginningPosition(positionBegin);
         setEndingPosition(positionEnd);
+    }
+    
+    public static SingleVariableMonomial createSingleVariableMonomial(MathSymbolBase[] symbols, 
+                                                                      int positionBegin, int positionEnd){
+        SymbolicStatement monomial;
+        
+        monomial = new SingleVariableMonomial(symbols, positionBegin, positionEnd);
+        
+        // make deep copy of the monomial so it is completeley independent of the parent polynom
+        monomial = SymbolicStatement.copyMathStatement(monomial);
+        
+        return (SingleVariableMonomial) monomial;
     }
     
     @Override

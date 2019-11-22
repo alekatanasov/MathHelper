@@ -30,12 +30,17 @@ public abstract class RelationalPolynomialTransformer extends MathStatementConta
     
     /**
      * 
-     * @return The list of monomials in the currently loaded RelationalPolynomial
+     * @return The list of monomials in the currently loaded RelationalPolynomial. The returned list
+     *         is not a copy and changes made to it will persist.
      */
     protected List<Monomial> getMonomials(){
        return this.relationalPolynomial.getMonomials();
     }
     
+    /**
+     * Creates a new relational polynomial from the currently loaded symbolic statement and stores it
+     * in the relationalPolynomial field.
+     */
     private void resolveRelationalPolynomial(){
         this.relationalPolynomial = RelationalPolynomialStatement.createRelationalPolynomialStatement(getMathStatement());
     }

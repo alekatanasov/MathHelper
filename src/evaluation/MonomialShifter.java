@@ -93,16 +93,8 @@ public class MonomialShifter extends RelationalPolynomialTransformer implements 
         return isShifted;
     }
     
-    private List<Monomial> getMonomialList(){
-        List<Monomial> monomials = null;
-        
-        // to do
-        
-        return monomials;
-    }
-    
     private void performBeginningShift(){
-        
+        Monomial shiftMonomial;
     }
     
     private void performEndShift(){

@@ -29,7 +29,8 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
             throw new IllegalArgumentException("statement cannot be null");
         }
         
-        // create deep copy of the provided statement
+        // create deep copy of the provided statement to make the new polynomial statement
+        // completely independent
         statement = SymbolicStatement.copyMathStatement(statement);
         
         // convert the statement to array and create new PolynomialStatement instance
