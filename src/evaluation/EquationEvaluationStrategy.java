@@ -23,7 +23,7 @@ public class EquationEvaluationStrategy implements EvaluationStrategy {
             throw new IllegalArgumentException("statement cannot be null");
         }
         
-        // check if the provided statement is valid equation
+        // check if the provided statement is valid relational statement
         boolean isValidEquation = (boolean) relationalValidator.analyzeMathStatement();
         if(!isValidEquation){
             // invalid expression provided by the user

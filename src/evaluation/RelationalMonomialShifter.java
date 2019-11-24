@@ -5,12 +5,13 @@ package evaluation;
 import interfaces.evaluation.ParameterDependentTransformer;
 import interfaces.statement.Monomial;
 import interfaces.statement.SymbolicStatement;
+import java.util.List;
 
 /**
  *
  * @author Alexander Atanasov
  */
-public class MonomialShifter extends RelationalPolynomialTransformer implements ParameterDependentTransformer {
+public class RelationalMonomialShifter extends RelationalPolynomialTransformer implements ParameterDependentTransformer {
     public enum ShiftDirection {
         END_SHIFT,
         BEGINNING_SHIFT;
@@ -59,7 +60,7 @@ public class MonomialShifter extends RelationalPolynomialTransformer implements 
         }
     }
     
-    public MonomialShifter(SymbolicStatement statement){
+    public RelationalMonomialShifter(SymbolicStatement statement){
         super(statement);
     }
     
@@ -79,10 +80,10 @@ public class MonomialShifter extends RelationalPolynomialTransformer implements 
         
         switch(shiftData.getShiftDirection()){
             case BEGINNING_SHIFT:
-                performBeginningShift();
+                performBeginningShift(shiftData);
                 break;
             case END_SHIFT:
-                performEndShift();
+                performEndShift(shiftData);
                 break;
             default:
                 throw new IllegalArgumentException("unknown shift");
@@ -91,11 +92,23 @@ public class MonomialShifter extends RelationalPolynomialTransformer implements 
         return isShifted;
     }
     
-    private void performBeginningShift(){
+    private void performBeginningShift(ShiftData shiftData){
         Monomial shiftMonomial;
+        List<Monomial> monomials = this.getMonomials();
+        
+        shiftMonomial = monomials.get(shiftData.getMonomialPosition());
+        
+        monomials.remove(shiftData.getMonomialPosition());
+        monomials.add(0, shiftMonomial);
     }
     
-    private void performEndShift(){
+    private void performEndShift(ShiftData shiftData){
+        Monomial shiftMonomial;
+        List<Monomial> monomials = this.getMonomials();
         
+        shiftMonomial = monomials.get(shiftData.getMonomialPosition());
+        
+        monomials.remove(shiftData.getMonomialPosition());
+        monomials.add(monomials.size()-1, shiftMonomial);
     }
 }

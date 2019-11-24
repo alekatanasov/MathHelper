@@ -32,8 +32,16 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
         super(statement);
         determineRelationPosition();
         determineLeftSideSize();
+        determineRightSideSize();
     }
     
+    /**
+     * 
+     * @param statement non null symbolic statement representing valid relational polynomial.
+     * 
+     * @return relational polynomial statement representing the provided symbolic statement and 
+     *         referentially independent from it (complete deep copy).
+     */
     public static RelationalPolynomialStatement createRelationalPolynomialStatement(SymbolicStatement statement){
         RelationalPolynomialStatement newStatement;
         MathSymbol[] symbolicArray;
@@ -94,6 +102,10 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
         this.relationPosition = position;
     }
     
+    /**
+     * Finds the position of the relation in this statement and stores it in the relationPosition
+     * field.
+     */
     private void determineRelationPosition(){
         int position;
         List<Integer> foundPositions = getPositionsBySymbolType(MathSymbol.MathSymbolType.RELATION);
@@ -111,8 +123,8 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
     
     /**
      * Determines the value of the rightSideSize field based on the monomials list and the
-     * relationPosition field. This method should be called after the relationPosition has been
-     * determined.
+     * relationPosition field. This method should be called after the determineRelationPosition() 
+     * method has been called.
      */
     private void determineLeftSideSize(){
         int size = 0;
@@ -132,5 +144,18 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
         }
         
         setLeftSideSize(size);
+    }
+    
+    /**
+     * Determines the rightSideSize field based on the leftSideSize and the number of monomials in
+     * this polynomial. This method should be called after a call to the determineRelationPosition()
+     * and determineLeftSideSize() methods.
+     */
+    private void determineRightSideSize(){
+        int size;
+        List<Monomial> monomials = getMonomials();
+        
+        size = monomials.size() - this.getLeftSideSize();
+        this.setRightSideSize(size);
     }
 }

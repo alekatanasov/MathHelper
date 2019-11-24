@@ -55,6 +55,7 @@ public class RelationalStatementValidator extends BaseStatementValidator impleme
         // there is only one relation. get it's position
         relationPosition = getMathStatement().getPositionsBySymbolType(MathSymbolType.RELATION).get(0);
         
+        // relation cannot be the first or last symbol in a valid symbolic statement
         if(relationPosition == 0 || relationPosition == getMathStatement().getStatement().size() - 1){
             validRelationalStatement = false;
         }
@@ -62,6 +63,11 @@ public class RelationalStatementValidator extends BaseStatementValidator impleme
         return validRelationalStatement;
     }
     
+    /**
+     * 
+     * @return true if the currently loaded polynomial statement is composed of at least two
+     *         monomials.
+     */
     protected boolean checkMonomialCount() {
         boolean validCount = true;
         Polynomial polynomial = PolynomialStatement.createPolynomialStatement(getMathStatement());
