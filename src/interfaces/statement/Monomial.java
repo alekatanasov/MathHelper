@@ -8,7 +8,7 @@ import statement.Constant;
  *
  * @author Alexander Atanasov
  */
-public interface Monomial extends SymbolicStatement {
+public interface Monomial extends SymbolicStatement, NormalizableStatement {
     public Constant getCoefficient();
     
     public Constant getHighestPower();
@@ -24,4 +24,9 @@ public interface Monomial extends SymbolicStatement {
      * @return This monomial's last symbol position in a polynomial statement
      */
     public int getEndingPosition();
+    
+    /**
+     * Flips the sign of the coefficient of this monomial.
+     */
+    public void flipSign();
 }

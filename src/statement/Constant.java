@@ -77,6 +77,14 @@ public final class Constant extends MathSymbolBase implements Serializable {
         return hash;
     }
     
+    public void flipSign(){
+        BigDecimal value = getValue();
+        
+        value = value.negate();
+        
+        setSymbol(value.toPlainString());
+    }
+    
     /**
      * 
      * @return BigDecimal deep copy representing the value of the current constant

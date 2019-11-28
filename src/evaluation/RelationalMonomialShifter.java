@@ -99,6 +99,7 @@ public class RelationalMonomialShifter extends RelationalPolynomialTransformer i
         shiftMonomial = monomials.get(shiftData.getMonomialPosition());
         
         monomials.remove(shiftData.getMonomialPosition());
+        shiftMonomial.flipSign();
         monomials.add(0, shiftMonomial);
     }
     
@@ -109,6 +110,7 @@ public class RelationalMonomialShifter extends RelationalPolynomialTransformer i
         shiftMonomial = monomials.get(shiftData.getMonomialPosition());
         
         monomials.remove(shiftData.getMonomialPosition());
+        shiftMonomial.flipSign();
         monomials.add(monomials.size()-1, shiftMonomial);
     }
 }

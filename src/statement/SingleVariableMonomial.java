@@ -21,16 +21,23 @@ public class SingleVariableMonomial  extends MathStatement implements Monomial {
         setEndingPosition(positionEnd);
     }
     
+    /**
+     * 
+     * @param symbols
+     * @param positionBegin
+     * @param positionEnd
+     * @return 
+     */
     public static SingleVariableMonomial createSingleVariableMonomial(MathSymbolBase[] symbols, 
                                                                       int positionBegin, int positionEnd){
-        SymbolicStatement monomial;
+        SymbolicStatement newMonomial;
         
-        monomial = new SingleVariableMonomial(symbols, positionBegin, positionEnd);
+        newMonomial = new SingleVariableMonomial(symbols, positionBegin, positionEnd);
         
-        // make deep copy of the monomial so it is completeley independent of the parent polynom
-        monomial = SymbolicStatement.copyMathStatement(monomial);
+        // make deep copy of the Monomial so it is completeley independent of the parent polynomial
+        newMonomial = SymbolicStatement.copyMathStatement(newMonomial);
         
-        return (SingleVariableMonomial) monomial;
+        return (SingleVariableMonomial) newMonomial;
     }
     
     @Override
@@ -53,9 +60,25 @@ public class SingleVariableMonomial  extends MathStatement implements Monomial {
         return this.endingPosition;
     }
     
+    @Override
+    public void flipSign(){
+        getCoefficient().flipSign();
+    }
+    
+    @Override
+    public void convertToCanonicalForm(){
+        // to do
+    }
+    
+    @Override
+    public boolean isInCanonicalForm(){
+        // monomials are alwais in canonical form
+        return true;
+    }
+    
     /**
      * 
-     * @param value Constant representing the numeric coefficient of this monomial
+     * @param value Constant representing the numeric coefficient of this Monomial
      */
     private void setCoefficient(Constant value){
         this.coefficient = value;
@@ -63,7 +86,7 @@ public class SingleVariableMonomial  extends MathStatement implements Monomial {
     
     /**
      * 
-     * @param power Constant representing the highest power of this monomial
+     * @param power Constant representing the highest power of this Monomial
      */
     private void setHighestPower(Constant power){
         this.highestPower = power;
