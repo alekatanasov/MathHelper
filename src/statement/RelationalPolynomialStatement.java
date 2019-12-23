@@ -56,7 +56,7 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
         statement = SymbolicStatement.copyMathStatement(statement);
         
         // convert the statement to array and create new RelationalPolynomialStatement instance
-        symbolicArray = new MathSymbolBase[statement.getStatement().size()];
+        symbolicArray = new MathSymbol[statement.getStatement().size()];
         symbolicArray = statement.getStatement().toArray(symbolicArray);
         newStatement = new RelationalPolynomialStatement(symbolicArray);
         

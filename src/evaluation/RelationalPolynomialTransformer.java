@@ -9,7 +9,7 @@ import java.util.List;
 import statement.RelationalPolynomialStatement;
 
 /**
- * Holds a RelationalPolynomial constructed from the MathStatement field  of the 
+ * Holds a RelationalPolynomial constructed from the MathStatement field of the 
  * supper class and has the ability to reconstruct the MathStatement super field based on
  * changes made to the relationalPolynomial field. There are no reference dependencies between
  * the MathStatement super field and the relationalPolynomial field.

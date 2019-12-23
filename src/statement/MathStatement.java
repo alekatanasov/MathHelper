@@ -163,6 +163,11 @@ public class MathStatement implements SymbolicStatement, Serializable {
         return positions;
     }
     
+    @Override
+    public int size(){
+        return getStatement().size();
+    }
+    
     /**
      * 
      * @param symbols an array of MathSymbols representing a symbolic math statement

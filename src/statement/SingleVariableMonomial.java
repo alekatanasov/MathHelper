@@ -2,6 +2,7 @@
 
 package statement;
 
+import interfaces.statement.MathSymbol;
 import interfaces.statement.Monomial;
 import interfaces.statement.SymbolicStatement;
 
@@ -15,10 +16,11 @@ public class SingleVariableMonomial  extends MathStatement implements Monomial {
     private int begginingPosition;
     private int endingPosition;
     
-    protected SingleVariableMonomial(MathSymbolBase[] symbols, int positionBegin, int positionEnd){
+    protected SingleVariableMonomial(MathSymbol[] symbols, int positionBegin, int positionEnd){
         super(symbols);
         setBeginningPosition(positionBegin);
         setEndingPosition(positionEnd);
+        convertToCanonicalForm();
     }
     
     /**
@@ -28,7 +30,7 @@ public class SingleVariableMonomial  extends MathStatement implements Monomial {
      * @param positionEnd
      * @return 
      */
-    public static SingleVariableMonomial createSingleVariableMonomial(MathSymbolBase[] symbols, 
+    public static SingleVariableMonomial createSingleVariableMonomial(MathSymbol[] symbols, 
                                                                       int positionBegin, int positionEnd){
         SymbolicStatement newMonomial;
         
@@ -66,8 +68,8 @@ public class SingleVariableMonomial  extends MathStatement implements Monomial {
     }
     
     @Override
-    public void convertToCanonicalForm(){
-        // to do
+    public final void convertToCanonicalForm(){
+        //
     }
     
     @Override
@@ -110,4 +112,5 @@ public class SingleVariableMonomial  extends MathStatement implements Monomial {
         this.endingPosition = position;
     }
     
+    // private void 
 }

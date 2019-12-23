@@ -3,6 +3,7 @@
 package evaluation;
 
 import interfaces.evaluation.EvaluationStrategy;
+import interfaces.evaluation.ParameterDependentTransformer;
 import interfaces.evaluation.ParameterIndependentAnalyzer;
 import interfaces.statement.SymbolicStatement;
 
@@ -36,9 +37,19 @@ public class EquationEvaluationStrategy implements EvaluationStrategy {
     }
     
     private SymbolicStatement evaluateSingleVariableEquation(SymbolicStatement statement){
-        SymbolicStatement result = null;
+        SymbolicStatement result;
         
-        // to do
+        result = this.evaluateLinearEquation(statement);
+        
+        return result;
+    }
+    
+    private SymbolicStatement evaluateLinearEquation(SymbolicStatement statement){
+        SymbolicStatement result = null;
+        ParameterDependentTransformer monomialShifter = new RelationalMonomialShifter(statement);
+        
+        // 
+        
         
         return result;
     }

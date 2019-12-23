@@ -71,6 +71,8 @@ public interface SymbolicStatement {
     
     public List<Integer> getPositionsBySymbolType(MathSymbolType symbolType);
     
+    public int size();
+    
     /**
      * 
      * @param statement statement to be copied. If null this method will return null.
