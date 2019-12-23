@@ -6,7 +6,7 @@ package interfaces.statement;
  *
  * @author Alexander Atanasov
  */
-public interface RelationalStatement extends SymbolicStatement {
+public interface RelationalStatement {
     /**
      * 
      * @return The number of meaningful elements before (left side) the relation symbol 
@@ -20,6 +20,4 @@ public interface RelationalStatement extends SymbolicStatement {
      *         in this statement
      */
     public int getRightSideSize();
-    
-    public int getRelationPosition();
 }

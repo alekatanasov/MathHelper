@@ -7,7 +7,6 @@ import interfaces.statement.Polynomial;
 import interfaces.parse.MonomialParser;
 import interfaces.statement.MathSymbol;
 import interfaces.statement.SymbolicStatement;
-import java.util.ArrayList;
 import java.util.List;
 import parse.MonomialListParser;
 
@@ -15,7 +14,7 @@ import parse.MonomialListParser;
  *
  * @author Alexander Atanasov
  */
-public class PolynomialStatement extends MathStatement implements Polynomial {
+public class PolynomialStatement implements Polynomial {
     private List<Monomial> monomials;
     private static MonomialParser monomialParser;
     
@@ -23,9 +22,8 @@ public class PolynomialStatement extends MathStatement implements Polynomial {
         monomialParser = new MonomialListParser();
     }
     
-    protected PolynomialStatement(MathSymbol[] statement){
-        super(statement);
-        determineMonomials();
+    protected PolynomialStatement(List<Monomial> polynomial){
+        setMonomials(polynomial);
     }
     
     /**
@@ -38,7 +36,7 @@ public class PolynomialStatement extends MathStatement implements Polynomial {
      */
     public static PolynomialStatement createPolynomialStatement(SymbolicStatement statement){
         PolynomialStatement newStatement;
-        MathSymbol[] symbolicArray;
+        List<Monomial> determinedMonomials;
         
         // error check
         if(statement == null){
@@ -49,34 +47,18 @@ public class PolynomialStatement extends MathStatement implements Polynomial {
         // completely independent
         statement = SymbolicStatement.copyMathStatement(statement);
         
+        // parse monomials
+        getMonomialParser().parseMonomials(statement);
+        determinedMonomials = getMonomialParser().popLastParsedStatement();
+        
         // convert the statement to array and create new PolynomialStatement instance
-        symbolicArray = new MathSymbolBase[statement.getStatement().size()];
-        symbolicArray = statement.getStatement().toArray(symbolicArray);
-        newStatement = new PolynomialStatement(symbolicArray);
+        newStatement = new PolynomialStatement(determinedMonomials);
         
         return newStatement;
     }
     
     @Override
-    public void rebaseOnMonomials(){
-        List<Monomial> monomialStatement = getMonomials();
-        List<MathSymbol> rebasedStatement = new ArrayList<>();
-        
-        if(monomialStatement.isEmpty()){
-            return;
-        }
-        
-        for(Monomial monomial : monomialStatement){
-            rebasedStatement.addAll(monomial.getStatement());
-        }
-        
-        // store resulting statement
-        setStatement(rebasedStatement);
-    }
-    
-    @Override
     public final List<Monomial> getMonomials(){
-        determineMonomials();
         return this.monomials;
     }
     
@@ -84,7 +66,7 @@ public class PolynomialStatement extends MathStatement implements Polynomial {
      * 
      * @return Reference (no copy) to the monomialParser field
      */
-    protected  MonomialParser getMonomialParser(){
+    protected static MonomialParser getMonomialParser(){
         return monomialParser;
     }
     
@@ -93,16 +75,20 @@ public class PolynomialStatement extends MathStatement implements Polynomial {
      * @param newMonomials the new value of the monomials field
      */
     private void setMonomials(List<Monomial> newMonomials){
+        if(newMonomials == null){
+            throw new IllegalArgumentException("newMonomials cannot be null");
+        }
+        
         this.monomials = newMonomials;
     }
     
     /**
      * 
      */
-    private void determineMonomials(){
+    private void initializeMonomials(SymbolicStatement statement){
         List<Monomial> determinedMonomials;
         
-        getMonomialParser().parseMonomials(this);
+        getMonomialParser().parseMonomials(statement);
         determinedMonomials = getMonomialParser().popLastParsedStatement();
         
         setMonomials(determinedMonomials);

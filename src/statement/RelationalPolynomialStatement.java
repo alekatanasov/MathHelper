@@ -23,16 +23,10 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
      */
     private int rightSideSize;
     
-    /**
-     * The position of this statement's relation in the list of MathSymbols
-     */
-    private int relationPosition;
+    private Relation relation;
     
-    protected RelationalPolynomialStatement(MathSymbol[] statement){
-        super(statement);
-        determineRelationPosition();
-        determineLeftSideSize();
-        determineRightSideSize();
+    protected RelationalPolynomialStatement(List<Monomial> polynomial, Relation relation){
+        super(polynomial);
     }
     
     /**
@@ -56,9 +50,7 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
         statement = SymbolicStatement.copyMathStatement(statement);
         
         // convert the statement to array and create new RelationalPolynomialStatement instance
-        symbolicArray = new MathSymbol[statement.getStatement().size()];
-        symbolicArray = statement.getStatement().toArray(symbolicArray);
-        newStatement = new RelationalPolynomialStatement(symbolicArray);
+        newStatement = new RelationalPolynomialStatement(statement);
         
         return newStatement;
     }
@@ -73,9 +65,8 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
         return this.rightSideSize;
     }
     
-    @Override
-    public int getRelationPosition(){
-        return this.relationPosition;
+    public Relation getRelation(){
+        return this.relation;
     }
     
     private void setLeftSideSize(int size) {
@@ -94,68 +85,11 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
         this.rightSideSize = size;
     }
     
-    private void setRelationPosition(int position){
-        if(position < 0){
-            throw new IllegalArgumentException("position cannot be less than 0");
+    private void setRelation(Relation relation) {
+        if(relation == null){
+            throw new IllegalArgumentException("relation cannot be null");
         }
         
-        this.relationPosition = position;
-    }
-    
-    /**
-     * Finds the position of the relation in this statement and stores it in the relationPosition
-     * field.
-     */
-    private void determineRelationPosition(){
-        int position;
-        List<Integer> foundPositions = getPositionsBySymbolType(MathSymbol.MathSymbolType.RELATION);
-        
-        // error check:
-        // There should be only one relation and therefore only one position
-        if(foundPositions.size() != 1){
-            throw new IllegalArgumentException("invalid number of relations");
-        }
-        
-        position = foundPositions.get(0);
-        
-        setRelationPosition(position);
-    }
-    
-    /**
-     * Determines the value of the rightSideSize field based on the monomials list and the
-     * relationPosition field. This method should be called after the determineRelationPosition() 
-     * method has been called.
-     */
-    private void determineLeftSideSize(){
-        int size = 0;
-        List<Monomial> monomials = getMonomials();
-        
-        // determine the number of monomials left of the relation
-        for(int c = 0; c < monomials.size(); c++){
-            if(monomials.get(c).getEndingPosition() == getRelationPosition() - 1){
-                size = c + 1;
-                break;
-            }
-        }
-        
-        // error check
-        if(size == 0 && size == monomials.size()){
-            throw new RuntimeException("determiningLeftSideSize error");
-        }
-        
-        setLeftSideSize(size);
-    }
-    
-    /**
-     * Determines the rightSideSize field based on the leftSideSize and the number of monomials in
-     * this polynomial. This method should be called after a call to the determineRelationPosition()
-     * and determineLeftSideSize() methods.
-     */
-    private void determineRightSideSize(){
-        int size;
-        List<Monomial> monomials = getMonomials();
-        
-        size = monomials.size() - this.getLeftSideSize();
-        this.setRightSideSize(size);
+        this.relation = relation;
     }
 }
