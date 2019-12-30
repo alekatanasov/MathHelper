@@ -17,11 +17,7 @@ public class LinearEquationSolver extends RelationalPolynomialTransformer implem
     
     @Override
     public boolean transformMathStatement(){
-        ParameterDependentTransformer monomialShifter = new RelationalMonomialShifter(getRelationalPolynomial());
-        
-        for(int c = 0; c < getRelationalPolynomial().size(); c++){
-            
-        }
+        // to do
         
         return true;
     }

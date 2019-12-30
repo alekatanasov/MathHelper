@@ -14,7 +14,7 @@ import statement.RelationalPolynomialStatement;
  * 
  * @author Alexander Atanasov
  */
-public abstract class RelationalPolynomialTransformer implements StatementContainer{
+public abstract class RelationalPolynomialTransformer implements StatementContainer {
     private RelationalPolynomial relationalPolynomial;
     
     public RelationalPolynomialTransformer(SymbolicStatement statement){

@@ -32,11 +32,11 @@ public class EquationEvaluationStrategy implements EvaluationStrategy {
         }
         
         //
-        result = evaluateSingleVariableEquation(statement);
+        result = evaluateByDegree(statement);
         return result;
     }
     
-    private SymbolicStatement evaluateSingleVariableEquation(SymbolicStatement statement){
+    private SymbolicStatement evaluateByDegree(SymbolicStatement statement){
         SymbolicStatement result;
         
         result = this.evaluateLinearEquation(statement);
@@ -46,10 +46,8 @@ public class EquationEvaluationStrategy implements EvaluationStrategy {
     
     private SymbolicStatement evaluateLinearEquation(SymbolicStatement statement){
         SymbolicStatement result = null;
-        ParameterDependentTransformer monomialShifter = new RelationalMonomialShifter(statement);
         
         // 
-        
         
         return result;
     }

@@ -45,12 +45,16 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
             throw new IllegalArgumentException("statement cannot be null");
         }
         
-        // create deep copy of the provided statement to make the new polynomial statement
+        // create deep copy of the provided statement to make the new relational polynomial statement
         // completely independent
         statement = SymbolicStatement.copyMathStatement(statement);
         
-        // convert the statement to array and create new RelationalPolynomialStatement instance
-        newStatement = new RelationalPolynomialStatement(statement);
+        // parse monomials
+        getMonomialParser().parseMonomials(statement);
+        //determinedMonomials = getMonomialParser().popLastParsedStatement();
+        
+        //  create new RelationalPolynomialStatement instance
+        newStatement = new RelationalPolynomialStatement(statement.getStatement());
         
         return newStatement;
     }
