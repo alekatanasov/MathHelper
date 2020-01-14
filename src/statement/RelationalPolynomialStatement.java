@@ -23,6 +23,9 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
      */
     private int rightSideSize;
     
+    /**
+     * The relation which separates the left from the right side
+     */
     private Relation relation;
     
     protected RelationalPolynomialStatement(List<Monomial> polynomial, Relation relation){

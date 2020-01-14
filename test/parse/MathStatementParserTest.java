@@ -6,6 +6,7 @@ package parse;
 import interfaces.statement.MathSymbol;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -57,12 +58,12 @@ public class MathStatementParserTest {
     @Test
     public void testMathStatementParser() {
         String parsedStatement = "";
-        MathSymbol[] mathStatement;
+        List<MathSymbol> mathStatement;
         
         this.parser.parseStatement(this.input);
         mathStatement = this.parser.popLastParsedStatement();
-        for(int c = 0; c < mathStatement.length; c++){
-            parsedStatement+= mathStatement[c].getMathSymbol();
+        for(int c = 0; c < mathStatement.size(); c++){
+            parsedStatement+= mathStatement.get(c);
         }
         
         System.out.println("Math statement is: " + this.input);

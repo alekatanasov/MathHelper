@@ -2,6 +2,7 @@
 package interfaces.parse;
 
 import interfaces.statement.MathSymbol;
+import java.util.List;
 
 /**
  *
@@ -20,5 +21,5 @@ public interface SymbolicMathParser extends StatementParser {
     public boolean parseStatement(String statement);
     
     @Override
-    public MathSymbol[] popLastParsedStatement();
+    public List<MathSymbol> popLastParsedStatement();
 }

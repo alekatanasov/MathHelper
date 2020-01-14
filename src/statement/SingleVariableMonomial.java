@@ -5,6 +5,7 @@ package statement;
 import interfaces.statement.MathSymbol;
 import interfaces.statement.Monomial;
 import interfaces.statement.SymbolicStatement;
+import java.util.List;
 
 /**
  *
@@ -13,13 +14,9 @@ import interfaces.statement.SymbolicStatement;
 public class SingleVariableMonomial  extends MathStatement implements Monomial {
     private Constant coefficient;
     private Constant highestPower;
-    private int begginingPosition;
-    private int endingPosition;
     
-    protected SingleVariableMonomial(MathSymbol[] symbols, int positionBegin, int positionEnd){
+    protected SingleVariableMonomial(List<MathSymbol> symbols){
         super(symbols);
-        setBeginningPosition(positionBegin);
-        setEndingPosition(positionEnd);
         convertToCanonicalForm();
     }
     
@@ -30,11 +27,10 @@ public class SingleVariableMonomial  extends MathStatement implements Monomial {
      * @param positionEnd
      * @return 
      */
-    public static SingleVariableMonomial createSingleVariableMonomial(MathSymbol[] symbols, 
-                                                                      int positionBegin, int positionEnd){
+    public static SingleVariableMonomial createSingleVariableMonomial(List<MathSymbol> symbols){
         SymbolicStatement newMonomial;
         
-        newMonomial = new SingleVariableMonomial(symbols, positionBegin, positionEnd);
+        newMonomial = new SingleVariableMonomial(symbols);
         
         // make deep copy of the Monomial so it is completeley independent of the parent polynomial
         newMonomial = SymbolicStatement.copyMathStatement(newMonomial);
@@ -50,16 +46,6 @@ public class SingleVariableMonomial  extends MathStatement implements Monomial {
     @Override
     public Constant getHighestPower(){
         return this.highestPower;
-    }
-    
-    @Override
-    public int getBeginningPosition(){
-        return this.begginingPosition;
-    }
-    
-    @Override
-    public int getEndingPosition(){
-        return this.endingPosition;
     }
     
     @Override
@@ -92,24 +78,6 @@ public class SingleVariableMonomial  extends MathStatement implements Monomial {
      */
     private void setHighestPower(Constant power){
         this.highestPower = power;
-    }
-    
-    private void setBeginningPosition(int position){
-        // error check
-        if(position < 0){
-            throw new IllegalArgumentException("beginning position cannot be less than zero");
-        }
-        
-        this.begginingPosition = position;
-    }
-    
-    private void setEndingPosition(int position){
-        // error check
-        if(position < 0){
-            throw new IllegalArgumentException("ending position cannot be less than zero");
-        }
-        
-        this.endingPosition = position;
     }
     
     // private void 

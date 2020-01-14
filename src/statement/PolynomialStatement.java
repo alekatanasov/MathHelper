@@ -62,6 +62,17 @@ public class PolynomialStatement implements Polynomial {
         return this.monomials;
     }
     
+    @Override
+    public void convertToCanonicalForm(){
+        // to do
+    }
+    
+    @Override
+    public boolean isInCanonicalForm(){
+        // polynomials are alwais in canonical form
+        return true;
+    }
+    
     /**
      * 
      * @return Reference (no copy) to the monomialParser field

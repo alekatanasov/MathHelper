@@ -13,13 +13,13 @@ import java.util.List;
 
 /**
  * Can parse String representations of mathematical statements. If non empty recognizable 
- * statement is provided to the parseStatement method, this parser will convert it to an
- * array of type MathSymbol[] which can be retrieved by the popLastParsedStatement method.
+ * statement is provided to the parseStatement method, this parser will convert it to a
+ * List of type MathSymbol which can be retrieved by the popLastParsedStatement method.
  * 
  * @author Alexandar Atanasov
  */
 public class MathStatementParser implements SymbolicMathParser {
-    private MathSymbol[] lastParsedStatement;
+    private List<MathSymbol> lastParsedStatement;
     private String currentConstant;
     private String lastParsedConstant;
     
@@ -73,10 +73,7 @@ public class MathStatementParser implements SymbolicMathParser {
        }
        
        // store the symbolicStatement
-       this.lastParsedStatement= new MathSymbol[mathStatement.size()];
-       for(int c=0; c < mathStatement.size(); c++){
-           this.lastParsedStatement[c] = mathStatement.get(c);
-       }
+       this.lastParsedStatement = mathStatement;
        
        // parsing successful
        parseSuccess = true;
@@ -85,8 +82,8 @@ public class MathStatementParser implements SymbolicMathParser {
     }
     
     @Override
-    public MathSymbol[] popLastParsedStatement(){
-        MathSymbol[] symbolicStatement = getLastParsedStatement();
+    public List<MathSymbol> popLastParsedStatement(){
+        List <MathSymbol> symbolicStatement = getLastParsedStatement();
         setLastParsedStatement(null); 
         return symbolicStatement;
     }
@@ -185,7 +182,7 @@ public class MathStatementParser implements SymbolicMathParser {
         return this.lastParsedConstant;
     }
     
-    private void setLastParsedStatement(MathSymbol[] statement){
+    private void setLastParsedStatement(List<MathSymbol> statement){
         this.lastParsedStatement = statement;   
     }
     
@@ -193,7 +190,7 @@ public class MathStatementParser implements SymbolicMathParser {
      * 
      * @return Reference (no shallow or deep copy) to the lastParsedStatement field.
      */
-    private MathSymbol[] getLastParsedStatement(){
+    private List<MathSymbol> getLastParsedStatement(){
         return this.lastParsedStatement;
     }
 }

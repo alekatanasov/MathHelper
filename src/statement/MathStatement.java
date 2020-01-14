@@ -17,7 +17,7 @@ import java.util.List;
 public class MathStatement implements SymbolicStatement, Serializable {
     private List<MathSymbol> statement;
     
-    protected MathStatement(MathSymbol[] statement){
+    protected MathStatement(List<MathSymbol> statement){
         initializeStatement(statement); 
     }
     
@@ -172,12 +172,8 @@ public class MathStatement implements SymbolicStatement, Serializable {
      * 
      * @param symbols an array of MathSymbols representing a symbolic math statement
      */
-    private void initializeStatement(MathSymbol[] symbols){
-        List<MathSymbol> newStatement = new ArrayList<>();
-        
-        for(int c = 0;c < symbols.length;c++){
-            newStatement.add(symbols[c]);
-        }
+    private void initializeStatement(List<MathSymbol> symbols){
+        List<MathSymbol> newStatement = new ArrayList<>(symbols);
         
         setStatement(newStatement);
     }
