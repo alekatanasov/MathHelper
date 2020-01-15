@@ -5,7 +5,6 @@ package statement;
 import interfaces.statement.Monomial;
 import interfaces.statement.Polynomial;
 import interfaces.parse.MonomialParser;
-import interfaces.statement.MathSymbol;
 import interfaces.statement.SymbolicStatement;
 import java.util.List;
 import parse.MonomialListParser;
@@ -22,8 +21,18 @@ public class PolynomialStatement implements Polynomial {
         monomialParser = new MonomialListParser();
     }
     
-    protected PolynomialStatement(List<Monomial> polynomial){
-        setMonomials(polynomial);
+    protected PolynomialStatement(SymbolicStatement statement) {
+        List<Monomial> determinedMonomials;
+        
+        // create deep copy of the provided statement to make the new polynomial statement
+        // completely independent
+        statement = SymbolicStatement.copyMathStatement(statement);
+        
+        // parse monomials
+        getMonomialParser().parseMonomials(statement);
+        determinedMonomials = getMonomialParser().popLastParsedStatement();
+        
+        setMonomials(determinedMonomials);
     }
     
     /**
@@ -43,16 +52,8 @@ public class PolynomialStatement implements Polynomial {
             throw new IllegalArgumentException("statement cannot be null");
         }
         
-        // create deep copy of the provided statement to make the new polynomial statement
-        // completely independent
-        statement = SymbolicStatement.copyMathStatement(statement);
-        
-        // parse monomials
-        getMonomialParser().parseMonomials(statement);
-        determinedMonomials = getMonomialParser().popLastParsedStatement();
-        
-        // convert the statement to array and create new PolynomialStatement instance
-        newStatement = new PolynomialStatement(determinedMonomials);
+        // create new PolynomialStatement instance
+        newStatement = new PolynomialStatement(statement);
         
         return newStatement;
     }

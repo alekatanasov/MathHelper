@@ -23,8 +23,6 @@ public class SingleVariableMonomial  extends MathStatement implements Monomial {
     /**
      * 
      * @param symbols
-     * @param positionBegin
-     * @param positionEnd
      * @return 
      */
     public static SingleVariableMonomial createSingleVariableMonomial(List<MathSymbol> symbols){

@@ -63,7 +63,7 @@ public class MathStatementParserTest {
         this.parser.parseStatement(this.input);
         mathStatement = this.parser.popLastParsedStatement();
         for(int c = 0; c < mathStatement.size(); c++){
-            parsedStatement+= mathStatement.get(c);
+            parsedStatement+= mathStatement.get(c).getMathSymbol();
         }
         
         System.out.println("Math statement is: " + this.input);

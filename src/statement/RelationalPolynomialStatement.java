@@ -28,8 +28,8 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
      */
     private Relation relation;
     
-    protected RelationalPolynomialStatement(List<Monomial> polynomial, Relation relation){
-        super(polynomial);
+    protected RelationalPolynomialStatement(SymbolicStatement statement, Relation relation){
+        super(statement);
     }
     
     /**
@@ -41,6 +41,7 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
      */
     public static RelationalPolynomialStatement createRelationalPolynomialStatement(SymbolicStatement statement){
         RelationalPolynomialStatement newStatement;
+        Relation relation;
         MathSymbol[] symbolicArray;
         
         // error check
@@ -51,13 +52,12 @@ public class RelationalPolynomialStatement extends PolynomialStatement implement
         // create deep copy of the provided statement to make the new relational polynomial statement
         // completely independent
         statement = SymbolicStatement.copyMathStatement(statement);
-        
-        // parse monomials
-        getMonomialParser().parseMonomials(statement);
-        //determinedMonomials = getMonomialParser().popLastParsedStatement();
+
+        //
+        relation = (Relation) statement.getFirstSymbolByType(MathSymbol.MathSymbolType.RELATION);
         
         //  create new RelationalPolynomialStatement instance
-        newStatement = new RelationalPolynomialStatement(statement.getStatement());
+        newStatement = new RelationalPolynomialStatement(statement, relation);
         
         return newStatement;
     }
